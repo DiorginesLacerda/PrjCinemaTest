@@ -1,6 +1,7 @@
 using PrjCinema.Data.Context.EntityConfiguration;
 using PrjCinema.Data.Repositories;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.Service.Service;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PrjCinema.MVC.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(PrjCinema.MVC.App_Start.NinjectWebCommon), "Stop")]
@@ -71,6 +72,15 @@ namespace PrjCinema.MVC.App_Start
             kernel.Bind<IFilmeRepository>().To<FilmeRepository>();
             kernel.Bind<IAtorRepository>().To<AtorRepository>();
             kernel.Bind<IAtuaFilmeRepository>().To<AtuaFilmeRepository>();
+            kernel.Bind<IAtuaSerieRepository>().To<AtuaSerieRepository>();
+
+            kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
+            kernel.Bind<IUsuarioService>().To<UsuarioService>();
+            kernel.Bind<IEnderecoService>().To<EnderecoService>();
+            kernel.Bind<IFilmeService>().To<FilmeService>();
+            kernel.Bind<IAtorService>().To<AtorService>();
+            kernel.Bind<IAtuaFilmeService>().To<AtuaFilmeService>();
+            kernel.Bind<IAtuaSerieService>().To<AtuaSerieService>();
         }        
     }
 }

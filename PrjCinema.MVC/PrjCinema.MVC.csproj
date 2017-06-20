@@ -171,12 +171,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Ator\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Ator\" />
-    <Folder Include="Views\Filme\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -193,6 +192,10 @@
     <ProjectReference Include="..\PrjCinema.Domain\PrjCinema.Domain.csproj">
       <Project>{1e3b0cd6-3a35-4a69-8053-447c5da22351}</Project>
       <Name>PrjCinema.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrjCinema.Service\PrjCinema.Service.csproj">
+      <Project>{2B2E854F-F0DA-4811-995C-F24D6C686382}</Project>
+      <Name>PrjCinema.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

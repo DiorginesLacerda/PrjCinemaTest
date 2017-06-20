@@ -37,3 +37,5 @@ C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema
 C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.MVC\bin\Ninject.Web.Common.xml
 C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.MVC\bin\Ninject.Web.Mvc.xml
 C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.MVC\bin\EntityFramework.xml
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\PrjCinema.MVC\bin\PrjCinema.Service.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\PrjCinema.MVC\bin\PrjCinema.Service.pdb

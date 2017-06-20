@@ -1,26 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PrjCinema.Data.Repositories;
 using PrjCinema.Domain.Entities;
+using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
     public class UsuarioController : Controller
     {
-        private readonly UsuarioRepository _usuarioRepository;
-        private readonly EnderecoRepository _enderecoRepository;
-        public UsuarioController(UsuarioRepository repository, EnderecoRepository enderecoRepository)
+        private readonly IUsuarioService _usuarioService;
+        private readonly IEnderecoService _enderecoService;
+        public UsuarioController(UsuarioService usuarioService, EnderecoService enderecoService)
         {
-            _usuarioRepository = repository;
-            _enderecoRepository = enderecoRepository;
+            _usuarioService = usuarioService;
+            _enderecoService = enderecoService;
         }
         // GET: Usuario
         public ActionResult Index()
         {
-           var usuario= _usuarioRepository.GetAll();
+           var usuario = _usuarioService.GetAll();
             return View(usuario);
         }
 
@@ -39,7 +37,7 @@ namespace PrjCinema.MVC.Controllers
         // POST: Usuario/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Domain.Entities.Usuario usuario, Domain.Entities.Endereco endereco)
+        public ActionResult Create(Usuario usuario, Endereco endereco)
         {
             if (ModelState.IsValid)
             {
@@ -49,7 +47,7 @@ namespace PrjCinema.MVC.Controllers
                 endereco.Rua = "Rua Alguma";
                 endereco.Uf = Uf.RS;
                 var enderecoModel = endereco;
-                _enderecoRepository.Add(enderecoModel);
+                _enderecoService.Add(enderecoModel);
 
                 DateTime localDate = DateTime.Now;
                 usuario.DataCadastro = localDate;
@@ -57,7 +55,7 @@ namespace PrjCinema.MVC.Controllers
                 usuario.Genero = Genero.Masc;
                 usuario.Endereco = enderecoModel;
                 var usuarioModel = usuario;
-                _usuarioRepository.Add(usuarioModel);
+                _usuarioService.Add(usuarioModel);
                 return RedirectToAction("Index");
             }
                 return View(usuario);

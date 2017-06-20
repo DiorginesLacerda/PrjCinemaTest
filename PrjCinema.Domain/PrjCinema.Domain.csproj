@@ -42,8 +42,11 @@
     <Compile Include="Entities\Usuario\Perfil.cs" />
     <Compile Include="Entities\Usuario\Uf.cs" />
     <Compile Include="Entities\Usuario\Usuario.cs" />
+    <Compile Include="Interfaces\Repository\IAtuaSerieRepository.cs" />
     <Compile Include="Interfaces\Repository\IAtuaFilmeRepository.cs" />
     <Compile Include="Interfaces\Service\IAtorService.cs" />
+    <Compile Include="Interfaces\Service\IAtuaFilmeRepository.cs" />
+    <Compile Include="Interfaces\Service\IAtuaSerieRepository.cs" />
     <Compile Include="Interfaces\Service\IEnderecoService.cs" />
     <Compile Include="Interfaces\Service\IFilmeService.cs" />
     <Compile Include="Interfaces\Service\IServiceBase.cs" />

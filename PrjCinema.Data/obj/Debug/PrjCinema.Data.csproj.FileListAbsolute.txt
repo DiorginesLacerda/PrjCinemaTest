@@ -13,3 +13,4 @@ c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema
 C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.NovoBancoNovaVida.resources
 C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.csproj.GenerateResource.Cache
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.teste.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.ajusteTabelaAtuaSerie.resources

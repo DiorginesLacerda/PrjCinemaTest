@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Service.Service;
 
@@ -27,76 +28,87 @@ namespace PrjCinema.MVC.Controllers
             return View(ator);
         }
 
-        //// GET: Ator/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Ator/Details/5
+        public ActionResult DetailsFilmes(int id)
+        {
+            var filmes = _atuaFilmeService.BuscaFilmePorAtor(id);
+            
+            return View(filmes);
+        }
 
-        //// GET: Ator/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: Ator/Details/5
+        public ActionResult DetailsSeries(int id)
+        {
+            
+            var series = _atuaSerieService.BuscaSeriePorAtor(id);
 
-        //// POST: Ator/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+            return View(series);
+        }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // GET: Ator/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-        //// GET: Ator/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        // POST: Ator/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Ator ator)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _atorService.Add(ator);
+                    return RedirectToAction("Index");
+                }
 
-        //// POST: Ator/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
+                return RedirectToAction("Create", ator);
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            }
+            catch
+            {
+                return View(ator);
+            }
+        }
 
-        //// GET: Ator/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Ator/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var atorEdit = _atorService.GetById(id);
+            return View(atorEdit);
+        }
 
-        //// POST: Ator/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+        // POST: Ator/Edit/5
+        [HttpPost]
+        public ActionResult Edit(Ator ator)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _atorService.Update(ator);
+                    return RedirectToAction("Index");
+                }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                return RedirectToAction("Edit", ator);
+            }
+            catch
+            {
+                return View(ator);
+            }
+        }
+
+        
+        // POST: Cliente/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            _atorService.Remove(_atorService.GetById(id)); 
+            
+            return RedirectToAction("Index");
+        }
     }
 }

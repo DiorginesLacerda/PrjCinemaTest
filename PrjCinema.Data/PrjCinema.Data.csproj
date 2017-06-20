@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201706191728303_teste.Designer.cs">
       <DependentUpon>201706191728303_teste.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706201726596_ajusteTabelaAtuaSerie.cs" />
+    <Compile Include="Migrations\201706201726596_ajusteTabelaAtuaSerie.Designer.cs">
+      <DependentUpon>201706201726596_ajusteTabelaAtuaSerie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AtorRepository.cs" />
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706191728303_teste.resx">
       <DependentUpon>201706191728303_teste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706201726596_ajusteTabelaAtuaSerie.resx">
+      <DependentUpon>201706201726596_ajusteTabelaAtuaSerie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

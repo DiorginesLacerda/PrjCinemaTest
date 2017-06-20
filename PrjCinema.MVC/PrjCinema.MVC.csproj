@@ -172,6 +172,10 @@
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Ator\Index.cshtml" />
+    <Content Include="Views\Ator\Create.cshtml" />
+    <Content Include="Views\Ator\DetailsFilmes.cshtml" />
+    <Content Include="Views\Ator\DetailsSeries.cshtml" />
+    <Content Include="Views\Ator\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

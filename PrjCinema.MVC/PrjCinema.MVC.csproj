@@ -181,6 +181,7 @@
     <Content Include="Views\Filme\Details.cshtml" />
     <Content Include="Views\Filme\Create.cshtml" />
     <Content Include="Views\Filme\Edit.cshtml" />
+    <Content Include="Views\Filme\DetailsAtores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PrjCinema.Domain.Entities.Relacoes.AtuaFilme>
+
+@{
+    ViewBag.Title = "DetailsAtores";
+}
+
+<h2>Atores do filme @Html.DisplayNameFor(model => model.Filme.Titulo)</h2>
+
+<p>
+    @Html.ActionLink("Adicionar Ator", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ator)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ator.Nome)
+        </td>
+        
+            
+            <td>@Html.ActionLink("Remover Ator", "Delete", new { /* id=item.PrimaryKey */ })</td>
+            
+        
+    </tr>
+}
+    
+</table>
+@Html.ActionLink("Voltar", "Index", new { /* id=item.PrimaryKey */ }) 

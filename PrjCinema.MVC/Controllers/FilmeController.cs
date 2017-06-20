@@ -32,6 +32,14 @@ namespace PrjCinema.MVC.Controllers
             return View(_filmeService.GetById(id));
         }
 
+        // GET: Ator/Details/5
+        public ActionResult DetailsAtores(int id)
+        {
+            var filmes = _atuaFilmeService.BuscaAtorPorFilme(id);
+
+            return View(filmes);
+        }
+
         // GET: Filme/Create
         public ActionResult Create()
         {

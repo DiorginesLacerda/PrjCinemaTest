@@ -127,6 +127,7 @@
     <Compile Include="Controllers\AtorController.cs" />
     <Compile Include="Controllers\FilmeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SerieController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,10 +177,15 @@
     <Content Include="Views\Ator\DetailsFilmes.cshtml" />
     <Content Include="Views\Ator\DetailsSeries.cshtml" />
     <Content Include="Views\Ator\Edit.cshtml" />
+    <Content Include="Views\Filme\Index.cshtml" />
+    <Content Include="Views\Filme\Details.cshtml" />
+    <Content Include="Views\Filme\Create.cshtml" />
+    <Content Include="Views\Filme\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Serie\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

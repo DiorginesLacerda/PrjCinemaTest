@@ -1,0 +1,5 @@
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Domain\bin\Debug\PrjCinema.Domain.dll
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Domain\bin\Debug\PrjCinema.Domain.pdb
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.dll
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.pdb
+C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.csprojResolveAssemblyReference.cache

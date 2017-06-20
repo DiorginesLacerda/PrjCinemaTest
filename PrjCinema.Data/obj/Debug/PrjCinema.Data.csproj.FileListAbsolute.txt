@@ -1,0 +1,15 @@
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.csprojResolveAssemblyReference.cache
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\PrjCinema.Data.dll.config
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\PrjCinema.Data.dll
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\PrjCinema.Data.pdb
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\EntityFramework.dll
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\PrjCinema.Domain.dll
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\PrjCinema.Domain.pdb
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\EntityFramework.xml
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.dll
+c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.pdb
+C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.NovoBancoNovaVida.resources
+C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.csproj.GenerateResource.Cache
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.teste.resources

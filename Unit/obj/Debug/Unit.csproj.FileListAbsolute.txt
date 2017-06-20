@@ -1,0 +1,14 @@
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\Unit.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\Unit.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\PrjCinema.Data.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\PrjCinema.Domain.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\EntityFramework.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\PrjCinema.Data.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\PrjCinema.Domain.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\EntityFramework.xml
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\obj\Debug\Unit.csprojResolveAssemblyReference.cache
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\obj\Debug\Unit.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\obj\Debug\Unit.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\Unit.dll.config
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinema\Unit\bin\Debug\EntityFramework.SqlServer.xml

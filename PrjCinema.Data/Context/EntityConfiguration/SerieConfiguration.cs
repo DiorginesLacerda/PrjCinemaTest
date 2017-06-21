@@ -3,9 +3,9 @@ using PrjCinema.Domain.Entities.SerieFilme;
 
 namespace PrjCinema.Data.Context.EntityConfiguration
 {
-    public class FilmeConfiguration : EntityTypeConfiguration<Filme>
+    public class SerieConfiguration : EntityTypeConfiguration<Serie>
     {
-        public FilmeConfiguration()
+        public SerieConfiguration()
         {
             HasKey(c => c.Id);
 

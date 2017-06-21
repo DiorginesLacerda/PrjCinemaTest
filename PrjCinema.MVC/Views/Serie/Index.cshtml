@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PrjCinema.Domain.Entities.SerieFilme.Serie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Series</h2>
+
+<p>
+    @Html.ActionLink("Adicionar nova Serie", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QntEpisodio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lancamento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QntEpisodio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lancamento)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Adicionar novo Filme</h2>
 
 
 @using (Html.BeginForm()) 
@@ -36,6 +36,21 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Duracao, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Duracao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Categoria, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Categoria, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Categoria)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nacionalidade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Nacionalidade, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nacionalidade)
             </div>
         </div>
 

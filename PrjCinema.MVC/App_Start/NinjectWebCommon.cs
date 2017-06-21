@@ -70,6 +70,7 @@ namespace PrjCinema.MVC.App_Start
             kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
             kernel.Bind<IEnderecoRepository>().To<EnderecoRepository>();
             kernel.Bind<IFilmeRepository>().To<FilmeRepository>();
+            kernel.Bind<ISerieRepository>().To<SerieRepository>();
             kernel.Bind<IAtorRepository>().To<AtorRepository>();
             kernel.Bind<IAtuaFilmeRepository>().To<AtuaFilmeRepository>();
             kernel.Bind<IAtuaSerieRepository>().To<AtuaSerieRepository>();
@@ -78,6 +79,7 @@ namespace PrjCinema.MVC.App_Start
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
             kernel.Bind<IEnderecoService>().To<EnderecoService>();
             kernel.Bind<IFilmeService>().To<FilmeService>();
+            kernel.Bind<ISerieService>().To<SerieService>();
             kernel.Bind<IAtorService>().To<AtorService>();
             kernel.Bind<IAtuaFilmeService>().To<AtuaFilmeService>();
             kernel.Bind<IAtuaSerieService>().To<AtuaSerieService>();

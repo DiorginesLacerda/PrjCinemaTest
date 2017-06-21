@@ -44,6 +44,7 @@ namespace PrjCinema.Data.Context
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
             modelBuilder.Configurations.Add(new EnderecoConfiguration());
             modelBuilder.Configurations.Add(new FilmeConfiguration());
+            modelBuilder.Configurations.Add(new SerieConfiguration());
             modelBuilder.Configurations.Add(new AtorConfiguration());
 
 

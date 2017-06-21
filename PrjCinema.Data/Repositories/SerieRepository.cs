@@ -3,7 +3,7 @@ using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Data.Repositories
 {
-    public class SerieRepository: RepositoryBase<Serie>, ISerieRepository
+    public class FilmeRepository: RepositoryBase<Filme>, IFilmeRepository
     {
     }
 }

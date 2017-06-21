@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Adicionar novo Filme", "Create")
 </p>
-<table class="table">
+<table class="table ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Titulo)
@@ -27,29 +27,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duracao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lancamento)
-        </td>
-        <td>
-            @Html.ActionLink("Atores", "DetailsAtores", new { id = item.Id }, new{@class="btn btn-default"})
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duracao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lancamento)
+            </td>
+            <td>
+                @Html.ActionLink("Atores", "DetailsAtores", new { id = item.Id }, new { @class = "btn btn-default" })
+            </td>
+            <td>
+                @Html.ActionLink("Adicionar Ator", "AddAtuacaoFilme", new { id = item.Id }, new { @class = "btn btn-default" })
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

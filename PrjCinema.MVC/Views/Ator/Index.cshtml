@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Nacionalidade)
         </th>
         <th>
-           
+
         </th>
     </tr>
 
@@ -38,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Nacionalidade)
             </td>
             <td>
-                @Html.ActionLink("Atuação em Filmes", "DetailsFilmes", new { id = item.Id }, new{@class="btn btn-default"})
+                @Html.ActionLink("Atuação em Filmes", "DetailsFilmes", new { id = item.Id }, new { @class = "btn btn-default" })
             </td>
             <td>
                 @Html.ActionLink("Atuação em Series", "DetailsSeries", new { id = item.Id }, new { @class = "btn btn-default" })

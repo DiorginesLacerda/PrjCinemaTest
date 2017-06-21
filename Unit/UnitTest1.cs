@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -58,7 +59,7 @@ namespace Unit
             //get ator e filme
             atuaFilme.FilmeId = 1;
             atuaFilme.AtorId = 4;
-           
+
 
             //add atuacao
             repositoryAtuaFilme.Add(atuaFilme);

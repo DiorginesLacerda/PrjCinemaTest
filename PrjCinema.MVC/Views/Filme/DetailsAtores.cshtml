@@ -5,12 +5,13 @@
 }
 @foreach (var item in Model)
 {
-    <h2>Atores do filme @Html.DisplayNameFor(modelItem => item.Filme.Titulo)</h2>
+    <h2>Atores do filme @Html.DisplayFor(modelItem => item.Filme.Titulo)</h2>
+    break;
 }
 <p>
     @Html.ActionLink("Adicionar Ator", "Create")
 </p>
-<table class="table">
+<table class="table ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Ator)

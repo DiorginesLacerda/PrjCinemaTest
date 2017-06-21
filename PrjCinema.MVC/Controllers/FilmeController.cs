@@ -27,13 +27,16 @@ namespace PrjCinema.MVC.Controllers
 
 
         // GET: Filme/AddAtuacaoFilme/id
-        public ActionResult AddAtuacaoFilme(int id)
+        public ActionResult AddAtuacaoFilme(int id, Filme filme)
         {
             ViewBag.Atores = _atorService.GetAll();
-            var filme = _filmeService.GetById(id);
+            var viewFilme = _filmeService.GetById(id);
 
-            ViewBag.NomeFilme = filme.Titulo;
-            return View();
+            ViewBag.NomeFilme = viewFilme.Titulo;
+            var atuacao = new AtuaFilme();
+            atuacao.FilmeId = id;
+
+            return View(atuacao);
         }
 
 
@@ -61,6 +64,8 @@ namespace PrjCinema.MVC.Controllers
                 return View(atuaFilme);
             }
         }
+
+
 
         // GET: Filme/Details/5
         public ActionResult Details(int id)

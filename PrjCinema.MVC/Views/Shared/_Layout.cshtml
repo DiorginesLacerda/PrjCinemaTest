@@ -18,14 +18,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Seriando App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                    <li>@Html.ActionLink("Filmes", "Index", "Filme")</li>
+                    <li>@Html.ActionLink("Series", "Index", "Serie")</li>
+                    <li>@Html.ActionLink("Atores", "Index", "Ator")</li>
                 </ul>
             </div>
         </div>
@@ -34,7 +36,7 @@
         @RenderBody()
         <hr />
         <footer class="card-img-top">
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Aplicação de teste</p>
         </footer>
     </div>
 

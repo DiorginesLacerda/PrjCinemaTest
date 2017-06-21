@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Service.Service;
@@ -9,11 +10,13 @@ namespace PrjCinema.MVC.Controllers
     {
         private readonly ISerieService _serieService;
         private readonly IAtuaSerieService _atuaSerieService;
+        private readonly IAtorService _atorService;
 
-        public SerieController(SerieService serieService, AtuaSerieService atuaSerieService)
+        public SerieController(SerieService serieService, AtuaSerieService atuaSerieService, AtorService atorService)
         {
             _atuaSerieService = atuaSerieService;
             _serieService = serieService;
+            _atorService = atorService;
         }
 
         // GET: Serie
@@ -40,6 +43,45 @@ namespace PrjCinema.MVC.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+        // GET: Filme/AddAtuacaoFilme/id
+        public ActionResult AddAtuacaoSerie(int id)
+        {
+            ViewBag.Atores = _atorService.GetAll();
+            var viewSerie = _serieService.GetById(id);
+
+            ViewBag.NomeSerie = viewSerie.Titulo;
+            var atuacao = new AtuaSerie();
+            atuacao.SerieId = id;
+
+            return View(atuacao);
+        }
+
+
+
+        //// POST: Filme/AddAtuacaoFilme/id
+        [HttpPost]
+        public ActionResult AddAtuacaoSerie(AtuaSerie atuaSerie)
+        {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+
+                    _atuaSerieService.Add(atuaSerie);
+                    return RedirectToAction("Index");
+                }
+
+                return RedirectToAction("Create");
+
+            }
+            catch
+            {
+                return View(atuaSerie);
+            }
         }
 
         // POST: Serie/Create

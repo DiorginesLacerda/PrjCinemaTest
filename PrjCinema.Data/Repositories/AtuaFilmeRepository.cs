@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
@@ -15,6 +16,11 @@ namespace PrjCinema.Data.Repositories
             
         }
 
+        public IEnumerable<AtuaFilme> ListaFilmePorAtor(int id)
+        {
+            return context.AtuaFilmes.Include(u => u.Filme).Include(u => u.Ator).Where(u => u.AtorId == id);
+
+        }
         public IEnumerable<AtuaFilme> BuscaAtorPorFilme(int id)
         {
             return GetAll().Where(u => u.FilmeId == id);

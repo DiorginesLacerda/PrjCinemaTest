@@ -1,5 +1,4 @@
-﻿using System;
-using PrjCinema.Domain.Entities.SerieFilme;
+﻿using PrjCinema.Domain.Entities.SerieFilme;
 
 namespace PrjCinema.Domain.Interfaces.Repository
 {

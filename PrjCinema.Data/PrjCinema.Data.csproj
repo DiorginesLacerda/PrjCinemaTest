@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201706211242561_configuracaoParaTabelaSerie.Designer.cs">
       <DependentUpon>201706211242561_configuracaoParaTabelaSerie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706231344354_tabelaSecurity.cs" />
+    <Compile Include="Migrations\201706231344354_tabelaSecurity.Designer.cs">
+      <DependentUpon>201706231344354_tabelaSecurity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AtorRepository.cs" />
@@ -105,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706211242561_configuracaoParaTabelaSerie.resx">
       <DependentUpon>201706211242561_configuracaoParaTabelaSerie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706231344354_tabelaSecurity.resx">
+      <DependentUpon>201706231344354_tabelaSecurity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

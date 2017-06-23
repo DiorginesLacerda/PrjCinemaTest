@@ -9,7 +9,6 @@ namespace PrjCinema.Domain.Entities.SerieFilme
         public int Id { get; set; }
         public string Nome { get; set; }
         public Nacionalidade Nacionalidade { get; set; }
-       
         public DateTime DataNascimento { get; set; }
         public int AtuaSeriesId { get; set; }
         public virtual IEnumerable<AtuaSerie> AtuaSeries { get; set; }

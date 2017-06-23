@@ -3,3 +3,8 @@ c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema
 c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.dll
 c:\users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.pdb
 C:\Users\nilton.junior\documents\visual studio 2013\Projects\PrjCinema\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.csprojResolveAssemblyReference.cache
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest\PrjCinema.Domain\bin\Debug\PrjCinema.Domain.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest\PrjCinema.Domain\bin\Debug\PrjCinema.Domain.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.csprojResolveAssemblyReference.cache
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.pdb

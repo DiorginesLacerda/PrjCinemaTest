@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
@@ -37,7 +38,7 @@ namespace PrjCinema.MVC.Controllers
         // POST: Usuario/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Usuario usuario, Endereco endereco)
+        public ActionResult Create(UsuarioModel model, Usuario usuario, Endereco endereco)
         {
             if (ModelState.IsValid)
             {

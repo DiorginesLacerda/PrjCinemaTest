@@ -21,7 +21,7 @@ namespace PrjCinema.MVC.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ProjectDB_Novo", throwIfV1Schema: false)
         {
         }
 

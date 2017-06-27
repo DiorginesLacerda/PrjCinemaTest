@@ -1,7 +1,8 @@
 ﻿@model PrjCinema.Domain.Entities.SerieFilme.Ator
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Titulo";
+    
 }
 
 <h2>Create</h2>
@@ -11,6 +12,8 @@
 {
     @Html.AntiForgeryToken()
 
+    @ViewBag.Erro
+    
     <div class="form-horizontal ">
         <h4>Ator</h4>
         <hr />

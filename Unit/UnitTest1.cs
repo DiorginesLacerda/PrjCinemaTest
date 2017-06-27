@@ -14,7 +14,7 @@ namespace Unit
     [TestClass]
     public class UnitTest1
     {
-        
+
         [TestMethod]
         public void InsertFilmeTest()
         {
@@ -36,49 +36,39 @@ namespace Unit
         [TestMethod]
         public void InsertAtorTest()
         {
-            AtorRepository _atorRepository = new AtorRepository();
-
-            
-
+            RepositoryBase<Ator> _atorRepository = new AtorRepository();
             Ator representaAtor = new Ator();
-            //try
-            //{
+            try
+            {
                 //construcao do ator
-                representaAtor.Nome = "Mark Hamill";
-                representaAtor.DataNascimento = DateTime.Now;
+                representaAtor.Nome = "Algum ator famoso";
+                representaAtor.DataNascimento = _atorRepository.GetById(1).DataNascimento;
                 representaAtor.Nacionalidade = Nacionalidade.USA;
                 if (AtorExiste(representaAtor))
                 {
-                    //add o ator
-                    _atorRepository.Add(representaAtor);
-                }
-                else
-                {
                     throw new Exception("Este ator ja existe");
                 }
-                
-            //}
-            //catch (Exception e)
-            //{
-            //    Debug.WriteLine(e);
-            //    throw ;
-            //}
-            
+                //add o ator
+                _atorRepository.Add(representaAtor);
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
+
         }
-        
+
         public bool AtorExiste(Ator representaAtor)
         {
             AtorRepository _atorRepository = new AtorRepository();
-            var ators = _atorRepository.GetAll();
-            foreach (var ator in ators)
+
+            if (_atorRepository.GetAll().Any(u => u.Nome == representaAtor.Nome && u.DataNascimento == representaAtor.DataNascimento && u.Nacionalidade == representaAtor.Nacionalidade))
             {
-                if (ator.Nome == representaAtor.Nome)
-                {
-
-                    return true;
-
-                }
+                return true;
             }
+
             return false;
         }
 
@@ -97,7 +87,7 @@ namespace Unit
         public void InsertAtuacao()
         {
             var repositoryAtuaFilme = new AtuaFilmeRepository();
-          
+
             var atuaFilme = new AtuaFilme();
             try
             {
@@ -116,7 +106,7 @@ namespace Unit
                 Debug.WriteLine(e);
                 throw;
             }
-            
+
 
 
         }
@@ -124,18 +114,18 @@ namespace Unit
         [TestMethod]
         public void GetAtuacao()
         {
-            var filmeRepository =new AtuaFilmeRepository();
-            
+            var filmeRepository = new AtuaFilmeRepository();
+
             Debug.WriteLine("Funciona ?");
             var listaAtorFilme = filmeRepository.BuscaAtorPorFilme(1);
             foreach (var listaAtor in listaAtorFilme)
             {
                 Debug.WriteLine(listaAtor.Ator.Nome);
-            } 
+            }
 
-            
-            
-           
+
+
+
         }
 
 

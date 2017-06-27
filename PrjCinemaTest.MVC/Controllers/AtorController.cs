@@ -15,15 +15,17 @@ namespace PrjCinema.MVC.Controllers
         private readonly IAtorService _atorService;
         private readonly IAtuaFilmeService _atuaFilmeService;
         private readonly IAtuaSerieService _atuaSerieService;
+        private readonly AtorService atorService;
         public AtorController(AtorService atorService, AtuaFilmeService atuaFilmeService, AtuaSerieService atuaSerieService)
         {
+            this.atorService = atorService;
             _atorService = atorService;
             _atuaFilmeService = atuaFilmeService;
             _atuaSerieService = atuaSerieService;
         }
         // GET: Ator
         public ActionResult Index()
-        {
+        {   
             var ator = _atorService.GetAll();
             return View(ator);
         }
@@ -56,10 +58,16 @@ namespace PrjCinema.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Ator ator)
         {
+            
             try
             {
                 if (ModelState.IsValid)
                 {
+                    if (atorService.AtorExiste(ator))
+                    {
+                        ViewBag.Erro = "Ator ja existe";
+                        throw new Exception("Ator ja existe");
+                    }
                     _atorService.Add(ator);
                     return RedirectToAction("Index");
                 }

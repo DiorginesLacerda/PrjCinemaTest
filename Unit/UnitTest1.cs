@@ -65,7 +65,7 @@ namespace Unit
             //}
             
         }
-        [TestMethod]
+        
         public bool AtorExiste(Ator representaAtor)
         {
             AtorRepository _atorRepository = new AtorRepository();

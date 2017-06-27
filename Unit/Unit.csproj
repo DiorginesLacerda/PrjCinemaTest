@@ -70,6 +70,14 @@
       <Project>{1e3b0cd6-3a35-4a69-8053-447c5da22351}</Project>
       <Name>PrjCinema.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PrjCinema.Service\PrjCinema.Service.csproj">
+      <Project>{2b2e854f-f0da-4811-995c-f24d6c686382}</Project>
+      <Name>PrjCinema.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrjCinemaTest.MVC\PrjCinema.MVC.csproj">
+      <Project>{c8e029fc-db98-45cf-a3a8-507f85786ed4}</Project>
+      <Name>PrjCinema.MVC</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

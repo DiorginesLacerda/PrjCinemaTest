@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PrjCinema.Data.Context;
 using PrjCinema.Data.Repositories;
@@ -35,18 +36,61 @@ namespace Unit
         [TestMethod]
         public void InsertAtorTest()
         {
-            RepositoryBase<Ator> repositoryAtor = new AtorRepository();
+            AtorRepository _atorRepository = new AtorRepository();
+
+            
 
             Ator representaAtor = new Ator();
+            //try
+            //{
+                //construcao do ator
+                representaAtor.Nome = "Mark Hamill";
+                representaAtor.DataNascimento = DateTime.Now;
+                representaAtor.Nacionalidade = Nacionalidade.USA;
+                if (AtorExiste(representaAtor))
+                {
+                    //add o ator
+                    _atorRepository.Add(representaAtor);
+                }
+                else
+                {
+                    throw new Exception("Este ator ja existe");
+                }
+                
+            //}
+            //catch (Exception e)
+            //{
+            //    Debug.WriteLine(e);
+            //    throw ;
+            //}
+            
+        }
+        [TestMethod]
+        public bool AtorExiste(Ator representaAtor)
+        {
+            AtorRepository _atorRepository = new AtorRepository();
+            var ators = _atorRepository.GetAll();
+            foreach (var ator in ators)
+            {
+                if (ator.Nome == representaAtor.Nome)
+                {
 
-            //construcao do ator
-            representaAtor.Nome = "Mark Hamill";
-            representaAtor.DataNascimento = DateTime.Now;
-            representaAtor.Nacionalidade = Nacionalidade.USA;
+                    return true;
 
+                }
+            }
+            return false;
+        }
 
-            //add o ator
-            repositoryAtor.Add(representaAtor);
+        public bool AtuacaoExiste(int idAtor, int idFilme)
+        {
+            AtuaFilmeRepository atuaFilme = new AtuaFilmeRepository();
+            var filmes = atuaFilme.ListaFilmePorAtor(idAtor);
+            if (filmes.Any(u => u.FilmeId == idFilme))
+            {
+                return true;
+            }
+            return false;
         }
 
         [TestMethod]
@@ -55,14 +99,24 @@ namespace Unit
             var repositoryAtuaFilme = new AtuaFilmeRepository();
           
             var atuaFilme = new AtuaFilme();
-
-            //get ator e filme
-            atuaFilme.FilmeId = 1;
-            atuaFilme.AtorId = 4;
-
-
-            //add atuacao
-            repositoryAtuaFilme.Add(atuaFilme);
+            try
+            {
+                //get ator e filme
+                atuaFilme.FilmeId = 1;
+                atuaFilme.AtorId = 1;
+                if (AtuacaoExiste(atuaFilme.AtorId, atuaFilme.AtorId))
+                {
+                    throw new Exception("Ja existe");
+                }
+                //add atuacao
+                repositoryAtuaFilme.Add(atuaFilme);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
+            
 
 
         }

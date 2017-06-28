@@ -4,16 +4,19 @@
 
 }
 <h2>Create</h2>
-
-@using (Html.BeginForm())
+@if(ViewBag.Erro != null)
 {
-    @Html.AntiForgeryToken()
-
-
     <div class="alert-danger">
 
         <h1>@ViewBag.Erro</h1>
     </div>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    
+    
 
     <div class="form-horizontal ">
         <h4>Ator</h4>

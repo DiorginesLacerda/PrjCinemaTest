@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Service.Service;
@@ -63,20 +64,16 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (atorService.IsAtorExiste(ator))
-                    {
-                        ViewBag.Erro = "Ator ja existe";
-                        throw new Exception("Ator ja existe");
-                    }
-                    _atorService.Add(ator);
+                    atorService.AddAtor(ator);
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Create", ator);
 
             }
-            catch
+            catch(Exception e)
             {
+                ViewBag.Erro = e.Message;
                 return View(ator);
             }
         }
@@ -102,7 +99,7 @@ namespace PrjCinema.MVC.Controllers
 
                 return RedirectToAction("Edit", ator);
             }
-            catch
+            catch(Exception e)
             {
                 return View(ator);
             }

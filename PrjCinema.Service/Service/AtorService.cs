@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 
@@ -20,6 +21,16 @@ namespace PrjCinema.Service.Service
                 return true;
 
             return false;
+        }
+
+        public void AddAtor(Ator representaAtor)
+        {
+            if (IsAtorExiste(representaAtor))
+            {
+                throw new Exception("O Ator" + representaAtor.Nome +" já esta cadastrado, por favor tente cadastrar outro Autor! Obrigado.");
+            }
+
+            _atorRepository.Add(representaAtor);
         }
     }
 }

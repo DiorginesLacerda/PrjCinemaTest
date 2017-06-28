@@ -46,6 +46,8 @@ namespace PrjCinema.Data.Context
             modelBuilder.Configurations.Add(new FilmeConfiguration());
             modelBuilder.Configurations.Add(new SerieConfiguration());
             modelBuilder.Configurations.Add(new AtorConfiguration());
+            modelBuilder.Configurations.Add(new AtuaFilmeConfiguration());
+            modelBuilder.Configurations.Add(new AtuaSerieConfiguration());
 
 
             modelBuilder.Entity<AtuaFilme>().HasKey(pv => new { pv.FilmeId, pv.AtorId });

@@ -14,7 +14,7 @@ namespace PrjCinema.Service.Service
             _atorRepository = atorRepository;
         }
 
-        public bool AtorExiste(Ator representaAtor)
+        public bool IsAtorExiste(Ator representaAtor)
         {
             if (_atorRepository.GetAll().Any(u => u.Nome == representaAtor.Nome && u.DataNascimento == representaAtor.DataNascimento && u.Nacionalidade == representaAtor.Nacionalidade))
                 return true;

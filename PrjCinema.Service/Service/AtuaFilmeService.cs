@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Interfaces.Repository;
 
@@ -22,6 +23,16 @@ namespace PrjCinema.Service.Service
         public IEnumerable<AtuaFilme> BuscaAtorPorFilme(int id)
         {
             return _atuaFilmeRepository.BuscaAtorPorFilme(id);
+        }
+
+        public bool IsAtuacaoExiste(AtuaFilme atuaFilme)
+        {
+
+            if (_atuaFilmeRepository.GetAll().Any(u => u.FilmeId == atuaFilme.FilmeId && u.AtorId == atuaFilme.AtorId))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

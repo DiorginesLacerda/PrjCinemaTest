@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
@@ -9,12 +12,14 @@ namespace PrjCinema.MVC.Controllers
 
     public class FilmeController : Controller
     {
+        private readonly AtuaFilmeService atuaFilmeService;
         private readonly IFilmeService _filmeService;
         private readonly IAtuaFilmeService _atuaFilmeService;
         private readonly IAtorService _atorService;
 
         public FilmeController(FilmeService filmeService, AtuaFilmeService atuaFilmeService, AtorService atorService)
         {
+            this.atuaFilmeService = atuaFilmeService;
             _atuaFilmeService = atuaFilmeService;
             _filmeService = filmeService;
             _atorService = atorService;
@@ -22,12 +27,12 @@ namespace PrjCinema.MVC.Controllers
         // GET: Filme
         public ActionResult Index()
         {
-            return View( _filmeService.GetAll());
+            return View(_filmeService.GetAll());
         }
 
 
         // GET: Filme/AddAtuacaoFilme/id
-        public ActionResult AddAtuacaoFilme(int id, Filme filme)
+        public ActionResult AddAtuacaoFilme(int id) 
         {
             ViewBag.Atores = _atorService.GetAll();
             var viewFilme = _filmeService.GetById(id);
@@ -43,27 +48,36 @@ namespace PrjCinema.MVC.Controllers
 
         //// POST: Filme/AddAtuacaoFilme/id
         [HttpPost]
-        public ActionResult AddAtuacaoFilme(AtuaFilme atuaFilme)
+        public ActionResult AddAtuacaoFilme(AtuaFilme atuaFilme, int id)
         {
-           
+            ViewBag.Atores = _atorService.GetAll();
+            ViewBag.NomeFilme = "Aqui jás o nome do filme";
             try
             {
                 if (ModelState.IsValid)
                 {
-
-
+                    if (atuaFilmeService.IsAtuacaoExiste(atuaFilme))
+                    {
+                        ViewBag.Erro = "O ator " + atuaFilme.Ator.Nome + " já está atuando neste filme " ;
+                        
+                        throw new Exception("Este ator já está atuando neste filme");
+                    }
                     _atuaFilmeService.Add(atuaFilme);
+
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Create");
 
             }
-            catch
+            catch(Exception E)
             {
+                ViewBag.eRRO = E.Message;
                 return View(atuaFilme);
             }
         }
+
+        
 
 
 
@@ -111,7 +125,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Filme/Edit/5
         public ActionResult Edit(int id)
         {
-            
+
             return View(_filmeService.GetById(id));
         }
 

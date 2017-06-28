@@ -63,7 +63,7 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (atorService.AtorExiste(ator))
+                    if (atorService.IsAtorExiste(ator))
                     {
                         ViewBag.Erro = "Ator ja existe";
                         throw new Exception("Ator ja existe");

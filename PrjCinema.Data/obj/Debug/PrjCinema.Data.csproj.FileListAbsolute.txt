@@ -54,3 +54,5 @@ C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\bin\Debug\PrjCinema.Service.dll
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\bin\Debug\PrjCinema.Service.pdb
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.teste1.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.ajusteTabelaAtor.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.addIdAtuaFilmeESerie.resources

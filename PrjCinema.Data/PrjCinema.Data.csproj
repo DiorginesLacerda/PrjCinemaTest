@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\EntityConfiguration\AtuaSerieConfiguration.cs" />
+    <Compile Include="Context\EntityConfiguration\AtuaFilmeConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\AtorConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\EnderecoConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\SerieConfiguration.cs" />
@@ -77,6 +79,14 @@
     <Compile Include="Migrations\201706271655162_teste1.cs" />
     <Compile Include="Migrations\201706271655162_teste1.Designer.cs">
       <DependentUpon>201706271655162_teste1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706281201151_ajusteTabelaAtor.cs" />
+    <Compile Include="Migrations\201706281201151_ajusteTabelaAtor.Designer.cs">
+      <DependentUpon>201706281201151_ajusteTabelaAtor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706281329256_addIdAtuaFilmeESerie.cs" />
+    <Compile Include="Migrations\201706281329256_addIdAtuaFilmeESerie.Designer.cs">
+      <DependentUpon>201706281329256_addIdAtuaFilmeESerie.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706271655162_teste1.resx">
       <DependentUpon>201706271655162_teste1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281201151_ajusteTabelaAtor.resx">
+      <DependentUpon>201706281201151_ajusteTabelaAtor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281329256_addIdAtuaFilmeESerie.resx">
+      <DependentUpon>201706281329256_addIdAtuaFilmeESerie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

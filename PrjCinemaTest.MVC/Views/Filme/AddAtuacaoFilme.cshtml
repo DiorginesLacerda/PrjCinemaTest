@@ -1,17 +1,17 @@
 ﻿@using System.ServiceModel.Web
 @model PrjCinema.Domain.Entities.Relacoes.AtuaFilme
-
 @{
-    ViewBag.Title = "AddAtuacaoFilme";
+    ViewBag.Title = "Adicionar atuação ao Filme";
 }
+<h2>Adicionar ator ao filme</h2>
+<div class="alert-danger">
 
-<h2>AddAtuacaoFilme</h2>
-
-
-@using (Html.BeginForm()) 
+    <h1>@ViewBag.Erro</h1>
+</div>
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>AtuaFilme</h4>
         <hr />
@@ -19,23 +19,22 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FilmeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
-                
-                
-                @Html.HiddenFor(model => model.FilmeId, new { htmlAttributes = new { @class = "form-control" } })
+
+
+
+                @Html.HiddenFor(model => model.FilmeId)
                 @Html.ViewBag.NomeFilme.ToString()
-                @Html.ValidationMessageFor(model => model.FilmeId, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.FilmeId, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.Ator, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.AtorId, new SelectList(ViewBag.Atores, "Id", "Nome"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AtorId)
-            </div> 
+            </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -43,11 +42,9 @@
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

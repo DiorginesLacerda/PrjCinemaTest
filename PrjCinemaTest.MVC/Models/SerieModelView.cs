@@ -1,10 +1,14 @@
-﻿using System;
+﻿
+
+using System;
+
 using System.ComponentModel.DataAnnotations;
+
 using PrjCinema.Domain.Entities.SerieFilme;
 
 namespace PrjCinema.MVC.Models
 {
-    public class FilmeModelView
+    public class SerieModelView
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Por favor insira um Titulo para o Filme.")]
@@ -14,12 +18,13 @@ namespace PrjCinema.MVC.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
         public Nacionalidade Nacionalidade { get; set; }
-        [Required(ErrorMessage = "Por favor insira qual o tempo duração do Filme.")]
-        [Display(Name = "Tempo de Duração")]
-        public string Duracao { get; set; }
+        [Required]
+        [Display(Name = "Quantidade de episódios")]
+        public int QntEpisodio { get; set; }
         [Required(ErrorMessage = "É necessário inserir uma data de lançamento para o Filme. Utilize o Padrão dd/mm/aaaa.")]
         [Display(Name = "Data de Lançamento")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        //[DisplayFormat(DataFormatString = "dd/mm/yyyy")]
         public DateTime Lancamento { get; set; }
         public Categoria Categoria { get; set; }
         

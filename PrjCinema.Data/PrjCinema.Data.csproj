@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201706281329256_addIdAtuaFilmeESerie.Designer.cs">
       <DependentUpon>201706281329256_addIdAtuaFilmeESerie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706291831585_trocaValorAtributoFilmeDuracaoParaString.cs" />
+    <Compile Include="Migrations\201706291831585_trocaValorAtributoFilmeDuracaoParaString.Designer.cs">
+      <DependentUpon>201706291831585_trocaValorAtributoFilmeDuracaoParaString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AtorRepository.cs" />
@@ -139,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706281329256_addIdAtuaFilmeESerie.resx">
       <DependentUpon>201706281329256_addIdAtuaFilmeESerie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706291831585_trocaValorAtributoFilmeDuracaoParaString.resx">
+      <DependentUpon>201706291831585_trocaValorAtributoFilmeDuracaoParaString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -76,7 +76,7 @@ namespace PrjCinema.MVC.Controllers
             }
             catch(Exception E)
             {
-                ViewBag.eRRO = E.Message;
+                ViewBag.Erro = E.Message;
                 return View(atuaFilme);
             }
         }
@@ -88,13 +88,14 @@ namespace PrjCinema.MVC.Controllers
         // GET: Filme/Details/5
         public ActionResult Details(int id)
         {
-            return View(_filmeService.GetById(id));
+            var filme = Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id));
+            return View(filme);
         }
 
         // GET: Ator/Details/5
         public ActionResult DetailsAtores(int id)
         {
-            var filmes = _atuaFilmeService.BuscaAtorPorFilme(id);
+            var filmes = Mapper.Map<IEnumerable<AtuaFilme>, IEnumerable<AtuaFilmeModelView>>(_atuaFilmeService.BuscaAtorPorFilme(id));
 
             return View(filmes);
         }
@@ -131,8 +132,9 @@ namespace PrjCinema.MVC.Controllers
         // GET: Filme/Edit/5
         public ActionResult Edit(int id)
         {
-
-            return View(_filmeService.GetById(id));
+            var filmeMap = Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id));
+            
+            return View(filmeMap);
         }
 
         // POST: Filme/Edit/5

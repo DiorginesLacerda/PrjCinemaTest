@@ -12,7 +12,7 @@ namespace PrjCinema.Domain.Entities.SerieFilme
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public Nacionalidade Nacionalidade { get; set; }
-        public float Duracao { get; set; }
+        public string Duracao { get; set; }
         public DateTime Lancamento { get; set; }
         public Categoria Categoria {get; set;}
         public virtual IEnumerable<AtuaFilme> AtuaFilmes { get; set; }

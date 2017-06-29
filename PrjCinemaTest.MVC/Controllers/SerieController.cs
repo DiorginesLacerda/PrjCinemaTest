@@ -1,7 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using AutoMapper;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
@@ -22,13 +25,15 @@ namespace PrjCinema.MVC.Controllers
         // GET: Serie
         public ActionResult Index()
         {
-            return View(_serieService.GetAll());
+            var serie = Mapper.Map<IEnumerable<Serie>, IEnumerable<SerieModelView>>(_serieService.GetAll());
+            return View(serie);
         }
 
         // GET: Serie/Details/5
         public ActionResult Details(int id)
         {
-            return View(_serieService.GetById(id));
+            var serie = Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id));
+            return View(serie);
         }
 
         // GET: Ator/Details/5

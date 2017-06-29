@@ -149,7 +149,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AtorModelView.cs" />
+    <Compile Include="Models\AtuaFilmeModelView.cs" />
+    <Compile Include="Models\AtuaSerieModelView.cs" />
     <Compile Include="Models\FilmeModelView.cs" />
+    <Compile Include="Models\SerieModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

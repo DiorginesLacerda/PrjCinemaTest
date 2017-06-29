@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
+using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.MVC.Models;
@@ -34,7 +35,9 @@ namespace PrjCinema.MVC.Controllers
         // GET: Ator/Details/5
         public ActionResult DetailsFilmes(int id)
         {
-            var filmes = _atuaFilmeService.BuscaFilmePorAtor(id);
+            ViewBag.Ator = _atorService.GetById(id).Nome;
+            var filmes = Mapper.Map<IEnumerable<AtuaFilme>, IEnumerable<AtuaFilmeModelView>>(_atuaFilmeService.BuscaFilmePorAtor(id));
+               
             
             return View(filmes);
         }
@@ -43,7 +46,7 @@ namespace PrjCinema.MVC.Controllers
         public ActionResult DetailsSeries(int id)
         {
             
-            var series = _atuaSerieService.BuscaSeriePorAtor(id);
+            var series = Mapper.Map<IEnumerable<AtuaSerie>, IEnumerable<AtuaSerieModelView>>(_atuaSerieService.BuscaSeriePorAtor(id));
 
             return View(series);
         }

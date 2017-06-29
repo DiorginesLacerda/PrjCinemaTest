@@ -13,7 +13,8 @@ namespace PrjCinema.MVC.Models
         [Required(ErrorMessage = "É necessario inserir uma data de nascimento para o Ator. Utilize o Padrão dd/mm/aaaa.")]
         [Display(Name = "Data de Nascimento")]
         [DisplayFormat(DataFormatString = "dd/mm/yyyy")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido. Utilize o Padrão dd/mm/aaaa.")]
+        //Este abaixo insere o datepicker, verificar depois pq que nao funciona !
+        //[DataType(DataType.Date, ErrorMessage = "Data em formato inválido. Utilize o Padrão dd/mm/aaaa.")]
         public DateTime DataNascimento { get; set; }
     }
 }

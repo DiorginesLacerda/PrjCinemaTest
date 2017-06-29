@@ -41,3 +41,6 @@ C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinemaTest.MVC\obj\Debug\PrjCinema.MVC.pdb
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinemaTest.MVC\bin\EntityFramework.SqlServer.dll
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinemaTest.MVC\bin\EntityFramework.SqlServer.xml
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinemaTest.MVC\bin\AutoMapper.Net4.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinemaTest.MVC\bin\AutoMapper.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinemaTest.MVC\bin\AutoMapper.xml

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PrjCinema.Domain.Entities.SerieFilme.Ator>
+﻿@model IEnumerable<PrjCinema.MVC.Models.AtorModelView>
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
-            @Html.LabelFor(model => model, "Data de Nascimento")
+            @Html.DisplayNameFor(model => model.DataNascimento)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nacionalidade)

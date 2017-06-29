@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.MVC.Models;
@@ -26,7 +27,8 @@ namespace PrjCinema.MVC.Controllers
         // GET: Ator
         public ActionResult Index()
         {
-            return View(atorService.GetAll());
+            var ator = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
+            return View(ator);
         }
 
         // GET: Ator/Details/5
@@ -55,14 +57,15 @@ namespace PrjCinema.MVC.Controllers
         // POST: Ator/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Ator ator)
+        public ActionResult Create(AtorModelView ator)
         {
             
             try
             {
                 if (ModelState.IsValid)
                 {
-                    atorService.AddAtor(ator);
+                    var atorMap = Mapper.Map<AtorModelView, Ator>(ator);
+                    atorService.AddAtor(atorMap);
                     return RedirectToAction("Index");
                 }
 
@@ -79,19 +82,20 @@ namespace PrjCinema.MVC.Controllers
         // GET: Ator/Edit/5
         public ActionResult Edit(int id)
         {
-            var atorEdit = _atorService.GetById(id);
+            var atorEdit = Mapper.Map<Ator, AtorModelView>(_atorService.GetById(id));
             return View(atorEdit);
         }
 
         // POST: Ator/Edit/5
         [HttpPost]
-        public ActionResult Edit(Ator ator)
+        public ActionResult Edit(AtorModelView ator)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _atorService.Update(ator);
+                    var atorMap = Mapper.Map<AtorModelView, Ator>(ator); 
+                    _atorService.Update(atorMap);
                     return RedirectToAction("Index");
                 }
 

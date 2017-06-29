@@ -28,7 +28,7 @@ namespace PrjCinema.Service.Service
         {
             if (IsAtorExiste(representaAtor))
             {
-                throw new Exception("O Ator" + representaAtor.Nome +" já esta cadastrado, por favor tente cadastrar outro Autor! Obrigado.");
+                throw new Exception("O Ator " + representaAtor.Nome +" já esta cadastrado, por favor tente cadastrar outro Ator! Obrigado.");
             }
 
             _atorRepository.Add(representaAtor);

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
@@ -14,9 +17,11 @@ namespace PrjCinema.MVC.Controllers
         private readonly IFilmeService _filmeService;
         private readonly IAtuaFilmeService _atuaFilmeService;
         private readonly IAtorService _atorService;
+        private readonly FilmeService filmeService;
 
         public FilmeController(FilmeService filmeService, AtuaFilmeService atuaFilmeService, AtorService atorService)
         {
+            this.filmeService = filmeService;
             this.atuaFilmeService = atuaFilmeService;
             _atuaFilmeService = atuaFilmeService;
             _filmeService = filmeService;
@@ -25,7 +30,8 @@ namespace PrjCinema.MVC.Controllers
         // GET: Filme
         public ActionResult Index()
         {
-            return View(_filmeService.GetAll());
+            var filmes = Mapper.Map<IEnumerable<Filme>, IEnumerable<FilmeModelView>>(_filmeService.GetAll());
+            return View(filmes);
         }
 
 
@@ -101,21 +107,23 @@ namespace PrjCinema.MVC.Controllers
 
         // POST: Filme/Create
         [HttpPost]
-        public ActionResult Create(Filme filme)
+        public ActionResult Create(FilmeModelView filme)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _filmeService.Add(filme);
+                    var filmeMap = Mapper.Map<FilmeModelView, Filme>(filme);
+                    filmeService.AddFilme(filmeMap);
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Create", filme);
 
             }
-            catch
+            catch (Exception e)
             {
+                ViewBag.Erro = e.Message;
                 return View(filme);
             }
         }

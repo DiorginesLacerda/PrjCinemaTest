@@ -1,5 +1,7 @@
 using PrjCinema.Data.Repositories;
+using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.MVC.Models;
 using  PrjCinema.Service;
 using PrjCinema.Service.Service;
 
@@ -81,6 +83,7 @@ namespace PrjCinema.MVC.App_Start
             kernel.Bind<IFilmeService>().To<FilmeService>();
             kernel.Bind<ISerieService>().To<SerieService>();
             kernel.Bind<IAtorService>().To<AtorService>();
+            
 
             kernel.Bind<IAtuaFilmeService>().To<AtuaFilmeService>();
             kernel.Bind<IAtuaSerieService>().To<AtuaSerieService>();

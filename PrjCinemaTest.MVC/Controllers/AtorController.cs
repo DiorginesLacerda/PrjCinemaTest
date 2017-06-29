@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Services.Description;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
@@ -26,9 +25,8 @@ namespace PrjCinema.MVC.Controllers
         }
         // GET: Ator
         public ActionResult Index()
-        {   
-            var ator = _atorService.GetAll();
-            return View(ator);
+        {
+            return View(atorService.GetAll());
         }
 
         // GET: Ator/Details/5

@@ -1,5 +1,4 @@
-﻿@model PrjCinema.Domain.Entities.SerieFilme.Serie
-
+﻿@model PrjCinema.MVC.Models.SerieModelView
 @{
     ViewBag.Title = "Edit";
 }
@@ -12,7 +11,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal ">
-        <h4>Serie</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)

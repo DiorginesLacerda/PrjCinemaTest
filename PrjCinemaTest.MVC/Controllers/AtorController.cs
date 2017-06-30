@@ -28,27 +28,20 @@ namespace PrjCinema.MVC.Controllers
         // GET: Ator
         public ActionResult Index()
         {
-            var ator = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
-            return View(ator);
+            return View(Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll()));
         }
 
         // GET: Ator/Details/5
         public ActionResult DetailsFilmes(int id)
         {
-            ViewBag.Ator = _atorService.GetById(id).Nome;
-            var filmes = Mapper.Map<IEnumerable<AtuaFilme>, IEnumerable<AtuaFilmeModelView>>(_atuaFilmeService.BuscaFilmePorAtor(id));
-               
-            
-            return View(filmes);
+            ViewBag.Ator = Mapper.Map<Ator, AtorModelView>(_atorService.GetById(id)).Nome;
+            return View(Mapper.Map<IEnumerable<AtuaFilme>, IEnumerable<AtuaFilmeModelView>>(_atuaFilmeService.BuscaFilmePorAtor(id)));
         }
 
         // GET: Ator/Details/5
         public ActionResult DetailsSeries(int id)
         {
-            
-            var series = Mapper.Map<IEnumerable<AtuaSerie>, IEnumerable<AtuaSerieModelView>>(_atuaSerieService.BuscaSeriePorAtor(id));
-
-            return View(series);
+            return View(Mapper.Map<IEnumerable<AtuaSerie>, IEnumerable<AtuaSerieModelView>>(_atuaSerieService.BuscaSeriePorAtor(id)));
         }
 
         // GET: Ator/Create
@@ -62,20 +55,18 @@ namespace PrjCinema.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AtorModelView ator)
         {
-            
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var atorMap = Mapper.Map<AtorModelView, Ator>(ator);
-                    atorService.AddAtor(atorMap);
+                    atorService.AddAtor(Mapper.Map<AtorModelView, Ator>(ator));
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Create", ator);
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ViewBag.Erro = e.Message;
                 return View(ator);
@@ -85,8 +76,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Ator/Edit/5
         public ActionResult Edit(int id)
         {
-            var atorEdit = Mapper.Map<Ator, AtorModelView>(_atorService.GetById(id));
-            return View(atorEdit);
+            return View(Mapper.Map<Ator, AtorModelView>(_atorService.GetById(id)));
         }
 
         // POST: Ator/Edit/5
@@ -97,27 +87,26 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var atorMap = Mapper.Map<AtorModelView, Ator>(ator); 
-                    _atorService.Update(atorMap);
+                    _atorService.Update(Mapper.Map<AtorModelView, Ator>(ator));
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Edit", ator);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return View(ator);
             }
         }
 
-        
+
         // POST: Cliente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _atorService.Remove(_atorService.GetById(id)); 
-            
+            _atorService.Remove(_atorService.GetById(id));
+
             return RedirectToAction("Index");
         }
     }

@@ -1,7 +1,7 @@
-﻿@model IEnumerable<PrjCinema.Domain.Entities.Relacoes.AtuaSerie>
+﻿@model IEnumerable<PrjCinema.MVC.Models.AtuaSerieModelView>
 
 @{
-    ViewBag.Title = "DetailsAtores";
+    ViewBag.Title = "Atores que participam desta Serie";
 }
 @foreach (var item in Model)
 {<h2>Atores da Serie @Html.DisplayFor(modelItem => item.Serie.Titulo)</h2> }

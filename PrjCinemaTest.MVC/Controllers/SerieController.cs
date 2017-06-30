@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using PrjCinema.Domain.Entities.Relacoes;
@@ -14,9 +15,13 @@ namespace PrjCinema.MVC.Controllers
         private readonly ISerieService _serieService;
         private readonly IAtuaSerieService _atuaSerieService;
         private readonly IAtorService _atorService;
+        private readonly AtuaSerieService atuaSerieService;
+        private readonly SerieService serieService;
 
         public SerieController(SerieService serieService, AtuaSerieService atuaSerieService, AtorService atorService)
         {
+            this.serieService = serieService;
+            this.atuaSerieService = atuaSerieService;
             _atuaSerieService = atuaSerieService;
             _serieService = serieService;
             _atorService = atorService;
@@ -25,39 +30,29 @@ namespace PrjCinema.MVC.Controllers
         // GET: Serie
         public ActionResult Index()
         {
-            var serie = Mapper.Map<IEnumerable<Serie>, IEnumerable<SerieModelView>>(_serieService.GetAll());
-            return View(serie);
+            return View(Mapper.Map<IEnumerable<Serie>, IEnumerable<SerieModelView>>(_serieService.GetAll()));
         }
 
         // GET: Serie/Details/5
         public ActionResult Details(int id)
         {
-            var serie = Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id));
-            return View(serie);
+           return View(Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id)));
         }
 
         // GET: Ator/Details/5
         public ActionResult DetailsAtores(int id)
         {
-            var series = _atuaSerieService.BuscaAtorPorSerie(id);
-
-            return View(series);
+           return View(Mapper.Map<IEnumerable<AtuaSerie>, IEnumerable<AtuaSerieModelView>>(_atuaSerieService.BuscaAtorPorSerie(id)));
         }
 
-        // GET: Serie/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+
 
         // GET: Filme/AddAtuacaoFilme/id
         public ActionResult AddAtuacaoSerie(int id)
         {
-            ViewBag.Atores = _atorService.GetAll();
-            var viewSerie = _serieService.GetById(id);
-
-            ViewBag.NomeSerie = viewSerie.Titulo;
-            var atuacao = new AtuaSerie();
+            ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
+            ViewBag.NomeSerie = Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id)).Titulo;
+            var atuacao = new AtuaSerieModelView();
             atuacao.SerieId = id;
 
             return View(atuacao);
@@ -67,73 +62,79 @@ namespace PrjCinema.MVC.Controllers
 
         //// POST: Filme/AddAtuacaoFilme/id
         [HttpPost]
-        public ActionResult AddAtuacaoSerie(AtuaSerie atuaSerie)
+        public ActionResult AddAtuacaoSerie(AtuaSerieModelView atuaSerie)
         {
 
             try
             {
                 if (ModelState.IsValid)
                 {
-
-
-                    _atuaSerieService.Add(atuaSerie);
+                    atuaSerieService.AddAtuacaoFilme(Mapper.Map<AtuaSerieModelView, AtuaSerie>(atuaSerie));
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Create");
 
             }
-            catch
+            catch(Exception e)
             {
+                ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
+                ViewBag.Erro = e.Message;
+                ViewBag.NomeSerie = atuaSerie.Serie.Titulo;
                 return View(atuaSerie);
             }
         }
 
+        // GET: Serie/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         // POST: Serie/Create
         [HttpPost]
-        public ActionResult Create(Serie serie)
+        public ActionResult Create(SerieModelView serie)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _serieService.Add(serie);
+                    serieService.AddFilme(Mapper.Map<SerieModelView, Serie>(serie));
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Create", serie);
-
             }
-            catch
+            catch (Exception e)
             {
+                ViewBag.Erro = e.Message;
                 return View(serie);
             }
         }
 
-        // GET: Serie/Edit/5
+        // GET: Filme/Edit/5
         public ActionResult Edit(int id)
         {
-
-            return View(_serieService.GetById(id));
+            return View(Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id)));
         }
 
-        // POST: Serie/Edit/5
+        // POST: Filme/Edit/5
         [HttpPost]
-        public ActionResult Edit(Serie serie)
+        public ActionResult Edit(SerieModelView serie)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _serieService.Update(serie);
+                    serieService.EditaFilme(Mapper.Map<SerieModelView, Serie>(serie));
                     return RedirectToAction("Index");
                 }
-
                 return RedirectToAction("Edit", serie);
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ViewBag.Erro = e.Message;
+                return View(serie);
             }
         }
 

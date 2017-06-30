@@ -30,18 +30,15 @@ namespace PrjCinema.MVC.Controllers
         // GET: Filme
         public ActionResult Index()
         {
-            var filmes = Mapper.Map<IEnumerable<Filme>, IEnumerable<FilmeModelView>>(_filmeService.GetAll());
-            return View(filmes);
+            return View(Mapper.Map<IEnumerable<Filme>, IEnumerable<FilmeModelView>>(_filmeService.GetAll()));
         }
 
 
         // GET: Filme/AddAtuacaoFilme/id
-        public ActionResult AddAtuacaoFilme(int id) 
+        public ActionResult AddAtuacaoFilme(int id)
         {
             ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
-            var viewFilme = Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id));
-            
-            ViewBag.NomeFilme = viewFilme.Titulo;
+            ViewBag.NomeFilme = Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id)).Titulo;
             var atuacao = new AtuaFilmeModelView();
             atuacao.FilmeId = id;
 
@@ -54,46 +51,36 @@ namespace PrjCinema.MVC.Controllers
         [HttpPost]
         public ActionResult AddAtuacaoFilme(AtuaFilmeModelView atuaFilme)
         {
-            
-            ViewBag.NomeFilme = "Aqui jás o nome do filme";
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var atuacao = Mapper.Map<AtuaFilmeModelView, AtuaFilme>(atuaFilme);
-                    atuaFilmeService.AddAtuacaoFilme(atuacao);
+                    atuaFilmeService.AddAtuacaoFilme(Mapper.Map<AtuaFilmeModelView, AtuaFilme>(atuaFilme));
 
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Create");
-
             }
-            catch(Exception E)
+            catch (Exception E)
             {
                 ViewBag.Erro = E.Message;
+                ViewBag.NomeFilme = "Aqui jás o nome do filme";
                 ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
                 return View(atuaFilme);
             }
         }
 
-        
-
-
-
         // GET: Filme/Details/5
         public ActionResult Details(int id)
         {
-            var filme = Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id));
-            return View(filme);
+            return View(Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id)));
         }
 
         // GET: Ator/Details/5
         public ActionResult DetailsAtores(int id)
         {
-            var filmes = Mapper.Map<IEnumerable<AtuaFilme>, IEnumerable<AtuaFilmeModelView>>(_atuaFilmeService.BuscaAtorPorFilme(id));
-
-            return View(filmes);
+            return View(Mapper.Map<IEnumerable<AtuaFilme>, IEnumerable<AtuaFilmeModelView>>(_atuaFilmeService.BuscaAtorPorFilme(id)));
         }
 
         // GET: Filme/Create
@@ -110,13 +97,11 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var filmeMap = Mapper.Map<FilmeModelView, Filme>(filme);
-                    filmeService.AddFilme(filmeMap);
+                    filmeService.AddFilme(Mapper.Map<FilmeModelView, Filme>(filme));
                     return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Create", filme);
-
             }
             catch (Exception e)
             {
@@ -128,9 +113,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Filme/Edit/5
         public ActionResult Edit(int id)
         {
-            var filmeMap = Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id));
-            
-            return View(filmeMap);
+            return View(Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id)));
         }
 
         // POST: Filme/Edit/5
@@ -141,16 +124,15 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var filmeMap = Mapper.Map<FilmeModelView, Filme>(filme);
-                    filmeService.EditaFilme(filmeMap);
+                    filmeService.EditaFilme(Mapper.Map<FilmeModelView, Filme>(filme));
                     return RedirectToAction("Index");
                 }
-
                 return RedirectToAction("Edit", filme);
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ViewBag.Erro = e.Message;
+                return View(filme);
             }
         }
 

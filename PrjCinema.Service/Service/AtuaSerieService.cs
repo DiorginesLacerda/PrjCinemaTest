@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Interfaces.Repository;
 
@@ -22,6 +24,27 @@ namespace PrjCinema.Service.Service
         public IEnumerable<AtuaSerie> BuscaAtorPorSerie(int id)
         {
             return _atuaSerieRepository.BuscaAtorPorSerie(id);
+        }
+
+
+        public bool IsAtuacaoExiste(AtuaSerie atuaSerie)
+        {
+
+            if (_atuaSerieRepository.GetAll().Any(u => u.SerieId == atuaSerie.SerieId && u.AtorId == atuaSerie.AtorId))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void AddAtuacaoFilme(AtuaSerie representaAtuacaoFilme)
+        {
+            if (IsAtuacaoExiste(representaAtuacaoFilme))
+            {
+                throw new Exception("O Ator " + representaAtuacaoFilme.Ator.Nome + " já esta cadastrado como ator nesta serie, por favor tente cadastrar outro Ator caso necessário! Obrigado.");
+            }
+
+            _atuaSerieRepository.Add(representaAtuacaoFilme);
         }
     }
 }

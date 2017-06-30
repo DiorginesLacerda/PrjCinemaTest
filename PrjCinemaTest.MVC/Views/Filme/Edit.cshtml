@@ -1,7 +1,7 @@
 ﻿@model PrjCinema.MVC.Models.FilmeModelView
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Filme";
 }
 
 <h2>Editar @Html.DisplayFor(modelItem => modelItem.Titulo)</h2>
@@ -12,8 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal ">
-        <h4>Filme</h4>
-        <hr />
+       <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 

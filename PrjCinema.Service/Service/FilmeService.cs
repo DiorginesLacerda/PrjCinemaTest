@@ -5,18 +5,18 @@ using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Service.Service
 {
-    public class FilmeService: ServiceBase<Filme>, IFilmeService
+    public class FilmeService : ServiceBase<Filme>, IFilmeService
     {
         private readonly IFilmeRepository _filmeRepository;
 
         public FilmeService(IFilmeRepository filmeRepository)
-            :base(filmeRepository)
+            : base(filmeRepository)
         {
             _filmeRepository = filmeRepository;
 
         }
 
-        public bool IsAtorExiste(Filme representaFilme)
+        public bool IsFilmeExiste(Filme representaFilme)
         {
             if (_filmeRepository.GetAll().Any(u => u.Titulo == representaFilme.Titulo && u.Lancamento == representaFilme.Lancamento && u.Nacionalidade == representaFilme.Nacionalidade))
                 return true;
@@ -26,12 +26,38 @@ namespace PrjCinema.Service.Service
 
         public void AddFilme(Filme representaFilme)
         {
-            if (IsAtorExiste(representaFilme))
+            if (IsFilmeExiste(representaFilme))
             {
                 throw new Exception("O Filme " + representaFilme.Titulo + " já esta cadastrado, por favor tente cadastrar outro Filme! Obrigado.");
             }
 
             _filmeRepository.Add(representaFilme);
         }
+
+        public bool IsTituloIgualAOutroFilme(Filme representaFilme)
+        {
+            foreach (var filmesList in _filmeRepository.GetAll())
+            {
+                if (representaFilme.Id != filmesList.Id && representaFilme.Titulo == filmesList.Titulo)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void EditaFilme(Filme representaFilme)
+        {
+            if (IsFilmeExiste(representaFilme) && !IsTituloIgualAOutroFilme(representaFilme))
+            {
+                _filmeRepository.Update(representaFilme);
+            }
+            else
+            {
+                throw new Exception("Erro ao tentar editar o filme, por favor cheque novamente os dados inseridos.");
+            }
+        }
+
+        
     }
 }

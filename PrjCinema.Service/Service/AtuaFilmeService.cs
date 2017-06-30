@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Interfaces.Repository;
@@ -33,6 +34,16 @@ namespace PrjCinema.Service.Service
                 return true;
             }
             return false;
+        }
+
+        public void AddAtuacaoFilme(AtuaFilme representaAtuacaoFilme)
+        {
+            if (IsAtuacaoExiste(representaAtuacaoFilme))
+            {
+                throw new Exception("O Ator " + representaAtuacaoFilme.Ator.Nome + " já esta cadastrado como ator neste filme, por favor tente cadastrar outro Ator caso necessário! Obrigado.");
+            }
+
+            _atuaFilmeRepository.Add(representaAtuacaoFilme);
         }
     }
 }

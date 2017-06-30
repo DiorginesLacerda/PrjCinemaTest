@@ -38,11 +38,11 @@ namespace PrjCinema.MVC.Controllers
         // GET: Filme/AddAtuacaoFilme/id
         public ActionResult AddAtuacaoFilme(int id) 
         {
-            ViewBag.Atores = _atorService.GetAll();
-            var viewFilme = _filmeService.GetById(id);
-
+            ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
+            var viewFilme = Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id));
+            
             ViewBag.NomeFilme = viewFilme.Titulo;
-            var atuacao = new AtuaFilme();
+            var atuacao = new AtuaFilmeModelView();
             atuacao.FilmeId = id;
 
             return View(atuacao);
@@ -52,21 +52,16 @@ namespace PrjCinema.MVC.Controllers
 
         //// POST: Filme/AddAtuacaoFilme/id
         [HttpPost]
-        public ActionResult AddAtuacaoFilme(AtuaFilme atuaFilme, int id)
+        public ActionResult AddAtuacaoFilme(AtuaFilmeModelView atuaFilme)
         {
-            ViewBag.Atores = _atorService.GetAll();
+            
             ViewBag.NomeFilme = "Aqui jás o nome do filme";
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if (atuaFilmeService.IsAtuacaoExiste(atuaFilme))
-                    {
-                        ViewBag.Erro = "O ator " + atuaFilme.Ator.Nome + " já está atuando neste filme " ;
-                        
-                        throw new Exception("Este ator já está atuando neste filme");
-                    }
-                    _atuaFilmeService.Add(atuaFilme);
+                    var atuacao = Mapper.Map<AtuaFilmeModelView, AtuaFilme>(atuaFilme);
+                    atuaFilmeService.AddAtuacaoFilme(atuacao);
 
                     return RedirectToAction("Index");
                 }
@@ -77,6 +72,7 @@ namespace PrjCinema.MVC.Controllers
             catch(Exception E)
             {
                 ViewBag.Erro = E.Message;
+                ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
                 return View(atuaFilme);
             }
         }
@@ -139,13 +135,14 @@ namespace PrjCinema.MVC.Controllers
 
         // POST: Filme/Edit/5
         [HttpPost]
-        public ActionResult Edit(Filme filme)
+        public ActionResult Edit(FilmeModelView filme)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _filmeService.Update(filme);
+                    var filmeMap = Mapper.Map<FilmeModelView, Filme>(filme);
+                    filmeService.EditaFilme(filmeMap);
                     return RedirectToAction("Index");
                 }
 

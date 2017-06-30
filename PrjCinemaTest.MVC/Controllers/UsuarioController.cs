@@ -1,7 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using AutoMapper;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Interfaces.Repository;
-
+using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
@@ -10,23 +13,25 @@ namespace PrjCinema.MVC.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IEnderecoService _enderecoService;
+        private readonly UsuarioService usuarioService;
         public UsuarioController(UsuarioService usuarioService, EnderecoService enderecoService)
         {
+            this.usuarioService = usuarioService;
             _usuarioService = usuarioService;
             _enderecoService = enderecoService;
         }
         // GET: Usuario
         public ActionResult Index()
         {
-           var usuario = _usuarioService.GetAll();
-            return View(usuario);
+
+            return View(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(usuarioService.GetAll()));
         }
 
         // GET: Usuario/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        public ActionResult Details(int id)
+        {
+            return View(Mapper.Map<Usuario, UsuarioModelView>(usuarioService.GetById(id)));
+        }
 
         // GET: Usuario/Create
         public ActionResult Create()
@@ -37,21 +42,26 @@ namespace PrjCinema.MVC.Controllers
         // POST: Usuario/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Usuario usuario, Endereco endereco)
+        public ActionResult Create(UsuarioModelView usuario)
         {
-            if (ModelState.IsValid)
+            try
             {
-                
-                var enderecoModel = endereco;
-                _enderecoService.Add(enderecoModel);
-
-               
-                var usuarioModel = usuario;
-                _usuarioService.Add(usuarioModel);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var endereco = new EnderecoModelView();
+                    endereco = usuario.Endereco;
+                    usuarioService.AddUsuario(Mapper.Map<UsuarioModelView,Usuario>(usuario), Mapper.Map<EnderecoModelView, Endereco>(endereco));
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Create", usuario);
             }
+            catch (Exception e)
+            {
+                ViewBag.Erro = e.Message;
                 return View(usuario);
-            
+            }
+
+
         }
 
         //// GET: Usuario/Edit/5

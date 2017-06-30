@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.MVC.Models;
@@ -18,7 +19,8 @@ namespace PrjCinema.MVC.AutoMapper
             Mapper.CreateMap<SerieModelView, Serie>();
             Mapper.CreateMap<AtuaSerieModelView, AtuaSerie>();
             Mapper.CreateMap<AtuaFilmeModelView, AtuaFilme>();
-
+            Mapper.CreateMap<UsuarioModelView, Usuario>();
+            Mapper.CreateMap<EnderecoModelView, Endereco>();
         }
     }
 }

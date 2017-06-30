@@ -1,18 +1,23 @@
 ﻿@model PrjCinema.MVC.Models.AtorModelView
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Ator";
 }
 
-<h2>Edit</h2>
+<h2>Editar Ator</h2>
+@if (ViewBag.Erro != null)
+{
+    <div class="alert-danger">
 
+        <h1>@ViewBag.Erro</h1>
+    </div>
+}
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal ">
-        <h4>Ator</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)

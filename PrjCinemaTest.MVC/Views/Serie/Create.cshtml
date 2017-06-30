@@ -1,11 +1,17 @@
 ﻿@model PrjCinema.MVC.Models.SerieModelView
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Adicionar nova Serie";
 }
 
 <h2>Adicionar nova Serie</h2>
+@if (ViewBag.Erro != null)
+{
+    <div class="alert-danger">
 
+        <h1>@ViewBag.Erro</h1>
+    </div>
+}
 
 @using (Html.BeginForm()) 
 {
@@ -69,7 +75,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @section Scripts {

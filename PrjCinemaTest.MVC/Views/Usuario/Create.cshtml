@@ -1,18 +1,23 @@
 ﻿@model PrjCinema.Domain.Entities.Usuario
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Criar novo Usuário";
 }
 
-<h2>Create</h2>
+<h2>Crriar novo Usuário</h2>
+@if (ViewBag.Erro != null)
+{
+    <div class="alert-danger">
 
+        <h1>@ViewBag.Erro</h1>
+    </div>
+}
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal modal-content">
-        <h4>Usuario</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -58,7 +63,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @section Scripts {

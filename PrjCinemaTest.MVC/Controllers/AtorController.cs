@@ -87,7 +87,7 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _atorService.Update(Mapper.Map<AtorModelView, Ator>(ator));
+                    atorService.EditarAtor(Mapper.Map<AtorModelView, Ator>(ator));
                     return RedirectToAction("Index");
                 }
 
@@ -95,6 +95,7 @@ namespace PrjCinema.MVC.Controllers
             }
             catch (Exception e)
             {
+                ViewBag.Erro = e.Message;
                 return View(ator);
             }
         }

@@ -1,13 +1,19 @@
 ﻿@model PrjCinema.MVC.Models.FilmeModelView
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detailhes do filme";
 }
 
-<h2>Detalhes</h2>
+<h2>Detalhes do Filme @Html.DisplayFor(model =>model.Titulo)</h2>
+@if (ViewBag.Erro != null)
+{
+    <div class="alert-danger">
 
+        <h1>@ViewBag.Erro</h1>
+    </div>
+}
 <div>
-    <h4>Filme</h4>
+    
     <hr />
     <dl class="dl-horizontal ">
         <dt>

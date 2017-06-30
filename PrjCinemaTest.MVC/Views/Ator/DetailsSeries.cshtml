@@ -5,7 +5,13 @@
 }
 
 <h2>Series Atuadas</h2>
+@if (ViewBag.Erro != null)
+{
+    <div class="alert-danger">
 
+        <h1>@ViewBag.Erro</h1>
+    </div>
+}
 <p>
     @Html.ActionLink("Adicionar Serie que atuou", "Create")
 </p>

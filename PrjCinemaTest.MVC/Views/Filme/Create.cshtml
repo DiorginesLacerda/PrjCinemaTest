@@ -1,18 +1,24 @@
 ﻿@model PrjCinema.MVC.Models.FilmeModelView
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Adicionar novo Filme";
 }
 
 <h2>Adicionar novo Filme</h2>
+@if (ViewBag.Erro != null)
+{
+    <div class="alert-danger">
 
+        <h1>@ViewBag.Erro</h1>
+    </div>
+}
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal ">
-        <h4>Filme</h4>
+       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

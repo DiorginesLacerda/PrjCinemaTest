@@ -47,3 +47,6 @@ C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\bin\Debug\System.Web.WebPages.xml
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\bin\Debug\AutoMapper.Net4.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\bin\Debug\AutoMapper.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\bin\Debug\AutoMapper.xml

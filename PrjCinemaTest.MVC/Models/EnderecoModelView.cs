@@ -6,6 +6,7 @@ namespace PrjCinema.MVC.Models
 {
     public class EnderecoModelView
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(150, ErrorMessage = "Máximo de {0} caracteres")]

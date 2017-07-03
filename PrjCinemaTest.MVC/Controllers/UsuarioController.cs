@@ -12,13 +12,11 @@ namespace PrjCinema.MVC.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService _usuarioService;
-        private readonly IEnderecoService _enderecoService;
         private readonly UsuarioService usuarioService;
         public UsuarioController(UsuarioService usuarioService, EnderecoService enderecoService)
         {
             this.usuarioService = usuarioService;
             _usuarioService = usuarioService;
-            _enderecoService = enderecoService;
         }
         // GET: Usuario
         public ActionResult Index()
@@ -48,9 +46,8 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var endereco = new EnderecoModelView();
-                    endereco = usuario.Endereco;
-                    usuarioService.AddUsuario(Mapper.Map<UsuarioModelView,Usuario>(usuario), Mapper.Map<EnderecoModelView, Endereco>(endereco));
+                    usuario.DataCadastro = DateTime.Now;
+                    usuarioService.AddUsuario(Mapper.Map<UsuarioModelView, Usuario>(usuario));
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("Create", usuario);

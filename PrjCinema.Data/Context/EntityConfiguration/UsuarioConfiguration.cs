@@ -11,8 +11,9 @@ namespace PrjCinema.Data.Context.EntityConfiguration
 
             Property(c => c.Nome).IsRequired().HasMaxLength(150);
             Property(c => c.Email).IsRequired().HasMaxLength(150);
-            Property(c => c.Cpf).IsRequired().HasMaxLength(11);
-            
+            Property(c => c.Cpf).IsRequired().HasMaxLength(15);
+            Property(c => c.Telefone).IsRequired().HasMaxLength(15);
+            Property(c => c.Password).IsRequired();
         }
     }
 }

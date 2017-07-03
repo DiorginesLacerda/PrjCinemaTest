@@ -1,0 +1,40 @@
+﻿@model PrjCinema.MVC.Models.UsuarioModelView
+@{
+    ViewBag.Title = "Login";
+}
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    //cria a tag do formulário
+    @Html.AntiForgeryToken()
+    // previne o ataque CSRF
+    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+    {
+        <div style="border:1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+    <table>
+        <tr>
+            <td>@Html.LabelFor(a => a.Email, htmlAttributes: new { @class = "control-label col-md-2" })</td>
+            <td>@Html.TextBoxFor(a => a.Email, new { htmlAttributes = new { @class = "form-control email" } })</td>
+            <td>@Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td> @Html.LabelFor(a => a.Password, htmlAttributes: new { @class = "control-label col-md-2" })</td>
+            <td> @Html.PasswordFor(a => a.Password, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" }) </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

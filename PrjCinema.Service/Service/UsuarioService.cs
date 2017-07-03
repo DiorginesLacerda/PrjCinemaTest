@@ -7,12 +7,11 @@ namespace PrjCinema.Service.Service
 {
     public class UsuarioService : ServiceBase<Usuario>, IUsuarioService
     {
-        private readonly EnderecoService _endercoService;
+        
         private readonly IUsuarioRepository _usuarioRepository;
-        public UsuarioService(IUsuarioRepository usuarioRepository, EnderecoService enderecoService)
+        public UsuarioService(IUsuarioRepository usuarioRepository)
             : base(usuarioRepository)
         {
-            this._endercoService = enderecoService;
             _usuarioRepository = usuarioRepository;
         }
 
@@ -33,7 +32,7 @@ namespace PrjCinema.Service.Service
                 case 2:
                     return "Você não pode editar o usuário " + usuario.Nome + " com estes dados, alguem já possui este E-mail ou Cpf";
                 case 3:
-                    return "Por favor preencha o Endereço do usuário";
+                    return "Por favor preencha um CPF válido e tente novamente.";
                 default:
                     return "Ops algo errado não está certo";
             }
@@ -56,18 +55,21 @@ namespace PrjCinema.Service.Service
             return false;
         }
 
-        public void AddUsuario(Usuario usuario, Endereco endereco)
+        public void AddUsuario(Usuario usuario)
         {
-            usuario.DataCadastro = DateTime.Now;
             if (usuario.DataCadastro == null)
                 throw new Exception(AlertUsuarioExiste(usuario, 0));
+            if (IsCpf(usuario.Cpf))
+                throw new Exception(AlertUsuarioExiste(usuario, 3));
             if (IsUsuarioExiste(usuario))
                 throw new Exception(AlertUsuarioExiste(usuario, 1));
-            if (IsEndereco(endereco))
-                throw new Exception(AlertUsuarioExiste(usuario, 3));
+            //if (usuario.Endereco != null && usuario.EnderecoId != null)
+            //    throw new Exception("Algo errado não está certo");
 
-            _endercoService.Add(endereco);
             _usuarioRepository.Add(usuario);
+            
+            
+           
         }
 
         public void EditarUsuario(Usuario usuario)
@@ -78,7 +80,7 @@ namespace PrjCinema.Service.Service
             _usuarioRepository.Update(usuario);
         }
 
-        public static bool IsCpf(string cpf)
+        public bool IsCpf(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -89,7 +91,7 @@ namespace PrjCinema.Service.Service
             cpf = cpf.Trim();
             cpf = cpf.Replace(".", "").Replace("-", "");
             if (cpf.Length != 11)
-                return false;
+                return true;
             tempCpf = cpf.Substring(0, 9);
             soma = 0;
 
@@ -110,8 +112,8 @@ namespace PrjCinema.Service.Service
                 resto = 0;
             else
                 resto = 11 - resto;
-            digito = digito + resto.ToString();
-            return cpf.EndsWith(digito);
+            
+            return false;
         }
     }
 }

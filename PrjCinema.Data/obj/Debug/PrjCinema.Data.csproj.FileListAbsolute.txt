@@ -43,7 +43,6 @@ C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\bin\Debug\EntityFramework.xml
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.csprojResolveAssemblyReference.cache
-C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.NovoBancoNovaVida.resources
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.teste.resources
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.ajusteTabelaAtuaSerie.resources
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.configuracaoParaTabelaSerie.resources
@@ -57,3 +56,9 @@ C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.ajusteTabelaAtor.resources
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.addIdAtuaFilmeESerie.resources
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.trocaValorAtributoFilmeDuracaoParaString.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.ajusteConfig.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.ajusteConfigUsuario.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.teste2.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.adicionadoPasswordNoUsuario.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.adicionadoPasswordNoUsuario1.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.adicionadoPasswordNoUsuario2.resources

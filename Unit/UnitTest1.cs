@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Messaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PrjCinema.Data.Context;
 using PrjCinema.Data.Repositories;
+using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 
@@ -16,6 +17,24 @@ namespace Unit
     {
 
         [TestMethod]
+        public void InsertUsuario()
+        {
+            var usuariBase = new UsuarioRepository();
+            var representaUsuario = new Usuario();
+
+            representaUsuario.Nome = "Leyla";
+            representaUsuario.Cpf = "028.741.970-33";
+            representaUsuario.DataCadastro = DateTime.Now;
+            representaUsuario.Email = "leyla@leyla.com";
+            representaUsuario.Telefone = "(51) 99111-1111";
+            representaUsuario.Genero = Genero.Fem;
+            representaUsuario.Perfil = Perfil.Adminstrador;
+
+            usuariBase.Add(representaUsuario);
+        }
+
+
+        [TestMethod]
         public void InsertFilmeTest()
         {
             RepositoryBase<Filme> repositoryFilme = new FilmeRepository();
@@ -24,7 +43,7 @@ namespace Unit
             //construcao do filme
             representaFilme.Categoria = Categoria.Ficção;
             representaFilme.Descricao = "É uma ficção";
-            representaFilme.Duracao = 1.60f;
+            representaFilme.Duracao = "1600";
             representaFilme.Lancamento = DateTime.Now;
             representaFilme.Nacionalidade = Nacionalidade.USA;
             representaFilme.Titulo = "Star Wars";

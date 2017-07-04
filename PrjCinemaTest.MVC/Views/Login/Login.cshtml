@@ -9,10 +9,10 @@
     @Html.AntiForgeryToken()
     // previne o ataque CSRF
     @Html.ValidationSummary(true)
-    if (@ViewBag.Message != null)
+    if (@ViewBag.Erro != null)
     {
         <div style="border:1px solid red">
-            @ViewBag.Message
+            @ViewBag.Erro
         </div>
     }
     <table>

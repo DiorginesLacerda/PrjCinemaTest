@@ -1,17 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using AutoMapper;
-using PrjCinema.Data.Context;
-using PrjCinema.Domain.Entities;
+using PrjCinema.Domain.Interfaces.Repository;
+
+
 using PrjCinema.MVC.Models;
+using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly UsuarioService _usuarioService;
+        public LoginController(UsuarioService usuarioService)
+        {
+            _usuarioService = usuarioService;
+        }
         // GET: Login
         public ActionResult Login()
         {
@@ -22,22 +25,29 @@ namespace PrjCinema.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(UsuarioModelView u)
         {
-            // esta action trata o post (login)
-            if (!ModelState.IsValid) //verifica se é válido
+            
+            try
             {
-                using (ProjectContext dc = new ProjectContext())
+                // esta action trata o post (login)
+                if (!ModelState.IsValid) //verifica se é válido
                 {
-                    var u2 = Mapper.Map<UsuarioModelView, Usuario>(u);
-                    var v = dc.Usuarios.Where(a => a.Email.Equals(u2.Email) && a.Password.Equals(u2.Password)).FirstOrDefault();
-                    if (v != null)
+
+                    if (_usuarioService.LoginUsuario(u.Email, u.Password) != null)
                     {
-                        Session["usuarioLogadoID"] = v.Id.ToString();
-                        Session["nomeUsuarioLogado"] = v.Email;
+                        Session["usuarioLogadoID"] = _usuarioService.LoginUsuario(u.Email, u.Password).Id;
+                        Session["usuarioLogadoNome"] = _usuarioService.LoginUsuario(u.Email, u.Password).Nome;
+                        Session["emailUsuarioLogado"] = _usuarioService.LoginUsuario(u.Email, u.Password).Email;
                         return RedirectToAction("Index");
                     }
                 }
+                return View(u);
             }
-            return View(u);
+            catch (Exception e)
+            {
+                ViewBag.Erro = e.Message;
+                return View(u);
+            }
+
         }
 
         public ActionResult Index()

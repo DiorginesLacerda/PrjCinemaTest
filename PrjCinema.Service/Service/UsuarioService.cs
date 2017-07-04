@@ -67,16 +67,13 @@ namespace PrjCinema.Service.Service
             //    throw new Exception("Algo errado não está certo");
 
             _usuarioRepository.Add(usuario);
-            
-            
-           
         }
-
+         
         public void EditarUsuario(Usuario usuario)
         {
             if (IsUsuarioExiste(usuario))
                 throw new Exception(AlertUsuarioExiste(usuario, 2));
-            
+
             _usuarioRepository.Update(usuario);
         }
 
@@ -112,8 +109,27 @@ namespace PrjCinema.Service.Service
                 resto = 0;
             else
                 resto = 11 - resto;
-            
+
             return false;
+        }
+
+        public bool IsLogin(string email, string password)
+        {
+            if (_usuarioRepository.GetAll().FirstOrDefault(a => a.Email.Equals(email) && a.Password.Equals(password)) == null)
+                return false;
+
+            return true;
+        }
+
+        public Usuario LoginUsuario(string email, string password)
+        {
+            if (IsLogin(email, password))
+            {
+                var userLogin = _usuarioRepository.GetAll().FirstOrDefault(a => a.Email.Equals(email) && a.Password.Equals(password));
+                return userLogin;
+            }
+
+            throw new Exception("Algo errado não está certo !");
         }
     }
 }

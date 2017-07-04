@@ -112,24 +112,24 @@ namespace PrjCinema.Service.Service
 
             return false;
         }
-
-        public bool IsLogin(string email, string password)
-        {
-            if (_usuarioRepository.GetAll().FirstOrDefault(a => a.Email.Equals(email) && a.Password.Equals(password)) == null)
-                return false;
-
-            return true;
-        }
-
+        
         public Usuario LoginUsuario(string email, string password)
         {
-            if (IsLogin(email, password))
-            {
-                var userLogin = _usuarioRepository.GetAll().FirstOrDefault(a => a.Email.Equals(email) && a.Password.Equals(password));
+            var userLogin = _usuarioRepository.GetAll().FirstOrDefault(a => a.Email.Equals(email) && a.Password.Equals(password));
+            if (userLogin != null)
                 return userLogin;
-            }
 
             throw new Exception("Algo errado não está certo !");
+        }
+
+        public Usuario GetUsuarioPorEmail(string email)
+        {
+            var userLogin = _usuarioRepository.GetAll().FirstOrDefault(a => a.Email.Equals(email));
+            if (userLogin != null)
+                return userLogin;
+
+            throw new Exception("Algo errado não está certo !");
+            
         }
     }
 }

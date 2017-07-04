@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Interfaces.Repository;
 
 
@@ -23,20 +24,28 @@ namespace PrjCinema.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(UsuarioModelView u)
+        public ActionResult Login(LoginModelView u)
         {
-            
+
             try
             {
                 // esta action trata o post (login)
-                if (!ModelState.IsValid) //verifica se é válido
+                if (ModelState.IsValid) //verifica se é válido
                 {
-
-                    if (_usuarioService.LoginUsuario(u.Email, u.Password) != null)
+                    var usuario = _usuarioService.LoginUsuario(u.Email, u.Password);
+                    Session["UsuarioLogado"] = usuario;
+                    if (usuario != null)
                     {
-                        Session["usuarioLogadoID"] = _usuarioService.LoginUsuario(u.Email, u.Password).Id;
-                        Session["usuarioLogadoNome"] = _usuarioService.LoginUsuario(u.Email, u.Password).Nome;
-                        Session["emailUsuarioLogado"] = _usuarioService.LoginUsuario(u.Email, u.Password).Email;
+                        //Session["usuarioLogadoID"] = _usuarioService.LoginUsuario(u.Email, u.Password).Id;
+                        //Session["usuarioLogadoNome"] = _usuarioService.LoginUsuario(u.Email, u.Password).Nome;
+                        //Session["emailUsuarioLogado"] = _usuarioService.LoginUsuario(u.Email, u.Password).Email;
+
+                        Session["UsuarioLogado"] = usuario;//_usuarioService.LoginUsuario(u.Email, u.Password);
+
+                        if (Session["UsuarioLogado"] == null)
+                            return View(u);
+                          //return ((MVC.Models.UsuarioModelView)Session["UsuarioLogado"]).Perfil == Perfil.Adminstrador;
+                        
                         return RedirectToAction("Index");
                     }
                 }
@@ -52,9 +61,10 @@ namespace PrjCinema.MVC.Controllers
 
         public ActionResult Index()
         {
-            if (Session["usuarioLogadoID"] != null)
+            if (Session["usuarioLogado"] != null)
+            {
                 return RedirectToAction("Index", "Home");
-
+            }
             return RedirectToAction("Login");
 
         }

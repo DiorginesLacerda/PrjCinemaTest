@@ -29,7 +29,12 @@
                     <li>@Html.ActionLink("Series", "Index", "Serie")</li>
                     <li>@Html.ActionLink("Atores", "Index", "Ator")</li>
                 </ul>
-
+                @* //não funciona ainda ;)
+                    
+                    @if (ViewBag.UsuarioLogin != null)
+                {
+                    @ViewBag.UsuarioLogin
+                }*@ 
             </div>
         </div>
     </div>

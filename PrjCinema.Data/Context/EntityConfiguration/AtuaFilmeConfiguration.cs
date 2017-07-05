@@ -11,8 +11,6 @@ namespace PrjCinema.Data.Context.EntityConfiguration
         public AtuaFilmeConfiguration()
         {
             HasKey(c => c.Id);
-
-           
         }
 
     }

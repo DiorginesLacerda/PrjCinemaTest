@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PrjCinema.Data.Context;
 using PrjCinema.Data.Repositories;
 using PrjCinema.Domain.Entities;
+using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 
@@ -141,13 +140,74 @@ namespace Unit
             {
                 Debug.WriteLine(listaAtor.Ator.Nome);
             }
-
-
-
-
         }
 
+        [TestMethod]
+        public void AddPermissao()
+        {
+            var permissaoRepository = new PermissaoRepository();
+            var permissao = new Permissao();
+            permissao.Nome = "Administrador Completo";
+            permissao.Operacoes = new List<Operacao>
+            {
+                Operacao.Adicionar
+            };
+            permissao.Operacoes = new List<Operacao>
+            {
+                Operacao.AtivarInativar
+            };
 
+            permissaoRepository.Add(permissao);
+        }
+
+        [TestMethod]
+        public void AddGrupo()
+        {
+            var grupoAcessoRepository = new GrupoAcessoRepository();
+            var _usuarioRepository = new UsuarioRepository();
+            var grupoAcesso = new GrupoAcesso();
+            var permissaoRepository = new PermissaoRepository();
+            var usuario = _usuarioRepository.GetById(9);
+            grupoAcesso.Nome = "Adminstrador Completo";
+            grupoAcesso.Perfil = Perfil.Adminstrador;
+            var permissao = permissaoRepository.GetById(1);
+
+            //grupoAcesso.Permissoes = new List<Permissao>
+            //{
+            //    permissao
+            //}; 
+
+            //grupoAcesso.Usuarios = new List<Usuario>
+            //{
+            //    usuario
+            //};
+
+            grupoAcessoRepository.Add(grupoAcesso);
+        }
+
+        [TestMethod]
+        public void AddPermissoesGrupo()
+        {
+            var _grupoAcessoRepository = new GrupoAcessoRepository();
+            //var _usuarioRepository = new UsuarioRepository();
+            var grupoAcesso = _grupoAcessoRepository.GetById(1);
+            var _permissaoRepository = new PermissaoRepository();
+            var permissao = _permissaoRepository.GetById(1);
+
+
+
+            grupoAcesso.Permissoes = new List<Permissao>
+            {
+                permissao
+            };
+
+            //grupoAcesso.Usuarios = new List<Usuario>
+            //{
+            //    usuario
+            //};
+            Debug.WriteLine(grupoAcesso.Permissoes.ToString());
+            _grupoAcessoRepository.Update(grupoAcesso);
+        }
 
 
 

@@ -4,6 +4,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 using PrjCinema.Data.Context.EntityConfiguration;
 using PrjCinema.Domain.Entities;
+using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 
@@ -24,6 +25,8 @@ namespace PrjCinema.Data.Context
         public DbSet<Serie> Series { get; set; }
         public DbSet<AtuaSerie> AtuaSeries { get; set; }
         public DbSet<AtuaFilme> AtuaFilmes { get; set; }
+        public DbSet<GrupoAcesso> GrupoAcessos { get; set; }
+        public DbSet<Permissao> Permissoes { get; set; }
 
 
         
@@ -48,6 +51,9 @@ namespace PrjCinema.Data.Context
             modelBuilder.Configurations.Add(new AtorConfiguration());
             modelBuilder.Configurations.Add(new AtuaFilmeConfiguration());
             modelBuilder.Configurations.Add(new AtuaSerieConfiguration());
+            modelBuilder.Configurations.Add(new GrupoAcessoConfiguration());
+            modelBuilder.Configurations.Add(new PermissaoConfiguration());
+
 
 
             modelBuilder.Entity<AtuaFilme>().HasKey(pv => new { pv.FilmeId, pv.AtorId });

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.Domain.Interfaces.Service;
 
 namespace PrjCinema.Service.Service
 {

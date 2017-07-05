@@ -2,7 +2,6 @@
 
 namespace PrjCinema.MVC.Controllers
 {
-    [Authorize(Roles = "Administrador, Usuario")]
     public class HomeController : Controller
     {
         public ActionResult Index()

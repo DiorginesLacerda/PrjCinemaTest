@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using PrjCinema.Domain.Entities;
+﻿using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Data.Repositories

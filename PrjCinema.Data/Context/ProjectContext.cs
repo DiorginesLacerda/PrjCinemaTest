@@ -27,7 +27,7 @@ namespace PrjCinema.Data.Context
         public DbSet<AtuaFilme> AtuaFilmes { get; set; }
         public DbSet<GrupoAcesso> GrupoAcessos { get; set; }
         public DbSet<Permissao> Permissoes { get; set; }
-
+        public DbSet<GrupoAcessoUsuario> GrupoAcessoUsuarios { get; set; }
 
         
 
@@ -53,8 +53,10 @@ namespace PrjCinema.Data.Context
             modelBuilder.Configurations.Add(new AtuaSerieConfiguration());
             modelBuilder.Configurations.Add(new GrupoAcessoConfiguration());
             modelBuilder.Configurations.Add(new PermissaoConfiguration());
+            modelBuilder.Configurations.Add(new GrupoAcessoUsuarioConfiguration());
 
-
+            modelBuilder.Entity<GrupoAcessoUsuario>().HasKey(pv => new { pv.GrupoAcessoId, pv.UsuarioId });
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<AtuaFilme>().HasKey(pv => new { pv.FilmeId, pv.AtorId });
             base.OnModelCreating(modelBuilder);

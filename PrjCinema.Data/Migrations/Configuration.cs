@@ -6,7 +6,7 @@ namespace PrjCinema.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(PrjCinema.Data.Context.ProjectContext context)

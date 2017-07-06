@@ -7,7 +7,7 @@ namespace PrjCinema.Data.Context.EntityConfiguration
     {
         public PermissaoConfiguration()
         {
-            HasKey(c => c.PermissaoId);
+            HasKey(c => c.Id);
         }
         
     }

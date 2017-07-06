@@ -7,17 +7,17 @@ namespace PrjCinema.Data.Context.EntityConfiguration
     {
         public GrupoAcessoConfiguration()
         {
-            HasKey(c => c.GrupoAcessoId);
+            HasKey(c => c.Id);
 
             //cria tabela como relacionamento many to many
-            HasMany(u => u.Usuarios)
-                .WithMany(g => g.GrupoAcessos)
-                .Map(m =>
-                {
-                    m.MapLeftKey("GrupoAcessoId");
-                    m.MapRightKey("Id");
-                    m.ToTable("GrupoAcessosUsuarios");
-                });
+            //HasMany(u => u.Usuarios)
+            //    .WithMany(g => g.GrupoAcessos)
+            //    .Map(m =>
+            //    {
+            //        m.MapRightKey("Id");
+            //        m.MapLeftKey("Id");
+            //        //m.ToTable("GrupoAcessosUsuarios");
+            //    });
         }
     }
 }

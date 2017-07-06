@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\EntityConfiguration\GrupoAcessoUsuarioConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\AtuaSerieConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\AtuaFilmeConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\AtorConfiguration.cs" />
@@ -114,13 +115,13 @@
     <Compile Include="Migrations\201707031411347_adicionadoPasswordNoUsuario2.Designer.cs">
       <DependentUpon>201707031411347_adicionadoPasswordNoUsuario2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707051653347_adicionadoGrupoAcessos.cs" />
-    <Compile Include="Migrations\201707051653347_adicionadoGrupoAcessos.Designer.cs">
-      <DependentUpon>201707051653347_adicionadoGrupoAcessos.cs</DependentUpon>
+    <Compile Include="Migrations\201707061715304_A1.cs" />
+    <Compile Include="Migrations\201707061715304_A1.Designer.cs">
+      <DependentUpon>201707061715304_A1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707051717460_adicionadoPermissoes.cs" />
-    <Compile Include="Migrations\201707051717460_adicionadoPermissoes.Designer.cs">
-      <DependentUpon>201707051717460_adicionadoPermissoes.cs</DependentUpon>
+    <Compile Include="Migrations\201707061751485_A2.cs" />
+    <Compile Include="Migrations\201707061751485_A2.Designer.cs">
+      <DependentUpon>201707061751485_A2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -194,11 +195,11 @@
     <EmbeddedResource Include="Migrations\201707031411347_adicionadoPasswordNoUsuario2.resx">
       <DependentUpon>201707031411347_adicionadoPasswordNoUsuario2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707051653347_adicionadoGrupoAcessos.resx">
-      <DependentUpon>201707051653347_adicionadoGrupoAcessos.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707061715304_A1.resx">
+      <DependentUpon>201707061715304_A1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707051717460_adicionadoPermissoes.resx">
-      <DependentUpon>201707051717460_adicionadoPermissoes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707061751485_A2.resx">
+      <DependentUpon>201707061751485_A2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

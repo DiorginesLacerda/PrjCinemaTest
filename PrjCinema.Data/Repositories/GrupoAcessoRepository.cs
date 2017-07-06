@@ -5,6 +5,5 @@ namespace PrjCinema.Data.Repositories
 {
     public class GrupoAcessoRepository : RepositoryBase<GrupoAcesso>, IGrupoAcessoRepository
     {
-        
     }
 }

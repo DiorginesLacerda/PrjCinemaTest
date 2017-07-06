@@ -7,7 +7,8 @@ using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Data.Repositories
 {
-    public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity:class
+    public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> 
+      where TEntity: class
     {
         protected ProjectContext context = new ProjectContext();
         public void Add(TEntity obj)
@@ -28,6 +29,8 @@ namespace PrjCinema.Data.Repositories
 
         public void Update(TEntity obj)
         {
+            //var old = context.Set<TEntity>().Where(o => obj.Id == o.Id).SingleOrDefault();
+            //context.Entry(old).CurrentValues().SetValues(TEntity);
             context.Entry(obj).State = EntityState.Modified;
             context.SaveChanges();
         }

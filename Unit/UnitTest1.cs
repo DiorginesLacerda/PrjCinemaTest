@@ -150,13 +150,9 @@ namespace Unit
             permissao.Nome = "Administrador Completo";
             permissao.Operacoes = new List<Operacao>
             {
-                Operacao.Adicionar
+                Operacao.Adicionar, Operacao.AtivarInativar, Operacao.AtribuirPermissao, Operacao.Deletar, Operacao.Editar, Operacao.Visualizar
             };
-            permissao.Operacoes = new List<Operacao>
-            {
-                Operacao.AtivarInativar
-            };
-
+            
             permissaoRepository.Add(permissao);
         }
 
@@ -164,13 +160,13 @@ namespace Unit
         public void AddGrupo()
         {
             var grupoAcessoRepository = new GrupoAcessoRepository();
-            var _usuarioRepository = new UsuarioRepository();
+            //var _usuarioRepository = new UsuarioRepository();
             var grupoAcesso = new GrupoAcesso();
-            var permissaoRepository = new PermissaoRepository();
-            var usuario = _usuarioRepository.GetById(9);
+           // var permissaoRepository = new PermissaoRepository();
+           // var usuario = _usuarioRepository.GetById(9);
             grupoAcesso.Nome = "Adminstrador Completo";
             grupoAcesso.Perfil = Perfil.Adminstrador;
-            var permissao = permissaoRepository.GetById(1);
+           // var permissao = permissaoRepository.GetById(1);
 
             //grupoAcesso.Permissoes = new List<Permissao>
             //{
@@ -192,7 +188,7 @@ namespace Unit
             //var _usuarioRepository = new UsuarioRepository();
             var grupoAcesso = _grupoAcessoRepository.GetById(1);
             var _permissaoRepository = new PermissaoRepository();
-            var permissao = _permissaoRepository.GetById(1);
+            var permissao = _permissaoRepository.GetById(4);
 
 
 
@@ -207,6 +203,18 @@ namespace Unit
             //};
             Debug.WriteLine(grupoAcesso.Permissoes.ToString());
             _grupoAcessoRepository.Update(grupoAcesso);
+        }
+        [TestMethod]
+        public void AddUsuarioGrupo()
+        {
+            var _grupoAcessoRepository = new GrupoAcessoRepository();
+            var _usuarioRepository = new UsuarioRepository();
+            var grupoAcesso = _grupoAcessoRepository.GetById(1);
+            
+            var usuario = _usuarioRepository.GetById(9);
+            
+            _usuarioRepository.Update(usuario);
+            
         }
 
 

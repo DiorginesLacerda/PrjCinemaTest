@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Security;
-using PrjCinema.Data.Context;
-using PrjCinema.Domain.Entities;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Session

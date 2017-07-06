@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using PrjCinema.Domain.Entities;
-using PrjCinema.Domain.Interfaces.Repository;
-
-
 using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 

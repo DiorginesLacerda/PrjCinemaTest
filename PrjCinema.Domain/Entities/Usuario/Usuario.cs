@@ -17,6 +17,6 @@ namespace PrjCinema.Domain.Entities
         public DateTime DataCadastro { get; set; }
         public Genero Genero { get; set; }
         public Perfil Perfil { get; set; }
-        public virtual ICollection<GrupoAcesso> GrupoAcessos { get; set; }
+        public virtual ICollection<GrupoAcesso> GrupoAcesso { get; set; }
     }
 }

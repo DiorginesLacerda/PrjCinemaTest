@@ -147,12 +147,12 @@ namespace Unit
         {
             var permissaoRepository = new PermissaoRepository();
             var permissao = new Permissao();
-            permissao.Nome = "Administrador Completo";
+            permissao.Nome = "Nova Permissao";
             permissao.Operacoes = new List<Operacao>
             {
                 Operacao.Adicionar, Operacao.AtivarInativar, Operacao.AtribuirPermissao, Operacao.Deletar, Operacao.Editar, Operacao.Visualizar
             };
-            
+
             permissaoRepository.Add(permissao);
         }
 
@@ -162,11 +162,11 @@ namespace Unit
             var grupoAcessoRepository = new GrupoAcessoRepository();
             //var _usuarioRepository = new UsuarioRepository();
             var grupoAcesso = new GrupoAcesso();
-           // var permissaoRepository = new PermissaoRepository();
-           // var usuario = _usuarioRepository.GetById(9);
+            // var permissaoRepository = new PermissaoRepository();
+            // var usuario = _usuarioRepository.GetById(9);
             grupoAcesso.Nome = "Adminstrador Completo";
             grupoAcesso.Perfil = Perfil.Adminstrador;
-           // var permissao = permissaoRepository.GetById(1);
+            // var permissao = permissaoRepository.GetById(1);
 
             //grupoAcesso.Permissoes = new List<Permissao>
             //{
@@ -192,32 +192,71 @@ namespace Unit
 
 
 
-            grupoAcesso.Permissoes = new List<Permissao>
-            {
-                permissao
-            };
+            //grupoAcesso.Permissoes = new List<Permissao>
+            //{
+            //    permissao
+            //};
 
             //grupoAcesso.Usuarios = new List<Usuario>
             //{
             //    usuario
             //};
-            Debug.WriteLine(grupoAcesso.Permissoes.ToString());
-            _grupoAcessoRepository.Update(grupoAcesso);
+            //Debug.WriteLine(grupoAcesso.Permissoes.ToString());
+            //_grupoAcessoRepository.Update(grupoAcesso);
         }
+        
+        [TestMethod]
+        public void AddPermissaoGrupo()
+        {
+            var repository = new GrupoAcessoPermissaoRepository();
+
+            var grupoAcesso = new GrupoAcessoPermissao();
+            try
+            {
+                //get
+                grupoAcesso.GrupoAcessoId = 1;
+                grupoAcesso.PermissaoId = 2;
+
+                //add 
+                repository.Add(grupoAcesso);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
+        }
+
         [TestMethod]
         public void AddUsuarioGrupo()
         {
-            var _grupoAcessoRepository = new GrupoAcessoRepository();
-            var _usuarioRepository = new UsuarioRepository();
-            var grupoAcesso = _grupoAcessoRepository.GetById(1);
-            
-            var usuario = _usuarioRepository.GetById(9);
-            
-            _usuarioRepository.Update(usuario);
-            
+            var repository = new GrupoAcessoUsuarioRepository();
+
+            var grupoAcesso = new GrupoAcessoUsuario();
+            try
+            {
+                //get
+                grupoAcesso.GrupoAcessoId = 1;
+                grupoAcesso.UsuarioId = 9;
+
+                //add 
+                repository.Add(grupoAcesso);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
         }
 
-
-
+        [TestMethod]
+        public void MostraPermissoes()
+        {
+            var repository = new GrupoAcessoPermissaoRepository();
+            foreach (var permissao in repository.ListaPermissaoPorGrupo(1))
+            {
+                Debug.WriteLine(permissao.Permissao.Operacoes);
+            }
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace PrjCinema.Domain.Interfaces.Repository
+namespace PrjCinema.Domain.Interfaces.Service
 {
-    public interface IServiceBase<TEntity> where TEntity: class 
+    public interface IServiceBase<TEntity> where TEntity : class
     {
         void Add(TEntity obj);
         TEntity GetById(int id);

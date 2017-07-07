@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using AutoMapper;
 using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
-using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Domain.Interfaces.Service;
 using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;

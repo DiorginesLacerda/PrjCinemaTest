@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using PrjCinema.Domain.Entities;
-using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.Domain.Interfaces.Service;
 using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 
@@ -21,7 +21,6 @@ namespace PrjCinema.MVC.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-
             return View(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.GetAll()));
         }
 

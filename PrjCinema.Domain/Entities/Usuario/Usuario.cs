@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using PrjCinema.Domain.Entities.Permissoes;
+using PrjCinema.Domain.Entities.Relacoes;
 
 namespace PrjCinema.Domain.Entities
 {
@@ -17,6 +17,6 @@ namespace PrjCinema.Domain.Entities
         public DateTime DataCadastro { get; set; }
         public Genero Genero { get; set; }
         public Perfil Perfil { get; set; }
-        public virtual ICollection<GrupoAcesso> GrupoAcesso { get; set; }
+        public virtual IEnumerable<GrupoAcessoUsuario> GrupoAcessoUsuarios { get; set; }
     }
 }

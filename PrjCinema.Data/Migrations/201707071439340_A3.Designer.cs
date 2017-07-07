@@ -7,13 +7,13 @@ namespace PrjCinema.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class A1 : IMigrationMetadata
+    public sealed partial class A3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(A1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(A3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707061715304_A1"; }
+            get { return "201707071439340_A3"; }
         }
         
         string IMigrationMetadata.Source

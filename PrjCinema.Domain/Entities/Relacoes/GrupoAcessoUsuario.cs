@@ -1,8 +1,9 @@
-﻿namespace PrjCinema.Domain.Entities.Permissoes
+﻿using PrjCinema.Domain.Entities.Permissoes;
+
+namespace PrjCinema.Domain.Entities.Relacoes
 {
     public class GrupoAcessoUsuario
     {
-        public int Id { get; set; }
         public int GrupoAcessoId { get; set; }
         public virtual GrupoAcesso GrupoAcesso { get; set; }
         public int UsuarioId { get; set; }

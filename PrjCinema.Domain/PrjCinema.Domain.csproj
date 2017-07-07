@@ -31,7 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\Permissoes\GrupoAcesso.cs" />
-    <Compile Include="Entities\Permissoes\GrupoAcessoUsuario.cs" />
+    <Compile Include="Entities\Relacoes\GrupoAcessoPermissao.cs" />
+    <Compile Include="Entities\Relacoes\GrupoAcessoUsuario.cs" />
     <Compile Include="Entities\Permissoes\Permissao.cs" />
     <Compile Include="Entities\Permissoes\Operacao.cs" />
     <Compile Include="Entities\Relacoes\AtuaFilme.cs" />
@@ -48,14 +49,18 @@
     <Compile Include="Entities\Usuario\Usuario.cs" />
     <Compile Include="Interfaces\Repository\IAtuaSerieRepository.cs" />
     <Compile Include="Interfaces\Repository\IAtuaFilmeRepository.cs" />
+    <Compile Include="Interfaces\Repository\IGrupoAcessoPermissaoRepository.cs" />
     <Compile Include="Interfaces\Repository\IGrupoAcessoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IGrupoAcessoUsuarioRepository.cs" />
     <Compile Include="Interfaces\Repository\IPermissaoRepository.cs" />
     <Compile Include="Interfaces\Service\IAtorService.cs" />
     <Compile Include="Interfaces\Service\IAtuaFilmeService.cs" />
     <Compile Include="Interfaces\Service\IAtuaSerieService.cs" />
     <Compile Include="Interfaces\Service\IEnderecoService.cs" />
     <Compile Include="Interfaces\Service\IFilmeService.cs" />
+    <Compile Include="Interfaces\Service\IGrupoAcessoPermissaoService.cs" />
     <Compile Include="Interfaces\Service\IGrupoAcessoService.cs" />
+    <Compile Include="Interfaces\Service\IGrupoAcessoUsuarioService.cs" />
     <Compile Include="Interfaces\Service\IPermissaoService.cs" />
     <Compile Include="Interfaces\Service\IServiceBase.cs" />
     <Compile Include="Interfaces\Service\ISerieService.cs" />

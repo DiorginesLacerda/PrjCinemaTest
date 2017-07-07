@@ -1,5 +1,6 @@
 ﻿using System;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.Domain.Interfaces.Service;
 
 namespace PrjCinema.Service.Service
 {

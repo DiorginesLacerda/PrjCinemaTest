@@ -2,6 +2,7 @@
 using System.Linq;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
+using PrjCinema.Domain.Interfaces.Service;
 
 namespace PrjCinema.Service.Service
 {

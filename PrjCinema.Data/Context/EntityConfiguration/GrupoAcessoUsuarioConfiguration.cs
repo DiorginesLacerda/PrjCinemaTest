@@ -1,6 +1,6 @@
 ﻿
 using System.Data.Entity.ModelConfiguration;
-using PrjCinema.Domain.Entities.Permissoes;
+using PrjCinema.Domain.Entities.Relacoes;
 
 namespace PrjCinema.Data.Context.EntityConfiguration
 {
@@ -8,7 +8,8 @@ namespace PrjCinema.Data.Context.EntityConfiguration
     {
         public GrupoAcessoUsuarioConfiguration()
         {
-            HasKey(c => c.Id);
+            
+            
         }
 
     }

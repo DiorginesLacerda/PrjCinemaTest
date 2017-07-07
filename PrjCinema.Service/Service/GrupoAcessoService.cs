@@ -1,4 +1,5 @@
-﻿using PrjCinema.Domain.Entities.Permissoes;
+﻿using System.Collections.Generic;
+using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Domain.Interfaces.Service;
 
@@ -8,10 +9,9 @@ namespace PrjCinema.Service.Service
     {
         private readonly IGrupoAcessoRepository _grupoAcessoRepository;
         public GrupoAcessoService(IGrupoAcessoRepository grupoAcessoRepository)
-            :base(grupoAcessoRepository)
+            : base(grupoAcessoRepository)
         {
             _grupoAcessoRepository = grupoAcessoRepository;
         }
-        
     }
 }

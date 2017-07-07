@@ -13,12 +13,12 @@ namespace PrjCinema.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201707061751485_A2"; }
+            get { return "201707071408201_A2"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

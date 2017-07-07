@@ -1,7 +1,8 @@
 ﻿
+using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-
+using System.Linq;
 using PrjCinema.Data.Context.EntityConfiguration;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Entities.Permissoes;
@@ -28,6 +29,7 @@ namespace PrjCinema.Data.Context
         public DbSet<GrupoAcesso> GrupoAcessos { get; set; }
         public DbSet<Permissao> Permissoes { get; set; }
         public DbSet<GrupoAcessoUsuario> GrupoAcessoUsuarios { get; set; }
+        public DbSet<GrupoAcessoPermissao> GrupoAcessoPermissoes { get; set; }
 
         
 
@@ -54,8 +56,12 @@ namespace PrjCinema.Data.Context
             modelBuilder.Configurations.Add(new GrupoAcessoConfiguration());
             modelBuilder.Configurations.Add(new PermissaoConfiguration());
             modelBuilder.Configurations.Add(new GrupoAcessoUsuarioConfiguration());
+            modelBuilder.Configurations.Add(new GrupoAcessoPermissaoConfiguration());
 
             modelBuilder.Entity<GrupoAcessoUsuario>().HasKey(pv => new { pv.GrupoAcessoId, pv.UsuarioId });
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<GrupoAcessoPermissao>().HasKey(pv => new { pv.GrupoAcessoId, pv.PermissaoId });
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<AtuaFilme>().HasKey(pv => new { pv.FilmeId, pv.AtorId });
@@ -65,22 +71,22 @@ namespace PrjCinema.Data.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        //public override int SaveChanges()
-        //{
-        //    foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
-        //    {
-        //        if (entry.State == EntityState.Added)
-        //        {
-        //            entry.Property("DataCadastro").CurrentValue = DateTime.Now;
-        //        }
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
+                }
 
-        //        if (entry.State == EntityState.Modified)
-        //        {
-        //            entry.Property("DataCadastro").IsModified = false;
-        //        }
-        //    }
-        //    return base.SaveChanges();
-        //}
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("DataCadastro").IsModified = false;
+                }
+            }
+            return base.SaveChanges();
+        }
     }
 
 }

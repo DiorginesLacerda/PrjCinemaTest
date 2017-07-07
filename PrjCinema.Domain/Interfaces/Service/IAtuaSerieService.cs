@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using PrjCinema.Domain.Entities.Relacoes;
-using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Domain.Interfaces.Service
 {

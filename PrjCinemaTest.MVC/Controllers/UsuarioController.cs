@@ -45,7 +45,6 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    usuario.DataCadastro = DateTime.Now;
                     __usuarioService.AddUsuario(Mapper.Map<UsuarioModelView, Usuario>(usuario));
                     return RedirectToAction("Index");
                 }

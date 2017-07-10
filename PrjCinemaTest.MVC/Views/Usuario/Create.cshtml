@@ -52,14 +52,6 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.Perfil, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Perfil, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Perfil, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
-        <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control " } })

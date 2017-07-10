@@ -14,8 +14,7 @@ namespace PrjCinema.Service.Service
         {
             _grupoAcessoUsuarioRepository = grupoAcessoUsuarioRepository;
         }
-
-
+        
         public IEnumerable<GrupoAcessoUsuario> BuscaGrupoPorUsuario(int id)
         {
             return _grupoAcessoUsuarioRepository.BuscaGrupoPorUsuario(id);
@@ -25,16 +24,21 @@ namespace PrjCinema.Service.Service
         {
             return _grupoAcessoUsuarioRepository.BuscaUsuarioPorGrupo(id);
         }
-
-
-        public IEnumerable<GrupoAcessoPermissao> ListaGrupoPorUsuario(int id)
+        
+        public IEnumerable<GrupoAcessoUsuario> ListaGrupoPorUsuario(int id)
         {
             return _grupoAcessoUsuarioRepository.ListaGrupoPorUsuario(id);
         }
 
-        public IEnumerable<GrupoAcessoPermissao> ListaUsuarioPorGrupo(int id)
+        public IEnumerable<GrupoAcessoUsuario> ListaUsuarioPorGrupo(int id)
         {
             return _grupoAcessoUsuarioRepository.ListaUsuarioPorGrupo(id);
+        }
+
+
+        public ICollection<GrupoAcessoUsuario> ListaGrupoAcessoPorUsuarioCollection(int id)
+        {
+            return _grupoAcessoUsuarioRepository.ListaGrupoAcessoPorUsuarioCollection(id);
         }
     }
 }

@@ -21,7 +21,20 @@ namespace PrjCinema.Data.Repositories
         
         public IEnumerable<GrupoAcessoUsuario> ListaGrupoPorUsuario(int id)
         {
-            return context.GrupoAcessoUsuarios.Include(u => u.GrupoAcesso).Include(u=> u.Usuario).Where(u => u.UsuarioId == id);
+            return context.GrupoAcessoUsuarios.Include(u => u.GrupoAcesso).Include(u => u.Usuario).Where(u => u.UsuarioId == id);
+        }
+
+        public IEnumerable<GrupoAcessoUsuario> ListaUsuarioPorGrupo(int id)
+        {
+            return context.GrupoAcessoUsuarios.Include(u => u.Usuario).Include(u => u.GrupoAcesso).Where(u => u.GrupoAcessoId == id);
+        }
+
+
+        public ICollection<GrupoAcessoUsuario> ListaGrupoAcessoPorUsuarioCollection(int id)
+        {
+            ICollection<GrupoAcessoUsuario> a = new List<GrupoAcessoUsuario>();
+            a = new List<GrupoAcessoUsuario>(BuscaGrupoPorUsuario(id));
+            return  a;
         }
     }
 }

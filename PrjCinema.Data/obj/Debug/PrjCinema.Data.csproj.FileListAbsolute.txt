@@ -64,3 +64,4 @@ C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.adicionadoPasswordNoUsuario2.resources
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.A2.resources
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.A3.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.A4.resources

@@ -14,7 +14,7 @@ namespace PrjCinema.MVC.Controllers
         public ActionResult PemissoesUsuario()
         {
 
-            _grupoAcessoPermissaoRepository.
+            //_grupoAcessoPermissaoRepository.
             return View();
         }
 

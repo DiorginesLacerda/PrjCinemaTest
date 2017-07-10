@@ -9,8 +9,10 @@ namespace PrjCinema.Domain.Interfaces.Repository
         
         IEnumerable<GrupoAcessoUsuario> BuscaUsuarioPorGrupo(int id);
 
-        IEnumerable<GrupoAcessoPermissao> ListaGrupoPorUsuario(int id);
+        IEnumerable<GrupoAcessoUsuario> ListaGrupoPorUsuario(int id);
 
-        IEnumerable<GrupoAcessoPermissao> ListaUsuarioPorGrupo(int id);
+        IEnumerable<GrupoAcessoUsuario> ListaUsuarioPorGrupo(int id);
+
+        ICollection<GrupoAcessoUsuario> ListaGrupoAcessoPorUsuarioCollection(int id);
     }
 }

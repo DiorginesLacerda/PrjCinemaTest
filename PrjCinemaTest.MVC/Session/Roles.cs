@@ -46,9 +46,9 @@ namespace PrjCinema.MVC.Session
 
         public override string[] GetRolesForUser(string username)
         {
-            var perfil = _usuarioService.GetUsuarioPorEmail(username).Perfil;
-            Enum sRoles = perfil;
-            string[] retorno = { sRoles.ToString() };
+            //var perfil = _usuarioService.GetUsuarioPorEmail(username).Perfil;
+            //Enum sRoles = perfil;
+            string[] retorno = {null };
             return retorno;
 
             throw new NotImplementedException();

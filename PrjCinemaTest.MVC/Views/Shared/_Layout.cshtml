@@ -20,23 +20,34 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Seriando App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (Session["UsuarioLogado"] != null)
+                {
+                    @Html.ActionLink("Seriando App", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+                }
+                else
+                {
+                    @Html.ActionLink("Seriando App", "Login", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
-                    <li>@Html.ActionLink("Filmes", "Index", "Filme")</li>
-                    <li>@Html.ActionLink("Series", "Index", "Serie")</li>
-                    <li>@Html.ActionLink("Atores", "Index", "Ator")</li>
+                    @if (Session["UsuarioLogado"] != null)
+                    {
+                        <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                        <li>@Html.ActionLink("Filmes", "Index", "Filme")</li>
+                        <li>@Html.ActionLink("Series", "Index", "Serie")</li>
+                        <li>@Html.ActionLink("Atores", "Index", "Ator")</li>
+                    }
                 </ul>
-                @* //não funciona ainda ;)
-                    
-                    @if (ViewBag.UsuarioLogin != null)
-                {
-                    @ViewBag.UsuarioLogin
-                }*@ 
+                @*//não funciona ainda ;)*@
+
             </div>
         </div>
+        @if (Session["UsuarioLogado"] != null)
+        {
+            @ViewBag.UsuarioLogin
+            @Html.ActionLink("Logout", "Logout", "Login")
+        }
     </div>
     <div class="container body-content">
         @RenderBody()

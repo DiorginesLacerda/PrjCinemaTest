@@ -159,6 +159,7 @@
     <Compile Include="Models\SerieModelView.cs" />
     <Compile Include="Models\UsuarioModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session\CustomAuthorize.cs" />
     <Compile Include="Session\Roles.cs" />
   </ItemGroup>
   <ItemGroup>

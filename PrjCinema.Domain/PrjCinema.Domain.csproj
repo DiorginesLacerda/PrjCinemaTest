@@ -49,6 +49,7 @@
     <Compile Include="Entities\Usuario\Usuario.cs" />
     <Compile Include="Interfaces\Repository\IAtuaSerieRepository.cs" />
     <Compile Include="Interfaces\Repository\IAtuaFilmeRepository.cs" />
+    <Compile Include="Interfaces\Repository\IEntity.cs" />
     <Compile Include="Interfaces\Repository\IGrupoAcessoPermissaoRepository.cs" />
     <Compile Include="Interfaces\Repository\IGrupoAcessoRepository.cs" />
     <Compile Include="Interfaces\Repository\IGrupoAcessoUsuarioRepository.cs" />

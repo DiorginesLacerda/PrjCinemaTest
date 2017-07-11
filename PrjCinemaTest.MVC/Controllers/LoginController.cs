@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Web.Services.Protocols;
 using PrjCinema.Domain.Entities;
+using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 
@@ -60,8 +65,6 @@ namespace PrjCinema.MVC.Controllers
                     if (usuario != null)
                     {
                         Session["UsuarioLogado"] = usuario;
-                        var usuarioSessionLogado = (Usuario)Session["UsuarioLogado"];
-                        ViewBag.UsuarioLogin = usuarioSessionLogado.Email;
                         if (Session["UsuarioLogado"] == null)
                             return View(u);
                         return RedirectToAction("Index");
@@ -82,10 +85,13 @@ namespace PrjCinema.MVC.Controllers
             {
                 var usuarioSessionLogado = (Usuario)Session["UsuarioLogado"];
                 var grupo = _grupoAcessoUsuarioService.ListaGrupoAcessoPorUsuarioCollection(usuarioSessionLogado.Id);
-                var a = grupo.FirstOrDefault(u => u.GrupoAcesso.Perfil == Perfil.Gerente);
+                var a = grupo.FirstOrDefault(u => u.GrupoAcesso.Perfil >= 0);
+                var permissao = grupo.Any(u => u.GrupoAcesso.GrupoAcessoPermissoes.Any(x => x.Permissao.Id == 1));
+                
                 if (a == null)
                     throw new Exception("Algo errado não está certo");
-                if (Session["usuarioLogado"] != null && a.GrupoAcesso.Perfil == Perfil.Gerente)
+
+                if (Session["usuarioLogado"] != null && a.GrupoAcesso.Perfil >= 0)
                 {
                     ViewBag.UsuarioLogin = usuarioSessionLogado.Email;
                     return RedirectToAction("Index", "Home");

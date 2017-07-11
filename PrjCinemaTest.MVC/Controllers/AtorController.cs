@@ -10,9 +10,9 @@ using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
+    [Authorize(Users = "Gerente")]
     public class AtorController : Controller
     {
-
         private readonly IAtorService _atorService;
         private readonly IAtuaFilmeService _atuaFilmeService;
         private readonly IAtuaSerieService _atuaSerieService;
@@ -106,7 +106,6 @@ namespace PrjCinema.MVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             _atorService.Remove(_atorService.GetById(id));
-
             return RedirectToAction("Index");
         }
     }

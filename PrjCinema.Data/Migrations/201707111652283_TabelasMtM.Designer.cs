@@ -7,13 +7,13 @@ namespace PrjCinema.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class tabelaSecurity : IMigrationMetadata
+    public sealed partial class TabelasMtM : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(tabelaSecurity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TabelasMtM));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706231344354_tabelaSecurity"; }
+            get { return "201707111652283_TabelasMtM"; }
         }
         
         string IMigrationMetadata.Source

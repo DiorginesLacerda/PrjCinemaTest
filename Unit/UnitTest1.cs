@@ -6,7 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PrjCinema.Data.Repositories;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Entities.Permissoes;
-using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 
 namespace Unit

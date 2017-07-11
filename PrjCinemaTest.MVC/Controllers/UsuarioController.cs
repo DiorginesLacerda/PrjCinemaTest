@@ -21,7 +21,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-            return View(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.GetAll()));
+            return View(Mapper.Map<ICollection<Usuario>, ICollection<UsuarioModelView>>(_usuarioService.GetAll()));
         }
 
         // GET: Usuario/Details/5

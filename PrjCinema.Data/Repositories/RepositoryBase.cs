@@ -25,7 +25,7 @@ namespace PrjCinema.Data.Repositories
             return context.Set<TEntity>().Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public ICollection<TEntity> GetAll()
         {
             return context.Set<TEntity>().ToList();
         }

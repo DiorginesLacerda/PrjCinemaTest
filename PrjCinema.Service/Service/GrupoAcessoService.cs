@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using PrjCinema.Domain.Entities.Permissoes;
+﻿using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Domain.Interfaces.Service;
 

@@ -6,7 +6,7 @@ namespace PrjCinema.Domain.Interfaces.Repository
     {
         void Add(TEntity obj);
         TEntity GetById(int id);
-        IEnumerable<TEntity> GetAll();
+        ICollection<TEntity> GetAll();
         void Update(TEntity obj);
         void Remove(TEntity obj);
         void Dispose();

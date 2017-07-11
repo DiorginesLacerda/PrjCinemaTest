@@ -22,7 +22,7 @@ namespace PrjCinema.Service.Service
             return _repositoryBase.GetById(id);
         }
 
-        public System.Collections.Generic.IEnumerable<TEntity> GetAll()
+        public System.Collections.Generic.ICollection<TEntity> GetAll()
         {
             return _repositoryBase.GetAll();
         }

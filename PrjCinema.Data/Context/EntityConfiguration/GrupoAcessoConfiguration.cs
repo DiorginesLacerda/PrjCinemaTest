@@ -10,14 +10,24 @@ namespace PrjCinema.Data.Context.EntityConfiguration
             HasKey(c => c.Id);
 
             //cria tabela como relacionamento many to many
-            //HasMany(u => u.Usuarios)
-            //    .WithMany(g => g.GrupoAcessos)
-            //    .Map(m =>
-            //    {
-            //        m.MapRightKey("Id");
-            //        m.MapLeftKey("Id");
-            //        //m.ToTable("GrupoAcessosUsuarios");
-            //    });
+            HasMany(u => u.Usuarios)
+                .WithMany(g => g.GrupoAcesso)
+                .Map(m =>
+                {
+                    m.MapRightKey("IdUsuariosFK");
+                    m.MapLeftKey("IdGrupoAcessosFK");
+                    m.ToTable("GrupoAcessosUsuarios");
+                });
+
+            //cria tabela como relacionamento many to many
+            HasMany(u => u.Permissoes)
+                .WithMany(g => g.GrupoAcesso)
+                .Map(m =>
+                {
+                    m.MapRightKey("IdPermiessoesFK");
+                    m.MapLeftKey("IdGrupoAcessosFK");
+                    m.ToTable("GrupoAcessosPermissoes");
+                });
         }
     }
 }

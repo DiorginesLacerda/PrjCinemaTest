@@ -1,22 +1,21 @@
 ﻿using System.Web.Mvc;
-using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.MVC.Controllers
 {
     public class ConfiguracaoGrupoUsuarioPermissaoController : Controller
     {
-        private readonly IGrupoAcessoPermissaoRepository _grupoAcessoPermissaoRepository;
-        public ConfiguracaoGrupoUsuarioPermissaoController(IGrupoAcessoPermissaoRepository grupoAcessoPermissaoRepository)
+        
+        public ConfiguracaoGrupoUsuarioPermissaoController()
         {
-            _grupoAcessoPermissaoRepository = grupoAcessoPermissaoRepository;
+            
         }
         // GET: ConfiguracaoGrupoUsuarioPermissao
-        public ActionResult PemissoesUsuario()
-        {
+        //public ActionResult PemissoesUsuario()
+        //{
 
-            //_grupoAcessoPermissaoRepository.
-            return View();
-        }
+        //    //_grupoAcessoPermissaoRepository.
+        //    return View();
+        //}
 
 
 

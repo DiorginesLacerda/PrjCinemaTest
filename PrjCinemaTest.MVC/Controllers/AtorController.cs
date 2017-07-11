@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
-using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Service;
 using PrjCinema.MVC.Models;
@@ -10,37 +9,34 @@ using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
-    [Authorize(Users = "Gerente")]
+    //[Authorize(Users = "Gerente")]
     public class AtorController : Controller
     {
         private readonly IAtorService _atorService;
-        private readonly IAtuaFilmeService _atuaFilmeService;
-        private readonly IAtuaSerieService _atuaSerieService;
         private readonly AtorService atorService;
-        public AtorController(AtorService atorService, AtuaFilmeService atuaFilmeService, AtuaSerieService atuaSerieService)
+        public AtorController(AtorService atorService)
         {
             this.atorService = atorService;
             _atorService = atorService;
-            _atuaFilmeService = atuaFilmeService;
-            _atuaSerieService = atuaSerieService;
+            
         }
         // GET: Ator
         public ActionResult Index()
         {
-            return View(Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll()));
+            return View(Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll()));
         }
 
         // GET: Ator/Details/5
         public ActionResult DetailsFilmes(int id)
         {
             ViewBag.Ator = Mapper.Map<Ator, AtorModelView>(_atorService.GetById(id)).Nome;
-            return View(Mapper.Map<IEnumerable<AtuaFilme>, IEnumerable<AtuaFilmeModelView>>(_atuaFilmeService.BuscaFilmePorAtor(id)));
+            return View(/*Mapper.Map<ICollection<AtuaFilme>, ICollection<AtuaFilmeModelView>>(_atuaFilmeService.BuscaFilmePorAtor(id)))*/);
         }
 
         // GET: Ator/Details/5
         public ActionResult DetailsSeries(int id)
         {
-            return View(Mapper.Map<IEnumerable<AtuaSerie>, IEnumerable<AtuaSerieModelView>>(_atuaSerieService.BuscaSeriePorAtor(id)));
+            return View(/*Mapper.Map<ICollection<AtuaSerie>, ICollection<AtuaSerieModelView>>(_atuaSerieService.BuscaSeriePorAtor(id))*/);
         }
 
         // GET: Ator/Create

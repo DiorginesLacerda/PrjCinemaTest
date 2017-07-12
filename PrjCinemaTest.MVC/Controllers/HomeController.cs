@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using PrjCinema.Domain.Entities;
 
 namespace PrjCinema.MVC.Controllers
 {
@@ -6,6 +7,7 @@ namespace PrjCinema.MVC.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 

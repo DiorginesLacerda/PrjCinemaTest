@@ -37,21 +37,21 @@ namespace PrjCinema.MVC.Controllers
         // GET: Ator/Details/5
         public ActionResult DetailsAtores(int id)
         {
-           return View(/*Mapper.Map<ICollection<AtuaSerie>, ICollection<AtuaSerieModelView>>(_atuaSerieService.BuscaAtorPorSerie(id))*/);
+           return View(Mapper.Map<IEnumerable<Ator>, ICollection<AtorModelView>>(_atorService.BuscaAtoresPorSerie(id)));
         }
 
+         ///implemnetar melhor depois
 
+        //// GET: Filme/AddAtuacaoFilme/id
+        //public ActionResult AddAtuacaoSerie(int id)
+        //{
+        //    ViewBag.Atores = Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
+        //    ViewBag.NomeSerie = Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id)).Titulo;
+        //    var atuacao = new AtorModelView();
+        //    atuacao.AtorSeries.Add(_serieService.GetById(id));
 
-        // GET: Filme/AddAtuacaoFilme/id
-        public ActionResult AddAtuacaoSerie(int id)
-        {
-            ViewBag.Atores = Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
-            ViewBag.NomeSerie = Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id)).Titulo;
-            var atuacao = new AtuaSerieModelView();
-            atuacao.SerieId = id;
-
-            return View(atuacao);
-        }
+        //    return View(atuacao);
+        //}
 
 
 

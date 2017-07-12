@@ -12,10 +12,14 @@ namespace PrjCinema.MVC.Controllers
     //[Authorize(Users = "Gerente")]
     public class AtorController : Controller
     {
+        private readonly SerieService _serieService;
+        private readonly FilmeService _filmeService;
         private readonly IAtorService _atorService;
         private readonly AtorService atorService;
-        public AtorController(AtorService atorService)
+        public AtorController(AtorService atorService, FilmeService filmeService, SerieService serieService)
         {
+            _serieService = serieService;
+            _filmeService = filmeService;
             this.atorService = atorService;
             _atorService = atorService;
             
@@ -30,13 +34,13 @@ namespace PrjCinema.MVC.Controllers
         public ActionResult DetailsFilmes(int id)
         {
             ViewBag.Ator = Mapper.Map<Ator, AtorModelView>(_atorService.GetById(id)).Nome;
-            return View(/*Mapper.Map<ICollection<AtuaFilme>, ICollection<AtuaFilmeModelView>>(_atuaFilmeService.BuscaFilmePorAtor(id)))*/);
+            return View(Mapper.Map<IEnumerable<Filme>, ICollection<FilmeModelView>>(_filmeService.BuscaFilmesPorAtor(id)));
         }
 
         // GET: Ator/Details/5
         public ActionResult DetailsSeries(int id)
         {
-            return View(/*Mapper.Map<ICollection<AtuaSerie>, ICollection<AtuaSerieModelView>>(_atuaSerieService.BuscaSeriePorAtor(id))*/);
+            return View(Mapper.Map<IEnumerable<Serie>, ICollection<SerieModelView>>(_serieService.BuscaSeriesPorAtor(id)));
         }
 
         // GET: Ator/Create
@@ -77,10 +81,10 @@ namespace PrjCinema.MVC.Controllers
         // POST: Ator/Edit/5
         [HttpPost]
         public ActionResult Edit(AtorModelView ator)
-        {
+         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     atorService.EditarAtor(Mapper.Map<AtorModelView, Ator>(ator));
                     return RedirectToAction("Index");

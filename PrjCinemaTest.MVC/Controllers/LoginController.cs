@@ -81,7 +81,7 @@ namespace PrjCinema.MVC.Controllers
 
                 if (Session["usuarioLogado"] != null /*&& a.GrupoAcesso.Perfil >= 0*/)
                 {
-                    ViewBag.UsuarioLogin = usuarioSessionLogado.Email;
+                   
                     return RedirectToAction("Index", "Home");
                 }
                 throw new Exception("Algo errado não está certo");

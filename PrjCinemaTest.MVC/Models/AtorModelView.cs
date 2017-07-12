@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using PrjCinema.Domain.Entities.SerieFilme;
 
@@ -15,6 +16,8 @@ namespace PrjCinema.MVC.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy 00:00:00}")]
         //Este abaixo insere o datepicker, verificar depois pq que nao funciona !
         //[DataType(DataType.Date, ErrorMessage = "Data em formato inválido. Utilize o Padrão dd/mm/aaaa.")]
+        public virtual ICollection<Serie> AtorSeries { get; set; }
+        public virtual ICollection<Filme> AtorFilmes { get; set; }
         public DateTime DataNascimento { get; set; }
     }
 }

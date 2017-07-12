@@ -1,16 +1,19 @@
-﻿using PrjCinema.Domain.Entities.SerieFilme;
+﻿using System.Collections.Generic;
+using System.Linq;
+using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Data.Repositories
 {
-    public class SerieRepository : RepositoryBase<Serie>, ISerieRepository
+    public class FilmeRepository: RepositoryBase<Filme>, IFilmeRepository
     {
-        //public List<Serie> GetAllRelation()
-        //{
-        //    return context.Series
-        //        .Include(x => x.AtuaSeries)
-        //        .Include(x => x.AtuaSeries.Select(atua => atua.Ator))
-        //        .ToList();
-        //}
+       
+        public IEnumerable<Filme> BuscaFilmesPorAtor(int id)
+        {
+            return GetAll().Where(u => u.FilmeAtores.Any(x => x.Id == id));
+        }
+
+       
+
     }
 }

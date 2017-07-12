@@ -1,10 +1,17 @@
-﻿using PrjCinema.Domain.Entities.Permissoes;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Data.Repositories
 {
     public class PermissaoRepository : RepositoryBase<Permissao>, IPermissaoRepository
     {
+        public IEnumerable<Permissao> PermissoesPorUsuario(int id)
+        {
+            return GetAll().Where(u => u.GrupoAcesso.Any(x => x.Usuarios.Any(y => y.Id == id)));
+        }
 
         //public ICollection<Permissao> GetApartirUsuario(int idUsuario)
         //{

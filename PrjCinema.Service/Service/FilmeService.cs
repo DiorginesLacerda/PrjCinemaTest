@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
@@ -19,7 +20,7 @@ namespace PrjCinema.Service.Service
 
         public bool IsFilmeExiste(Filme representaFilme)
         {
-            if (_filmeRepository.GetAll().Any(u => u.Titulo == representaFilme.Titulo && u.Lancamento == representaFilme.Lancamento && u.Nacionalidade == representaFilme.Nacionalidade))
+            if (_filmeRepository.GetAll().Any(u=> u.Id == representaFilme.Id))
                 return true;
 
             return false;
@@ -49,7 +50,7 @@ namespace PrjCinema.Service.Service
 
         public void EditaFilme(Filme representaFilme)
         {
-            if (IsFilmeExiste(representaFilme) && !IsTituloIgualAOutroFilme(representaFilme))
+            if (IsFilmeExiste(representaFilme))
             {
                 _filmeRepository.Update(representaFilme);
             }
@@ -59,6 +60,11 @@ namespace PrjCinema.Service.Service
             }
         }
 
-        
+        public IEnumerable<Filme> BuscaFilmesPorAtor(int id)
+        {
+            return _filmeRepository.BuscaFilmesPorAtor(id);
+        }
+
+       
     }
 }

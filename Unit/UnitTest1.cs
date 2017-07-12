@@ -26,7 +26,7 @@ namespace Unit
             representaUsuario.Email = "gerente@gerente.com";
             representaUsuario.Telefone = "(51) 99111-1111";
             representaUsuario.Genero = Genero.Fem;
-           
+
 
             usuariBase.Add(representaUsuario);
         }
@@ -59,12 +59,12 @@ namespace Unit
             {
                 //construcao do ator
                 representaAtor.Nome = "Algum ator famoso";
-                representaAtor.DataNascimento = _atorRepository.GetById(1).DataNascimento;
+                representaAtor.DataNascimento = DateTime.Now;
                 representaAtor.Nacionalidade = Nacionalidade.USA;
-                if (AtorExiste(representaAtor))
-                {
-                    throw new Exception("Este ator ja existe");
-                }
+                //if (AtorExiste(representaAtor))
+                //{
+                //    throw new Exception("Este ator ja existe");
+                //}
                 //add o ator
                 _atorRepository.Add(representaAtor);
 
@@ -81,7 +81,9 @@ namespace Unit
         {
             AtorRepository _atorRepository = new AtorRepository();
 
-            if (_atorRepository.GetAll().Any(u => u.Nome == representaAtor.Nome && u.DataNascimento == representaAtor.DataNascimento && u.Nacionalidade == representaAtor.Nacionalidade))
+            if (_atorRepository.GetAll().Any(u => u.Nome == representaAtor.Nome &&
+                                                  u.DataNascimento == representaAtor.DataNascimento &&
+                                                  u.Nacionalidade == representaAtor.Nacionalidade))
             {
                 return true;
             }
@@ -91,9 +93,9 @@ namespace Unit
 
         public bool AtuacaoExiste(int idAtor, int idFilme)
         {
-            AtuaFilmeRepository atuaFilme = new AtuaFilmeRepository();
-            var filmes = atuaFilme.ListaFilmePorAtor(idAtor);
-            if (filmes.Any(u => u.FilmeId == idFilme))
+            var atuaFilme = new FilmeRepository();
+            var filmes = atuaFilme.BuscaFilmesPorAtor(idAtor);
+            if (filmes.Any(u => u.Id == idFilme))
             {
                 return true;
             }
@@ -103,20 +105,24 @@ namespace Unit
         [TestMethod]
         public void InsertAtuacao()
         {
-            var repositoryAtuaFilme = new AtuaFilmeRepository();
-
-            var atuaFilme = new AtuaFilme();
+            
+            
+            var _atorRep = new AtorRepository();
+            var _filmeRep = new FilmeRepository();
             try
             {
+                var filme = _filmeRep.GetById(1);
+                var ator = _atorRep.GetById(1);
+                
                 //get ator e filme
-                atuaFilme.FilmeId = 1;
-                atuaFilme.AtorId = 1;
-                if (AtuacaoExiste(atuaFilme.AtorId, atuaFilme.AtorId))
-                {
-                    throw new Exception("Ja existe");
-                }
-                //add atuacao
-                repositoryAtuaFilme.Add(atuaFilme);
+                filme.FilmeAtores.Add(ator);
+                //ator.AtorFilmes.Add(filme);
+                //if (AtuacaoExiste(1, 1))
+                //{
+                //    throw new Exception("Ja existe");
+                //}
+                
+                _filmeRep.Update(filme);
             }
             catch (Exception e)
             {
@@ -128,112 +134,113 @@ namespace Unit
 
         }
 
-        [TestMethod]
-        public void GetAtuacao()
-        {
-            var filmeRepository = new AtuaFilmeRepository();
+        //    [TestMethod]
+        //    public void GetAtuacao()
+        //    {
+        //        var filmeRepository = new FilmeRepository();
 
-            Debug.WriteLine("Funciona ?");
-            var listaAtorFilme = filmeRepository.BuscaAtorPorFilme(1);
-            foreach (var listaAtor in listaAtorFilme)
-            {
-                Debug.WriteLine(listaAtor.Ator.Nome);
-            }
-        }
+        //        Debug.WriteLine("Funciona ?");
+        //        var listaAtorFilme = filmeRepository.BuscaAtorPorFilme(1);
+        //        foreach (var listaAtor in listaAtorFilme)
+        //        {
+        //            Debug.WriteLine(listaAtor.Ator.Nome);
+        //        }
+        //    }
 
-        [TestMethod]
-        public void AddPermissao()
-        {
-            var permissaoRepository = new PermissaoRepository();
-            var permissao = new Permissao();
-            permissao.Nome = "Permissao Gerente";
-            permissao.Operacoes = new List<Operacao>
-            {
-                Operacao.Adicionar, Operacao.AtivarInativar, Operacao.Deletar, Operacao.Editar, Operacao.Visualizar
-            };
+        //    [TestMethod]
+        //    public void AddPermissao()
+        //    {
+        //        var permissaoRepository = new PermissaoRepository();
+        //        var permissao = new Permissao();
+        //        permissao.Nome = "Permissao Gerente";
+        //        permissao.Operacoes = new List<Operacao>
+        //        {
+        //            Operacao.Adicionar, Operacao.AtivarInativar, Operacao.Deletar, Operacao.Editar, Operacao.Visualizar
+        //        };
 
-            permissaoRepository.Add(permissao);
-        }
+        //        permissaoRepository.Add(permissao);
+        //    }
 
-        [TestMethod]
-        public void AddGrupo()
-        {
-            var grupoAcessoRepository = new GrupoAcessoRepository();
-            //var _usuarioRepository = new UsuarioRepository();
-            var grupoAcesso = new GrupoAcesso();
-            // var permissaoRepository = new PermissaoRepository();
-            // var usuario = _usuarioRepository.GetById(9);
-            grupoAcesso.Nome = "GerenteCompleto";
-            grupoAcesso.Perfil = Perfil.Gerente;
-            // var permissao = permissaoRepository.GetById(1);
+        //    [TestMethod]
+        //    public void AddGrupo()
+        //    {
+        //        var grupoAcessoRepository = new GrupoAcessoRepository();
+        //        //var _usuarioRepository = new UsuarioRepository();
+        //        var grupoAcesso = new GrupoAcesso();
+        //        // var permissaoRepository = new PermissaoRepository();
+        //        // var usuario = _usuarioRepository.GetById(9);
+        //        grupoAcesso.Nome = "GerenteCompleto";
+        //        grupoAcesso.Perfil = Perfil.Gerente;
+        //        // var permissao = permissaoRepository.GetById(1);
 
-            //grupoAcesso.Permissoes = new List<Permissao>
-            //{
-            //    permissao
-            //}; 
+        //        //grupoAcesso.Permissoes = new List<Permissao>
+        //        //{
+        //        //    permissao
+        //        //}; 
 
-            //grupoAcesso.Usuarios = new List<Usuario>
-            //{
-            //    usuario
-            //};
+        //        //grupoAcesso.Usuarios = new List<Usuario>
+        //        //{
+        //        //    usuario
+        //        //};
 
-            grupoAcessoRepository.Add(grupoAcesso);
-        }
+        //        grupoAcessoRepository.Add(grupoAcesso);
+        //    }
 
+
+
+        //    [TestMethod]
+        //    public void AddPermissaoGrupo()
+        //    {
+        //        var repository = new GrupoAcessoPermissaoRepository();
+
+        //        var grupoAcesso = new GrupoAcessoPermissao();
+        //        try
+        //        {
+        //            //get
+        //            grupoAcesso.GrupoAcessoId = 2;
+        //            grupoAcesso.PermissaoId = 3;
+
+        //            //add 
+        //            repository.Add(grupoAcesso);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Debug.WriteLine(e);
+        //            throw;
+        //        }
+        //    }
+
+        //    [TestMethod]
+        //    public void AddUsuarioGrupo()
+        //    {
+        //        var repository = new GrupoAcessoUsuarioRepository();
+
+        //        var grupoAcesso = new GrupoAcessoUsuario();
+        //        try
+        //        {
+        //            //get
+        //            grupoAcesso.GrupoAcessoId = 2;
+        //            grupoAcesso.UsuarioId = 10;
+
+        //            //add 
+        //            repository.Add(grupoAcesso);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Debug.WriteLine(e);
+        //            throw;
+        //        }
+        //    }
+
+        //    [TestMethod]
+        //    public void MostraPermissoes()
+        //    {
+        //        var repository = new GrupoAcessoPermissaoRepository();
+        //        foreach (var permissao in repository.ListaPermissaoPorGrupo(1))
+        //        {
+        //            Debug.WriteLine(permissao.Permissao.Operacoes);
+        //        }
+        //    }
         
-        
-        [TestMethod]
-        public void AddPermissaoGrupo()
-        {
-            var repository = new GrupoAcessoPermissaoRepository();
-
-            var grupoAcesso = new GrupoAcessoPermissao();
-            try
-            {
-                //get
-                grupoAcesso.GrupoAcessoId = 2;
-                grupoAcesso.PermissaoId = 3;
-
-                //add 
-                repository.Add(grupoAcesso);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                throw;
-            }
-        }
-
-        [TestMethod]
-        public void AddUsuarioGrupo()
-        {
-            var repository = new GrupoAcessoUsuarioRepository();
-
-            var grupoAcesso = new GrupoAcessoUsuario();
-            try
-            {
-                //get
-                grupoAcesso.GrupoAcessoId = 2;
-                grupoAcesso.UsuarioId = 10;
-
-                //add 
-                repository.Add(grupoAcesso);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                throw;
-            }
-        }
-
-        [TestMethod]
-        public void MostraPermissoes()
-        {
-            var repository = new GrupoAcessoPermissaoRepository();
-            foreach (var permissao in repository.ListaPermissaoPorGrupo(1))
-            {
-                Debug.WriteLine(permissao.Permissao.Operacoes);
-            }
-        }
     }
 }

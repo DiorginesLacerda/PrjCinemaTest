@@ -1,7 +1,7 @@
 ﻿
 
 using System;
-
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using PrjCinema.Domain.Entities.SerieFilme;
@@ -27,6 +27,7 @@ namespace PrjCinema.MVC.Models
         //[DisplayFormat(DataFormatString = "dd/mm/yyyy")]
         public DateTime Lancamento { get; set; }
         public Categoria Categoria { get; set; }
+        public virtual ICollection<Ator> SerieAtores { get; set; }
         
     }
 }

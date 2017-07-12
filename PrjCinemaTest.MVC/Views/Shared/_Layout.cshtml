@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using PrjCinema.Domain.Entities
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -45,6 +46,7 @@
         </div>
         @if (Session["UsuarioLogado"] != null)
         {
+            @Html.Partial("_InfoUsuario")
             @ViewBag.UsuarioLogin
             @Html.ActionLink("Logout", "Logout", "Login")
         }

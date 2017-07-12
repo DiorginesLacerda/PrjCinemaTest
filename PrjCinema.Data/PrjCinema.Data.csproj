@@ -70,8 +70,8 @@
     <Compile Include="Repositories\EnderecoRepository.cs" />
     <Compile Include="Repositories\GrupoAcessoRepository.cs" />
     <Compile Include="Repositories\PermissaoRepository.cs" />
-    <Compile Include="Repositories\SerieRepository.cs" />
     <Compile Include="Repositories\FilmeRepository.cs" />
+    <Compile Include="Repositories\SerieRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
   </ItemGroup>

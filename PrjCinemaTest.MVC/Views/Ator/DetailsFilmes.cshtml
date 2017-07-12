@@ -1,4 +1,4 @@
-﻿@model ICollection<PrjCinema.MVC.Models.AtuaFilmeModelView>
+﻿@model IEnumerable<PrjCinema.MVC.Models.FilmeModelView>
 
 @{
     ViewBag.Title = "Filmes que atuou";
@@ -19,7 +19,7 @@
 <table class="table ">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Filme)
+            @Html.DisplayNameFor(model => model.Titulo)
         </th>
 
     </tr>
@@ -28,7 +28,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Filme.Titulo)
+                @Html.DisplayFor(modelItem => item.Titulo)
             </td>
 
         </tr>

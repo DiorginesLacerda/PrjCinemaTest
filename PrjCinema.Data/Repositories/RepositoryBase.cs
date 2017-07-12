@@ -33,9 +33,9 @@ namespace PrjCinema.Data.Repositories
         public void Update(TEntity obj)
         {
             var dbset = context.Set<TEntity>();
-            var old = dbset.Where(x => x.Id == obj.Id).SingleOrDefault();
+            var old = dbset.Where(x => x.Id == obj.Id).Single();
             context.Entry(old).CurrentValues.SetValues(obj);
-            context.Entry(obj).State = EntityState.Modified;
+            context.Entry(old).State = EntityState.Modified;
             context.SaveChanges();
         }
 

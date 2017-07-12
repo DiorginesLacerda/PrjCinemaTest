@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
@@ -40,7 +41,17 @@ namespace PrjCinema.Service.Service
             {
                 throw new Exception("Os dados que você tentou alterar do Ator são iguais ao de um outro Ator, por favor certifique-se dos dados inseridos.");
             }
-            _atorRepository.Add(representaAtor);
+            _atorRepository.Update(representaAtor);
+        }
+
+        public IEnumerable<Ator> BuscaAtoresPorFilme(int id)
+        {
+            return _atorRepository.BuscaAtoresPorFilme(id);
+        }
+
+        public IEnumerable<Ator> BuscaAtoresPorSerie(int id)
+        {
+            return _atorRepository.BuscaAtoresPorSerie(id);
         }
     }
 }

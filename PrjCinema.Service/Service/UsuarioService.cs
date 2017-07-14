@@ -114,6 +114,12 @@ namespace PrjCinema.Service.Service
             return false;
         }
 
+        public IEnumerable<Usuario> BuscaUsuariosPorGrupoAcesso(int id)
+        {
+            
+            return _usuarioRepository.GetAll().Where(u => u.GrupoAcesso.Any(x => x.Id == id));
+        }
+
         public Usuario LoginUsuario(string email, string password)
         {
             var userLogin = _usuarioRepository.GetAll().FirstOrDefault(a => a.Email.Equals(email) && a.Password.Equals(password));
@@ -135,7 +141,7 @@ namespace PrjCinema.Service.Service
 
         public void Add(Usuario obj)
         {
-            Add(obj);
+            _usuarioRepository.Add(obj);
         }
 
         public void Dispose()
@@ -160,7 +166,7 @@ namespace PrjCinema.Service.Service
 
         public void Update(Usuario obj)
         {
-            Update(obj);
+            _usuarioRepository.Update(obj);
         }
     }
 }

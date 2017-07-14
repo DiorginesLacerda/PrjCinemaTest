@@ -38,34 +38,34 @@ namespace PrjCinema.Data.Repositories
 
         //}
 
-        public void Add(Permissao obj)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Add(Permissao obj)
+        //{
+        //    Add(obj);
+        //}
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        //public void Dispose()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public ICollection<Permissao> GetAll()
-        {
-            return GetAll();
-        }
+        //public ICollection<Permissao> GetAll()
+        //{
+        //    return GetAll();
+        //}
 
-        public Permissao GetById(int id)
-        {
-            return GetById(id);
-        }
+        //public Permissao GetById(int id)
+        //{
+        //    return GetById(id);
+        //}
 
-        public void Remove(Permissao obj)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Remove(Permissao obj)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void Update(Permissao obj)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Update(Permissao obj)
+        //{
+        //    Update(obj);
+        //}
     }
 }

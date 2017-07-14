@@ -9,33 +9,36 @@
 <p>
     @Html.ActionLink("Adicionar novo Grupo de Acesso", "CreateGrupoAcesso")
 </p>
-<table class="table">
+<table class="table modal-content">
     <tr>
         @*<th>
-            @Html.DisplayNameFor(model => model.Removido)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Removido)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Removido)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Adicionar Usuários", "", new { id = item.Id }) |
-            @Html.ActionLink("Adicionar Permissões", "", new {id = item.Id}) |
-            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-            @Html.ActionLink("Detalhes", "DetailsGrupoAcesso", new {id = item.Id}) |
-            @Html.ActionLink("Remover", "Delete", new {id = item.Id})
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <p class="bg-info">
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Removido)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Adicionar Usuários", "AddUsuarioAoGrupoAcesso", new { id = item.Id }) |
+                @Html.ActionLink("Adicionar Permissões", "AddPermissaoAoGrupoAcesso", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "EditGrupoAcesso", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "DetailsGrupoAcesso", new { id = item.Id }) |
+                @Html.ActionLink("Remover", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        </p>
+    }
 
 </table>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Domain.Interfaces.Service;
@@ -17,7 +18,13 @@ namespace PrjCinema.Service.Service
 
         public void Add(Permissao obj)
         {
-            Add(obj);
+            _permissaoRepository.Add(obj);
+        }
+
+        public IEnumerable<Permissao> BuscaPermissoesPorGrupoAcesso(int id)
+        {
+
+            return _permissaoRepository.GetAll().Where(u => u.GrupoAcesso.Any(x => x.Id == id));
         }
 
         public void Dispose()
@@ -42,7 +49,7 @@ namespace PrjCinema.Service.Service
 
         public void Update(Permissao obj)
         {
-            Update(obj);
+            _permissaoRepository.Update(obj);
         }
     }
 }

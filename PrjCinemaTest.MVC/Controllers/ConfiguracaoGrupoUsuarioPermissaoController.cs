@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using AutoMapper;
@@ -18,8 +19,12 @@ namespace PrjCinema.MVC.Controllers
         private readonly IGrupoAcessoService _grupoAcessoService;
         private readonly IPermissaoService _permissaoService;
         private readonly IUsuarioService _usuarioService;
+        private readonly UsuarioService __usuarioService;
+        private readonly PermissaoService __permissaoService;
         public ConfiguracaoGrupoUsuarioPermissaoController(UsuarioService usuarioService, GrupoAcessoService grupoAcessoService, PermissaoService permissaoService)
         {
+            __permissaoService = permissaoService;
+            __usuarioService = usuarioService;
             _usuarioService = usuarioService;
             _grupoAcessoService = grupoAcessoService;
             _permissaoService = permissaoService;
@@ -42,6 +47,8 @@ namespace PrjCinema.MVC.Controllers
         // GET: ConfiguracaoGrupoUsuarioPermissao/Create
         public ActionResult CreatePermissao()
         {
+            
+            //ViewBag.Operacoes 
             return View();
         }
 
@@ -84,7 +91,7 @@ namespace PrjCinema.MVC.Controllers
 
         // POST: Usuario/Edit/5
         [HttpPost]
-        public ActionResult AddPermissaoAoGrupoAcesso(GrupoAcessoModelView grupoAcesso, string permissaoId)
+        public ActionResult AddPermissaoAoGrupoAcesso(GrupoAcessoModelView grupoAcesso, int permissaoId)
         {
             var getGrupoAcessoComObjCorreto = _grupoAcessoService.GetById(grupoAcesso.Id);
             try
@@ -92,7 +99,7 @@ namespace PrjCinema.MVC.Controllers
                 if (!ModelState.IsValid)
                 {
 
-                    var idVindoDoViewBagDaPermissao = _permissaoService.GetById(permissaoId.AsInt());
+                    var idVindoDoViewBagDaPermissao = _permissaoService.GetById(permissaoId);
                     getGrupoAcessoComObjCorreto.Permissoes.Add(idVindoDoViewBagDaPermissao);
                     _grupoAcessoService.Update(getGrupoAcessoComObjCorreto);
                     return RedirectToAction("IndexGrupoAcessos");
@@ -116,7 +123,7 @@ namespace PrjCinema.MVC.Controllers
 
         // POST: Usuario/Edit/5
         [HttpPost]
-        public ActionResult AddUsuarioAoGrupoAcesso(GrupoAcessoModelView grupoAcesso, string usuarioId)
+        public ActionResult AddUsuarioAoGrupoAcesso(GrupoAcessoModelView grupoAcesso, int usuarioId)
         {
             var getGrupoAcessoComObjCorreto = _grupoAcessoService.GetById(grupoAcesso.Id);
             try
@@ -124,7 +131,7 @@ namespace PrjCinema.MVC.Controllers
                 if (!ModelState.IsValid)
                 {
 
-                    var idVindoDoViewBagDaUsuario = _usuarioService.GetById(usuarioId.AsInt());
+                    var idVindoDoViewBagDaUsuario = _usuarioService.GetById(usuarioId);
                     getGrupoAcessoComObjCorreto.Usuarios.Add(idVindoDoViewBagDaUsuario);
                     _grupoAcessoService.Update(getGrupoAcessoComObjCorreto);
                     return RedirectToAction("IndexGrupoAcessos");
@@ -142,25 +149,30 @@ namespace PrjCinema.MVC.Controllers
         // GET: ConfiguracaoGrupoUsuarioPermissao/Details/5
         public ActionResult DetailsGrupoAcesso(int id)
         {
+            //ViewBag.Usuarios = __usuarioService.BuscaUsuariosPorGrupoAcesso(id);
+            //ViewBag.Permissoes = __permissaoService.BuscaPermissoesPorGrupoAcesso(id);
             return View(Mapper.Map<GrupoAcesso, GrupoAcessoModelView>(_grupoAcessoService.GetById(1)));
         }
 
         // GET: ConfiguracaoGrupoUsuarioPermissao/Create
         public ActionResult CreateGrupoAcesso()
         {
+            ViewBag.Permissoes = _permissaoService.GetAll();
             return View();
         }
 
         // POST: ConfiguracaoGrupoUsuarioPermissao/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateGrupoAcesso(GrupoAcessoModelView grupoAcesso)
+        public ActionResult CreateGrupoAcesso(GrupoAcessoModelView grupoAcesso, int permissoesId)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _grupoAcessoService.Add(Mapper.Map<GrupoAcessoModelView, GrupoAcesso>(grupoAcesso));
+                    var grupo = Mapper.Map<GrupoAcessoModelView, GrupoAcesso>(grupoAcesso);
+                    grupo.Permissoes.Add(_permissaoService.GetById(permissoesId));
+                    _grupoAcessoService.Add(grupo);
                     return RedirectToAction("IndexGrupoAcessos");
                 }
 
@@ -178,18 +190,21 @@ namespace PrjCinema.MVC.Controllers
         // GET: ConfiguracaoGrupoUsuarioPermissao/Edit/5
         public ActionResult EditGrupoAcesso(int id)
         {
+            ViewBag.Permissoes = _permissaoService.GetAll();
             return View(Mapper.Map<GrupoAcesso, GrupoAcessoModelView>(_grupoAcessoService.GetById(1)));
         }
 
         // POST: ConfiguracaoGrupoUsuarioPermissao/Edit/5
         [HttpPost]
-        public ActionResult EditGrupoAcesso(GrupoAcessoModelView grupoAcesso)
+        public ActionResult EditGrupoAcesso(GrupoAcessoModelView grupoAcesso, int permissoesId)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _grupoAcessoService.Update(Mapper.Map<GrupoAcessoModelView, GrupoAcesso>(grupoAcesso));
+                    var grupo = Mapper.Map<GrupoAcessoModelView, GrupoAcesso>(grupoAcesso);
+                    grupo.Permissoes.Add(_permissaoService.GetById(permissoesId));
+                    _grupoAcessoService.Update(grupo);
                     return RedirectToAction("IndexGrupoAcessos");
                 }
 

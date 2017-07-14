@@ -12,7 +12,7 @@ namespace PrjCinema.MVC.Models
         [Required(ErrorMessage = "Por favor insira um Nome do Grupo.")]
         public string Nome { get; set; }
         public Perfil Perfil { get; set; }
-        public virtual ICollection<Usuario> Usuarios { get; set; }
-        public virtual ICollection<Permissao> Permissoes { get; set; }
+        public virtual IEnumerable<Usuario> Usuarios { get; set; }
+        public virtual IEnumerable<Permissao> Permissoes { get; set; }
     }
 }

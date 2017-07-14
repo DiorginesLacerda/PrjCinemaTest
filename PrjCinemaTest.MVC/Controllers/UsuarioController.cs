@@ -12,8 +12,10 @@ namespace PrjCinema.MVC.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly UsuarioService __usuarioService;
         public UsuarioController(UsuarioService usuarioService)
         {
+            __usuarioService = usuarioService;
             _usuarioService = usuarioService;
         }
         // GET: Usuario
@@ -43,7 +45,7 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _usuarioService.Add(Mapper.Map<UsuarioModelView, Usuario>(usuario));
+                    __usuarioService.AddUsuario(Mapper.Map<UsuarioModelView, Usuario>(usuario));
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("Create", usuario);

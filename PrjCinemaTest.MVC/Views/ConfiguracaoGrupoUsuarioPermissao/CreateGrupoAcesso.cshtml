@@ -30,6 +30,21 @@
                 @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Perfil, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Perfil, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Perfil)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Permissoes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("permissoesId", new MultiSelectList(ViewBag.Permissoes, "Id", "Nome"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Permissoes)
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

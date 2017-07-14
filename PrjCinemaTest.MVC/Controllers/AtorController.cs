@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.SessionState;
 using System.Web.WebPages;
 using AutoMapper;
 using PrjCinema.Domain.Entities.SerieFilme;
@@ -10,7 +11,7 @@ using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
-    //[Authorize(Users = "Gerente")]
+    [Authorize]
     public class AtorController : Controller
     {
         private readonly SerieService _serieService;
@@ -23,12 +24,15 @@ namespace PrjCinema.MVC.Controllers
             _filmeService = filmeService;
             this.atorService = atorService;
             _atorService = atorService;
-            
+
         }
+
+
         // GET: Ator
         public ActionResult Index()
         {
             return View(Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll()));
+
         }
 
         // GET: Ator/Edit/5
@@ -61,7 +65,7 @@ namespace PrjCinema.MVC.Controllers
                 ViewBag.Atores = Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
                 return View(Mapper.Map<Ator, AtorModelView>(getAtorComObjCorreto));
             }
-            
+
         }
 
         // GET: Ator/Edit/5
@@ -148,7 +152,7 @@ namespace PrjCinema.MVC.Controllers
         // POST: Ator/Edit/5
         [HttpPost]
         public ActionResult Edit(AtorModelView ator)
-         {
+        {
             try
             {
                 if (!ModelState.IsValid)

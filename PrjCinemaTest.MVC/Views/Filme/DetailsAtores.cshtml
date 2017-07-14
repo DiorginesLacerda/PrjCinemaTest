@@ -1,11 +1,11 @@
-﻿@model IEnumerable<PrjCinema.MVC.Models.AtuaFilmeModelView>
+﻿@model IEnumerable<PrjCinema.MVC.Models.AtorModelView>
 
 @{
     ViewBag.Title = "Atores deste filme";
 }
 @foreach (var item in Model)
 {
-    <h2>Atores do filme @Html.DisplayFor(modelItem => item.Filme.Titulo)</h2>
+    <h2>Atores do filme </h2>
     break;
 }
 @if (ViewBag.Erro != null)
@@ -21,7 +21,7 @@
 <table class="table ">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ator)
+            @Html.DisplayNameFor(model => model.Nome)
         </th>
 
     </tr>
@@ -30,7 +30,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Ator.Nome)
+                @Html.DisplayFor(modelItem => item.Nome)
             </td>
 
 

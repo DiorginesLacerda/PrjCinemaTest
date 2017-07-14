@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using AutoMapper;
-using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Service;
 using PrjCinema.MVC.Models;
@@ -13,61 +13,56 @@ namespace PrjCinema.MVC.Controllers
 
     public class FilmeController : Controller
     {
-        private readonly AtuaFilmeService atuaFilmeService;
+
         private readonly IFilmeService _filmeService;
-        private readonly IAtuaFilmeService _atuaFilmeService;
+
         private readonly IAtorService _atorService;
+
         private readonly FilmeService filmeService;
 
-        public FilmeController(FilmeService filmeService, AtuaFilmeService atuaFilmeService, AtorService atorService)
+        public FilmeController(FilmeService filmeService, AtorService atorService)
         {
             this.filmeService = filmeService;
-            this.atuaFilmeService = atuaFilmeService;
-            _atuaFilmeService = atuaFilmeService;
             _filmeService = filmeService;
             _atorService = atorService;
         }
         // GET: Filme
         public ActionResult Index()
         {
-            return View(Mapper.Map<IEnumerable<Filme>, IEnumerable<FilmeModelView>>(_filmeService.GetAll()));
+            return View(Mapper.Map<ICollection<Filme>, ICollection<FilmeModelView>>(_filmeService.GetAll()));
         }
-
 
         // GET: Filme/AddAtuacaoFilme/id
         public ActionResult AddAtuacaoFilme(int id)
         {
-            ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
-            ViewBag.NomeFilme = Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id)).Titulo;
-            var atuacao = new AtuaFilmeModelView();
-            atuacao.FilmeId = id;
-
-            return View(atuacao);
+            ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
+            return View(Mapper.Map<Filme, FilmeModelView>(_filmeService.GetById(id)));
         }
 
 
 
         //// POST: Filme/AddAtuacaoFilme/id
         [HttpPost]
-        public ActionResult AddAtuacaoFilme(AtuaFilmeModelView atuaFilme)
+        public ActionResult AddAtuacaoFilme(FilmeModelView atuaFilme, string atorId)
         {
+            var getFilmeComObjCorreto = _filmeService.GetById(atuaFilme.Id);
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    atuaFilmeService.AddAtuacaoFilme(Mapper.Map<AtuaFilmeModelView, AtuaFilme>(atuaFilme));
-
+                    
+                    var idVindoDoViewBagDoAtor = _atorService.GetById(atorId.AsInt());
+                    getFilmeComObjCorreto.FilmeAtores.Add(idVindoDoViewBagDoAtor);
+                    filmeService.Update(getFilmeComObjCorreto);
                     return RedirectToAction("Index");
                 }
-
                 return RedirectToAction("Create");
             }
             catch (Exception E)
             {
                 ViewBag.Erro = E.Message;
-                ViewBag.NomeFilme = "Aqui jás o nome do filme";
-                ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
-                return View(atuaFilme);
+                ViewBag.Atores = Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
+                return View(Mapper.Map<Filme, FilmeModelView>(getFilmeComObjCorreto));
             }
         }
 
@@ -80,7 +75,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Ator/Details/5
         public ActionResult DetailsAtores(int id)
         {
-            return View(Mapper.Map<IEnumerable<AtuaFilme>, IEnumerable<AtuaFilmeModelView>>(_atuaFilmeService.BuscaAtorPorFilme(id)));
+            return View(Mapper.Map<IEnumerable<Ator>, ICollection<AtorModelView>>(_atorService.BuscaAtoresPorFilme(id)));
         }
 
         // GET: Filme/Create
@@ -97,10 +92,9 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    filmeService.AddFilme(Mapper.Map<FilmeModelView, Filme>(filme));
+                    filmeService.Add(Mapper.Map<FilmeModelView, Filme>(filme));
                     return RedirectToAction("Index");
                 }
-
                 return RedirectToAction("Create", filme);
             }
             catch (Exception e)
@@ -122,9 +116,9 @@ namespace PrjCinema.MVC.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    filmeService.EditaFilme(Mapper.Map<FilmeModelView, Filme>(filme));
+                    filmeService.Update(Mapper.Map<FilmeModelView, Filme>(filme));
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("Edit", filme);

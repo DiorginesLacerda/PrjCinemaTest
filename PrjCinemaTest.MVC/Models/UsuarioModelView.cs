@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PrjCinema.Domain.Entities;
-using PrjCinema.Domain.Entities.Relacoes;
+using PrjCinema.Domain.Entities.Permissoes;
+
 
 namespace PrjCinema.MVC.Models
 {
@@ -40,6 +41,6 @@ namespace PrjCinema.MVC.Models
         public DateTime DataCadastro { get; set; }
 
         public Genero Genero { get; set; }
-        public virtual IEnumerable<GrupoAcessoUsuario> GrupoAcessoUsuarios { get; set; }
+        public virtual ICollection<GrupoAcesso> GrupoAcessos { get; set; }
     }
 }

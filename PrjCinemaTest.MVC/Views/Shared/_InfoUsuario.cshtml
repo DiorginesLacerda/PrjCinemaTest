@@ -1,0 +1,20 @@
+﻿@using PrjCinema.Domain.Entities
+@{
+    Usuario usu = (Usuario)Session["UsuarioLogado"];
+}
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Usúario Logado
+        <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><b> Nome: </b><label class="control-label">@usu.Nome</label><span class="sr-only">(success)</span></li>
+        <li><b> Email: </b><label class="control-label">@usu.Email</label><span class="sr-only">(success)</span></li>
+        <li><b> Cpf: </b><label class="control-label">@usu.Cpf</label><span class="sr-only">(success)</span></li>
+        <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+    </ul>
+</div>
+
+@*<div class="form-group has-success has-feedback">
+
+
+</div>*@

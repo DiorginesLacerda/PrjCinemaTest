@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Web;
 using System.Web.Security;
+using PrjCinema.Domain.Entities;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Session
@@ -7,9 +9,11 @@ namespace PrjCinema.MVC.Session
     public class Roles : RoleProvider
     {
         private readonly UsuarioService _usuarioService;
+        private readonly GrupoAcessoService _grupoAcessoService;
 
-        public Roles(UsuarioService usuarioService)
+        public Roles(UsuarioService usuarioService,GrupoAcessoService grupoAcessoService)
         {
+            _grupoAcessoService = grupoAcessoService;
             _usuarioService = usuarioService;
         }
 
@@ -46,10 +50,10 @@ namespace PrjCinema.MVC.Session
 
         public override string[] GetRolesForUser(string username)
         {
-            //var perfil = _usuarioService.GetUsuarioPorEmail(username).Perfil;
-            //Enum sRoles = perfil;
-            string[] retorno = {null };
-            return retorno;
+            var usu = (Usuario) HttpContext.Current.Session["UsuarioLogado"];
+            // (Usuario)Session["UsuarioLogado"];
+            //string[] retorno = {null };
+            //return retorno;
 
             throw new NotImplementedException();
         }

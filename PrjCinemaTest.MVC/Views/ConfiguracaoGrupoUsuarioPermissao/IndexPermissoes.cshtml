@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PrjCinema.MVC.Models.PermissaoModelView>
+
+@{
+    ViewBag.Title = "Permissões";
+}
+
+<h2>Permissões</h2>
+
+<p>
+    @Html.ActionLink("Adicionar nova Permissão", "CreatePermissao")
+</p>
+<table class="table modal-content">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Removido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <p class="bg-info">
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Removido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "DetailsPermissao", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        </p>
+    }
+
+</table>

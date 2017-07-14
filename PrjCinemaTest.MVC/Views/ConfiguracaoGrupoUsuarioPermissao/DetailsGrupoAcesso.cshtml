@@ -1,0 +1,33 @@
+﻿@using PrjCinema.MVC.Models
+@model PrjCinema.MVC.Models.GrupoAcessoModelView
+
+@{
+    ViewBag.Title = "Detalhes Grupo Acesso";
+}
+
+<h2>Detalhes Grupo Acesso</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Removido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Removido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "EditGrupoAcesso", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "IndexGrupoAcessos")
+</p>

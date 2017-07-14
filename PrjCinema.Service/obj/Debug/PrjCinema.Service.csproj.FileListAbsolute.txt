@@ -19,3 +19,10 @@ C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\obj\Debug\PrjCinema.Service.csprojResolveAssemblyReference.cache
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\obj\Debug\PrjCinema.Service.dll
 C:\Users\nilton.junior\Documents\Visual Studio 2013\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\obj\Debug\PrjCinema.Service.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\bin\Debug\PrjCinema.Service.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\bin\Debug\PrjCinema.Service.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\bin\Debug\PrjCinema.Domain.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\bin\Debug\PrjCinema.Domain.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\obj\Debug\PrjCinema.Service.csprojResolveAssemblyReference.cache
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\obj\Debug\PrjCinema.Service.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Service\obj\Debug\PrjCinema.Service.pdb

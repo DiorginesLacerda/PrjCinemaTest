@@ -48,10 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\EntityConfiguration\GrupoAcessoPermissaoConfiguration.cs" />
-    <Compile Include="Context\EntityConfiguration\GrupoAcessoUsuarioConfiguration.cs" />
-    <Compile Include="Context\EntityConfiguration\AtuaSerieConfiguration.cs" />
-    <Compile Include="Context\EntityConfiguration\AtuaFilmeConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\AtorConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\EnderecoConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\GrupoAcessoConfiguration.cs" />
@@ -60,86 +56,32 @@
     <Compile Include="Context\EntityConfiguration\FilmeConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\UsuarioConfiguration.cs" />
     <Compile Include="Context\ProjectContext.cs" />
-    <Compile Include="Migrations\201706191728303_teste.cs" />
-    <Compile Include="Migrations\201706191728303_teste.Designer.cs">
-      <DependentUpon>201706191728303_teste.cs</DependentUpon>
+    <Compile Include="Migrations\201707111652283_TabelasMtM.cs" />
+    <Compile Include="Migrations\201707111652283_TabelasMtM.Designer.cs">
+      <DependentUpon>201707111652283_TabelasMtM.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706201726596_ajusteTabelaAtuaSerie.cs" />
-    <Compile Include="Migrations\201706201726596_ajusteTabelaAtuaSerie.Designer.cs">
-      <DependentUpon>201706201726596_ajusteTabelaAtuaSerie.cs</DependentUpon>
+    <Compile Include="Migrations\201707111653343_TabelasMtM2.cs" />
+    <Compile Include="Migrations\201707111653343_TabelasMtM2.Designer.cs">
+      <DependentUpon>201707111653343_TabelasMtM2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706211242561_configuracaoParaTabelaSerie.cs" />
-    <Compile Include="Migrations\201706211242561_configuracaoParaTabelaSerie.Designer.cs">
-      <DependentUpon>201706211242561_configuracaoParaTabelaSerie.cs</DependentUpon>
+    <Compile Include="Migrations\201707141714066_A5.cs" />
+    <Compile Include="Migrations\201707141714066_A5.Designer.cs">
+      <DependentUpon>201707141714066_A5.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706231344354_tabelaSecurity.cs" />
-    <Compile Include="Migrations\201706231344354_tabelaSecurity.Designer.cs">
-      <DependentUpon>201706231344354_tabelaSecurity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706271655162_teste1.cs" />
-    <Compile Include="Migrations\201706271655162_teste1.Designer.cs">
-      <DependentUpon>201706271655162_teste1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706281201151_ajusteTabelaAtor.cs" />
-    <Compile Include="Migrations\201706281201151_ajusteTabelaAtor.Designer.cs">
-      <DependentUpon>201706281201151_ajusteTabelaAtor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706281329256_addIdAtuaFilmeESerie.cs" />
-    <Compile Include="Migrations\201706281329256_addIdAtuaFilmeESerie.Designer.cs">
-      <DependentUpon>201706281329256_addIdAtuaFilmeESerie.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706291831585_trocaValorAtributoFilmeDuracaoParaString.cs" />
-    <Compile Include="Migrations\201706291831585_trocaValorAtributoFilmeDuracaoParaString.Designer.cs">
-      <DependentUpon>201706291831585_trocaValorAtributoFilmeDuracaoParaString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707031208338_ajusteConfig.cs" />
-    <Compile Include="Migrations\201707031208338_ajusteConfig.Designer.cs">
-      <DependentUpon>201707031208338_ajusteConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707031242445_ajusteConfigUsuario.cs" />
-    <Compile Include="Migrations\201707031242445_ajusteConfigUsuario.Designer.cs">
-      <DependentUpon>201707031242445_ajusteConfigUsuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707031343281_teste2.cs" />
-    <Compile Include="Migrations\201707031343281_teste2.Designer.cs">
-      <DependentUpon>201707031343281_teste2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707031406082_adicionadoPasswordNoUsuario.cs" />
-    <Compile Include="Migrations\201707031406082_adicionadoPasswordNoUsuario.Designer.cs">
-      <DependentUpon>201707031406082_adicionadoPasswordNoUsuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707031408230_adicionadoPasswordNoUsuario1.cs" />
-    <Compile Include="Migrations\201707031408230_adicionadoPasswordNoUsuario1.Designer.cs">
-      <DependentUpon>201707031408230_adicionadoPasswordNoUsuario1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707031411347_adicionadoPasswordNoUsuario2.cs" />
-    <Compile Include="Migrations\201707031411347_adicionadoPasswordNoUsuario2.Designer.cs">
-      <DependentUpon>201707031411347_adicionadoPasswordNoUsuario2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707071408201_A2.cs" />
-    <Compile Include="Migrations\201707071408201_A2.Designer.cs">
-      <DependentUpon>201707071408201_A2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707071439340_A3.cs" />
-    <Compile Include="Migrations\201707071439340_A3.Designer.cs">
-      <DependentUpon>201707071439340_A3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707101204034_A4.cs" />
-    <Compile Include="Migrations\201707101204034_A4.Designer.cs">
-      <DependentUpon>201707101204034_A4.cs</DependentUpon>
+    <Compile Include="Migrations\201707141721216_A6.cs" />
+    <Compile Include="Migrations\201707141721216_A6.Designer.cs">
+      <DependentUpon>201707141721216_A6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AtorRepository.cs" />
-    <Compile Include="Repositories\AtuaSerieRepository.cs" />
-    <Compile Include="Repositories\AtuaFilmeRepository.cs" />
+    <Compile Include="Repositories\ContextFactory\ContextFactory.cs" />
+    <Compile Include="Repositories\ContextFactory\IContextFactory.cs" />
     <Compile Include="Repositories\EnderecoRepository.cs" />
-    <Compile Include="Repositories\GrupoAcessoPermissaoRepository.cs" />
     <Compile Include="Repositories\GrupoAcessoRepository.cs" />
-    <Compile Include="Repositories\GrupoAcessoUsuarioRepository.cs" />
     <Compile Include="Repositories\PermissaoRepository.cs" />
-    <Compile Include="Repositories\SerieRepository.cs" />
     <Compile Include="Repositories\FilmeRepository.cs" />
+    <Compile Include="Repositories\SerieRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
   </ItemGroup>
@@ -160,56 +102,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706191728303_teste.resx">
-      <DependentUpon>201706191728303_teste.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707111652283_TabelasMtM.resx">
+      <DependentUpon>201707111652283_TabelasMtM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706201726596_ajusteTabelaAtuaSerie.resx">
-      <DependentUpon>201706201726596_ajusteTabelaAtuaSerie.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707111653343_TabelasMtM2.resx">
+      <DependentUpon>201707111653343_TabelasMtM2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706211242561_configuracaoParaTabelaSerie.resx">
-      <DependentUpon>201706211242561_configuracaoParaTabelaSerie.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707141714066_A5.resx">
+      <DependentUpon>201707141714066_A5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706231344354_tabelaSecurity.resx">
-      <DependentUpon>201706231344354_tabelaSecurity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706271655162_teste1.resx">
-      <DependentUpon>201706271655162_teste1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706281201151_ajusteTabelaAtor.resx">
-      <DependentUpon>201706281201151_ajusteTabelaAtor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706281329256_addIdAtuaFilmeESerie.resx">
-      <DependentUpon>201706281329256_addIdAtuaFilmeESerie.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706291831585_trocaValorAtributoFilmeDuracaoParaString.resx">
-      <DependentUpon>201706291831585_trocaValorAtributoFilmeDuracaoParaString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707031208338_ajusteConfig.resx">
-      <DependentUpon>201707031208338_ajusteConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707031242445_ajusteConfigUsuario.resx">
-      <DependentUpon>201707031242445_ajusteConfigUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707031343281_teste2.resx">
-      <DependentUpon>201707031343281_teste2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707031406082_adicionadoPasswordNoUsuario.resx">
-      <DependentUpon>201707031406082_adicionadoPasswordNoUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707031408230_adicionadoPasswordNoUsuario1.resx">
-      <DependentUpon>201707031408230_adicionadoPasswordNoUsuario1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707031411347_adicionadoPasswordNoUsuario2.resx">
-      <DependentUpon>201707031411347_adicionadoPasswordNoUsuario2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707071408201_A2.resx">
-      <DependentUpon>201707071408201_A2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707071439340_A3.resx">
-      <DependentUpon>201707071439340_A3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707101204034_A4.resx">
-      <DependentUpon>201707101204034_A4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707141721216_A6.resx">
+      <DependentUpon>201707141721216_A6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

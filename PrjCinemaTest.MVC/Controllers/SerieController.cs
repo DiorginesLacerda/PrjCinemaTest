@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using AutoMapper;
-using PrjCinema.Domain.Entities.Relacoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Service;
 using PrjCinema.MVC.Models;
@@ -13,16 +13,12 @@ namespace PrjCinema.MVC.Controllers
     public class SerieController : Controller
     {
         private readonly ISerieService _serieService;
-        private readonly IAtuaSerieService _atuaSerieService;
         private readonly IAtorService _atorService;
-        private readonly AtuaSerieService atuaSerieService;
         private readonly SerieService serieService;
 
-        public SerieController(SerieService serieService, AtuaSerieService atuaSerieService, AtorService atorService)
+        public SerieController(SerieService serieService, AtorService atorService)
         {
             this.serieService = serieService;
-            this.atuaSerieService = atuaSerieService;
-            _atuaSerieService = atuaSerieService;
             _serieService = serieService;
             _atorService = atorService;
         }
@@ -30,7 +26,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Serie
         public ActionResult Index()
         {
-            return View(Mapper.Map<IEnumerable<Serie>, IEnumerable<SerieModelView>>(_serieService.GetAll()));
+            return View(Mapper.Map<ICollection<Serie>, ICollection<SerieModelView>>(_serieService.GetAll()));
         }
 
         // GET: Serie/Details/5
@@ -42,46 +38,40 @@ namespace PrjCinema.MVC.Controllers
         // GET: Ator/Details/5
         public ActionResult DetailsAtores(int id)
         {
-           return View(Mapper.Map<IEnumerable<AtuaSerie>, IEnumerable<AtuaSerieModelView>>(_atuaSerieService.BuscaAtorPorSerie(id)));
+           return View(Mapper.Map<IEnumerable<Ator>, ICollection<AtorModelView>>(_atorService.BuscaAtoresPorSerie(id)));
         }
-
-
 
         // GET: Filme/AddAtuacaoFilme/id
         public ActionResult AddAtuacaoSerie(int id)
         {
-            ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
-            ViewBag.NomeSerie = Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id)).Titulo;
-            var atuacao = new AtuaSerieModelView();
-            atuacao.SerieId = id;
-
-            return View(atuacao);
+            ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
+            return View(Mapper.Map<Serie, SerieModelView>(_serieService.GetById(id)));
         }
 
 
 
         //// POST: Filme/AddAtuacaoFilme/id
         [HttpPost]
-        public ActionResult AddAtuacaoSerie(AtuaSerieModelView atuaSerie)
+        public ActionResult AddAtuacaoSerie(SerieModelView atuaSerie, string atorId)
         {
-
+            var getSerieComObjCorreto = _serieService.GetById(atuaSerie.Id);
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    atuaSerieService.AddAtuacaoFilme(Mapper.Map<AtuaSerieModelView, AtuaSerie>(atuaSerie));
+                    
+                    var idVindoDoViewBagDoAtor = _atorService.GetById(atorId.AsInt());
+                    getSerieComObjCorreto.SerieAtores.Add(idVindoDoViewBagDoAtor);
+                    serieService.Update(getSerieComObjCorreto);
                     return RedirectToAction("Index");
                 }
-
                 return RedirectToAction("Create");
-
             }
-            catch(Exception e)
+            catch (Exception E)
             {
-                ViewBag.Atores = Mapper.Map<IEnumerable<Ator>, IEnumerable<AtorModelView>>(_atorService.GetAll());
-                ViewBag.Erro = e.Message;
-                ViewBag.NomeSerie = atuaSerie.Serie.Titulo;
-                return View(atuaSerie);
+                ViewBag.Erro = E.Message;
+                ViewBag.Atores = Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
+                return View(Mapper.Map<Serie, SerieModelView>(getSerieComObjCorreto));
             }
         }
 

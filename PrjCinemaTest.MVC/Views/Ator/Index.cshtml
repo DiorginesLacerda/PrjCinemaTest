@@ -1,21 +1,18 @@
 ﻿@model IEnumerable<PrjCinema.MVC.Models.AtorModelView>
-
 @{
     ViewBag.Title = "Lista de Atores";
 }
-
 <h2>Lista de Atores</h2>
 @if (ViewBag.Erro != null)
 {
     <div class="alert-danger">
-
         <h1>@ViewBag.Erro</h1>
     </div>
 }
 <p>
     @Html.ActionLink("Adicionar ator", "Create")
 </p>
-<table class="table ">
+<table class="table modal-content">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -27,33 +24,33 @@
             @Html.DisplayNameFor(model => model.Nacionalidade)
         </th>
         <th>
-
         </th>
     </tr>
-
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nacionalidade)
-            </td>
-            <td>
-                @Html.ActionLink("Atuação em Filmes", "DetailsFilmes", new { id = item.Id }, new { @class = "btn btn-default" })
-            </td>
-            <td>
-                @Html.ActionLink("Atuação em Series", "DetailsSeries", new { id = item.Id }, new { @class = "btn btn-default" })
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Remover", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+        <p class="bg-success">
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNascimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nacionalidade)
+        </td>
+        <td>
+            @Html.ActionLink("Atuação em Filmes", "DetailsFilmes", new { id = item.Id }, new { @class = "btn btn-default" })
+        </td>
+        <td>
+            @Html.ActionLink("Atuação em Series", "DetailsSeries", new { id = item.Id }, new { @class = "btn btn-default" })
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Remover", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+    </p>
+        }
 
-</table>
+    </table>

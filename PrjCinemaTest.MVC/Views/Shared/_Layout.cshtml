@@ -22,7 +22,7 @@
                 </button>
                 @if (Session["UsuarioLogado"] != null)
                 {
-                    @Html.ActionLink("Seriando App", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+                    @Html.ActionLink("Seriando App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 }
                 else
                 {
@@ -34,20 +34,24 @@
                     @if (Session["UsuarioLogado"] != null)
                     {
                         <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                        <li>@Html.ActionLink("Grupos de Acesso", "IndexGrupoAcessos", "ConfiguracaoGrupoUsuarioPermissao")</li>
+                        <li>@Html.ActionLink("Permissões", "IndexPermissoes", "ConfiguracaoGrupoUsuarioPermissao")</li>
                         <li>@Html.ActionLink("Filmes", "Index", "Filme")</li>
                         <li>@Html.ActionLink("Series", "Index", "Serie")</li>
                         <li>@Html.ActionLink("Atores", "Index", "Ator")</li>
                     }
                 </ul>
-                @*//não funciona ainda ;)*@
-
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["UsuarioLogado"] != null)
+                    {
+                        @Html.Partial("_InfoUsuario")
+                        @ViewBag.UsuarioLogin
+                    }
+                </ul>
             </div>
         </div>
-        @if (Session["UsuarioLogado"] != null)
-        {
-            @ViewBag.UsuarioLogin
-            @Html.ActionLink("Logout", "Logout", "Login")
-        }
+
+
     </div>
     <div class="container body-content">
         @RenderBody()

@@ -1,49 +1,75 @@
-﻿@model PrjCinema.MVC.Models.AtuaFilmeModelView
+﻿@using PrjCinema.MVC.Models
+
+@model FilmeModelView
+
 @{
     ViewBag.Title = "Adicionar atuação ao Filme";
 }
-<h2>Adicionar ator ao filme</h2>
-<div class="alert-danger">
 
-    <h1>@ViewBag.Erro</h1>
-</div>
+<h2>Adicionar ator ao filme</h2>
+@if (ViewBag.Erro != null)
+{
+    <div class="alert-danger">
+
+        <h1>@ViewBag.Erro</h1>
+    </div>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.FilmeId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-
-
-                @Html.HiddenFor(model => model.FilmeId)
-                @Html.ViewBag.NomeFilme.ToString()
-                @Html.ValidationMessageFor(model => model.FilmeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Ator, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.AtorId, new SelectList(ViewBag.Atores, "Id", "Nome"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AtorId)
+                @Html.DisplayFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FilmeAtores, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("atorId", new SelectList(ViewBag.Atores, "Id", "Nome"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FilmeAtores)
+            </div>
+        </div>
+        
+       
+            @Html.HiddenFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                @Html.HiddenFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+         
+
+
+            @Html.HiddenFor(model => model.Duracao, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                @Html.HiddenFor(model => model.Duracao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Duracao, "", new { @class = "text-danger" })
+          
+
+        
+            @Html.HiddenFor(model => model.Lancamento, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                @Html.HiddenFor(model => model.Lancamento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Lancamento, "", new { @class = "text-danger" })
+          
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Adicionar" class="btn btn-default" />
             </div>
         </div>
+
+
     </div>
 }
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

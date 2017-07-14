@@ -1,8 +1,8 @@
-﻿using PrjCinema.Domain.Entities;
+﻿using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Domain.Interfaces.Service
 {
-    public interface IEnderecoService : IServiceBase<Endereco>
+    public interface IEnderecoService : IEnderecoRepository
     {
         
         

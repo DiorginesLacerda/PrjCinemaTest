@@ -13,7 +13,7 @@ namespace PrjCinema.MVC.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly UsuarioService __usuarioService;
-        public UsuarioController(UsuarioService usuarioService, EnderecoService enderecoService)
+        public UsuarioController(UsuarioService usuarioService)
         {
             __usuarioService = usuarioService;
             _usuarioService = usuarioService;
@@ -21,7 +21,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-            return View(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.GetAll()));
+            return View(Mapper.Map<ICollection<Usuario>, ICollection<UsuarioModelView>>(_usuarioService.GetAll()));
         }
 
         // GET: Usuario/Details/5

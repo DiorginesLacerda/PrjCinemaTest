@@ -6,6 +6,7 @@ namespace PrjCinema.MVC.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 

@@ -1,21 +1,19 @@
 ﻿@model IEnumerable<PrjCinema.MVC.Models.FilmeModelView>
-
 @{
     ViewBag.Title = "Lista de Filmes";
 }
-
 <h2>Lista de Filmes</h2>
 @if (ViewBag.Erro != null)
 {
     <div class="alert-danger">
-
         <h1>@ViewBag.Erro</h1>
     </div>
 }
 <p>
     @Html.ActionLink("Adicionar novo Filme", "Create")
 </p>
-<table class="table ">
+<table class="table modal-content">
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Titulo)
@@ -32,9 +30,9 @@
         <th></th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
+        <p class="bg-success">
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Titulo)
@@ -60,6 +58,6 @@
                 @Html.ActionLink("Remover", "Delete", new { id = item.Id })
             </td>
         </tr>
+        </p>
     }
-
 </table>

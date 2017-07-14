@@ -51,7 +51,6 @@
     <Compile Include="Interfaces\Service\IFilmeService.cs" />
     <Compile Include="Interfaces\Service\IGrupoAcessoService.cs" />
     <Compile Include="Interfaces\Service\IPermissaoService.cs" />
-    <Compile Include="Interfaces\Service\IServiceBase.cs" />
     <Compile Include="Interfaces\Service\ISerieService.cs" />
     <Compile Include="Interfaces\Service\IUsuarioService.cs" />
     <Compile Include="Interfaces\Repository\IAtorRepository.cs" />

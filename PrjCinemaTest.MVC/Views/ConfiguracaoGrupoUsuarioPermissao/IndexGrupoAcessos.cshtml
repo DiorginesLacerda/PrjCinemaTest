@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PrjCinema.MVC.Models.GrupoAcessoModelView>
+
+@{
+    ViewBag.Title = "Grupos de Acesso";
+}
+
+<h2>Grupos de Acesso</h2>
+
+<p>
+    @Html.ActionLink("Adicionar novo Grupo de Acesso", "CreateGrupoAcesso")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Removido)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Removido)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.ActionLink("Adicionar Usuários", "", new { id = item.Id }) |
+            @Html.ActionLink("Adicionar Permissões", "", new {id = item.Id}) |
+            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+            @Html.ActionLink("Detalhes", "DetailsGrupoAcesso", new {id = item.Id}) |
+            @Html.ActionLink("Remover", "Delete", new {id = item.Id})
+        </td>
+    </tr>
+}
+
+</table>

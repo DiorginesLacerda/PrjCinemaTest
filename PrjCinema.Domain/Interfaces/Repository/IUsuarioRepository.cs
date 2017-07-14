@@ -2,8 +2,7 @@
 
 namespace PrjCinema.Domain.Interfaces.Repository
 {
-    public interface IUsuarioRepository: IRepositoryBase<Usuario>
+    public interface IUsuarioRepository : IRepositoryBase<Usuario>
     {
-      
     }
 }

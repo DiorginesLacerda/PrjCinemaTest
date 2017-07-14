@@ -1,5 +1,4 @@
-﻿@using PrjCinema.Domain.Entities
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -35,6 +34,8 @@
                     @if (Session["UsuarioLogado"] != null)
                     {
                         <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                        <li>@Html.ActionLink("Grupos de Acesso", "IndexGrupoAcessos", "ConfiguracaoGrupoUsuarioPermissao")</li>
+                        <li>@Html.ActionLink("Permissões", "IndexPermissoes", "ConfiguracaoGrupoUsuarioPermissao")</li>
                         <li>@Html.ActionLink("Filmes", "Index", "Filme")</li>
                         <li>@Html.ActionLink("Series", "Index", "Serie")</li>
                         <li>@Html.ActionLink("Atores", "Index", "Ator")</li>

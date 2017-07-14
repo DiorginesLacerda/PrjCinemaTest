@@ -1,4 +1,5 @@
 using PrjCinema.Data.Repositories;
+using PrjCinema.Data.Repositories.ContextFactory;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Domain.Interfaces.Service;
@@ -19,6 +20,8 @@ namespace PrjCinema.MVC.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using System.Web.Mvc;
+    using Ninject.Web.Mvc;
 
     public static class NinjectWebCommon
     {
@@ -70,21 +73,26 @@ namespace PrjCinema.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
+            
             kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
             kernel.Bind<IEnderecoRepository>().To<EnderecoRepository>();
             kernel.Bind<IFilmeRepository>().To<FilmeRepository>();
             kernel.Bind<ISerieRepository>().To<SerieRepository>();
             kernel.Bind<IAtorRepository>().To<AtorRepository>();
-            
-            kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
+            kernel.Bind<IGrupoAcessoRepository>().To<GrupoAcessoRepository>();
+            kernel.Bind<IPermissaoRepository>().To<PermissaoRepository>();
+            kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
+            kernel.Bind<IContextFactory>().To<ContextFactory>().InSingletonScope();
+
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
             kernel.Bind<IEnderecoService>().To<EnderecoService>();
             kernel.Bind<IFilmeService>().To<FilmeService>();
             kernel.Bind<ISerieService>().To<SerieService>();
             kernel.Bind<IAtorService>().To<AtorService>();
-            
+            kernel.Bind<IGrupoAcessoService>().To<GrupoAcessoService>();
+            kernel.Bind<IPermissaoService>().To<PermissaoService>();
 
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }

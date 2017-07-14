@@ -46,7 +46,6 @@
     <Compile Include="Service\GrupoAcessoService.cs" />
     <Compile Include="Service\PermissaoService.cs" />
     <Compile Include="Service\SerieService.cs" />
-    <Compile Include="Service\ServiceBase.cs" />
     <Compile Include="Service\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup>

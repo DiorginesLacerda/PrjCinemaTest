@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Interfaces.Repository;
@@ -6,12 +7,11 @@ using PrjCinema.Domain.Interfaces.Service;
 
 namespace PrjCinema.Service.Service
 {
-    public class UsuarioService : ServiceBase<Usuario>, IUsuarioService
+    public class UsuarioService : IUsuarioService
     {
-        
+
         private readonly IUsuarioRepository _usuarioRepository;
         public UsuarioService(IUsuarioRepository usuarioRepository)
-            : base(usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
         }
@@ -47,9 +47,9 @@ namespace PrjCinema.Service.Service
             return false;
         }
 
-        public bool IsEndereco(Endereco endereco)
+        public bool IsUsuario(Usuario usuario)
         {
-            if (endereco == null)
+            if (usuario == null)
             {
                 return true;
             }
@@ -64,12 +64,12 @@ namespace PrjCinema.Service.Service
                 throw new Exception(AlertUsuarioExiste(usuario, 3));
             if (IsUsuarioExiste(usuario))
                 throw new Exception(AlertUsuarioExiste(usuario, 1));
-            //if (usuario.Endereco != null && usuario.EnderecoId != null)
+            //if (usuario.Usuario != null && usuario.UsuarioId != null)
             //    throw new Exception("Algo errado não está certo");
 
             _usuarioRepository.Add(usuario);
         }
-         
+
         public void EditarUsuario(Usuario usuario)
         {
             if (IsUsuarioExiste(usuario))
@@ -113,7 +113,7 @@ namespace PrjCinema.Service.Service
 
             return false;
         }
-        
+
         public Usuario LoginUsuario(string email, string password)
         {
             var userLogin = _usuarioRepository.GetAll().FirstOrDefault(a => a.Email.Equals(email) && a.Password.Equals(password));
@@ -130,7 +130,37 @@ namespace PrjCinema.Service.Service
                 return userLogin;
 
             throw new Exception("Algo errado não está certo !");
-            
+
+        }
+
+        public void Add(Usuario obj)
+        {
+            Add(obj);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<Usuario> GetAll()
+        {
+            return _usuarioRepository.GetAll();
+        }
+
+        public Usuario GetById(int id)
+        {
+            return _usuarioRepository.GetById(id);
+        }
+
+        public void Remove(Usuario obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Usuario obj)
+        {
+            Update(obj);
         }
     }
 }

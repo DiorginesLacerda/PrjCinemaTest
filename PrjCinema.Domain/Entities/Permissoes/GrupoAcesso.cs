@@ -3,7 +3,7 @@ using PrjCinema.Domain.Interfaces.Repository;
 
 namespace PrjCinema.Domain.Entities.Permissoes
 {
-    public class GrupoAcesso: ITEntity
+    public class GrupoAcesso : ITEntity
     {
         public int Id { get; set; }
         public bool Removido { get; set; }

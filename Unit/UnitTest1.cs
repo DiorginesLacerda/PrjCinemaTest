@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PrjCinema.Data.Repositories;
 using PrjCinema.Domain.Entities;
-using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 
 namespace Unit
@@ -35,45 +33,45 @@ namespace Unit
         [TestMethod]
         public void InsertFilmeTest()
         {
-            RepositoryBase<Filme> repositoryFilme = new FilmeRepository();
-            Filme representaFilme = new Filme();
+            //RepositoryBase<Filme> repositoryFilme = new FilmeRepository();
+            //Filme representaFilme = new Filme();
 
-            //construcao do filme
-            representaFilme.Categoria = Categoria.Ficção;
-            representaFilme.Descricao = "É uma ficção";
-            representaFilme.Duracao = "1600";
-            representaFilme.Lancamento = DateTime.Now;
-            representaFilme.Nacionalidade = Nacionalidade.USA;
-            representaFilme.Titulo = "Star Wars";
+            ////construcao do filme
+            //representaFilme.Categoria = Categoria.Ficção;
+            //representaFilme.Descricao = "É uma ficção";
+            //representaFilme.Duracao = "1600";
+            //representaFilme.Lancamento = DateTime.Now;
+            //representaFilme.Nacionalidade = Nacionalidade.USA;
+            //representaFilme.Titulo = "Star Wars";
 
-            //add o filme
-            repositoryFilme.Add(representaFilme);
+            ////add o filme
+            //repositoryFilme.Add(representaFilme);
         }
 
         [TestMethod]
         public void InsertAtorTest()
         {
-            RepositoryBase<Ator> _atorRepository = new AtorRepository();
-            Ator representaAtor = new Ator();
-            try
-            {
-                //construcao do ator
-                representaAtor.Nome = "Algum ator famoso";
-                representaAtor.DataNascimento = DateTime.Now;
-                representaAtor.Nacionalidade = Nacionalidade.USA;
-                //if (AtorExiste(representaAtor))
-                //{
-                //    throw new Exception("Este ator ja existe");
-                //}
-                //add o ator
-                _atorRepository.Add(representaAtor);
+            //RepositoryBase<Ator> _atorRepository = new AtorRepository();
+            //Ator representaAtor = new Ator();
+            //try
+            //{
+            //    //construcao do ator
+            //    representaAtor.Nome = "Algum ator famoso";
+            //    representaAtor.DataNascimento = DateTime.Now;
+            //    representaAtor.Nacionalidade = Nacionalidade.USA;
+            //    //if (AtorExiste(representaAtor))
+            //    //{
+            //    //    throw new Exception("Este ator ja existe");
+            //    //}
+            //    //add o ator
+            //    _atorRepository.Add(representaAtor);
 
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                throw;
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    Debug.WriteLine(e);
+            //    throw;
+            //}
 
         }
 

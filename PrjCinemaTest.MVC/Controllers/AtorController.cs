@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using AutoMapper;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Service;
@@ -30,6 +31,72 @@ namespace PrjCinema.MVC.Controllers
             return View(Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll()));
         }
 
+        // GET: Ator/Edit/5
+        public ActionResult AddAtuacaoFilme(int id)
+        {
+            ViewBag.Filmes = Mapper.Map<IEnumerable<Filme>, ICollection<FilmeModelView>>(_filmeService.GetAll());
+            return View(Mapper.Map<Ator, AtorModelView>(_atorService.GetById(id)));
+        }
+
+        // POST: Ator/Edit/5
+        [HttpPost]
+        public ActionResult AddAtuacaoFilme(AtorModelView ator, string filmeId)
+        {
+            var getAtorComObjCorreto = _atorService.GetById(ator.Id);
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+
+                    var idVindoDoViewBagDoFilme = _filmeService.GetById(filmeId.AsInt());
+                    getAtorComObjCorreto.AtorFilmes.Add(idVindoDoViewBagDoFilme);
+                    atorService.Update(getAtorComObjCorreto);
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Create");
+            }
+            catch (Exception E)
+            {
+                ViewBag.Erro = E.Message;
+                ViewBag.Atores = Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
+                return View(Mapper.Map<Ator, AtorModelView>(getAtorComObjCorreto));
+            }
+            
+        }
+
+        // GET: Ator/Edit/5
+        public ActionResult AddAtuacaoSerie(int id)
+        {
+            ViewBag.Series = Mapper.Map<IEnumerable<Serie>, ICollection<SerieModelView>>(_serieService.GetAll());
+            return View(Mapper.Map<Ator, AtorModelView>(_atorService.GetById(id)));
+        }
+
+        // POST: Ator/Edit/5
+        [HttpPost]
+        public ActionResult AddAtuacaoSerie(AtorModelView ator, string serieId)
+        {
+            var getAtorComObjCorreto = _atorService.GetById(ator.Id);
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+
+                    var idVindoDoViewBagDaSerie = _filmeService.GetById(serieId.AsInt());
+                    getAtorComObjCorreto.AtorFilmes.Add(idVindoDoViewBagDaSerie);
+                    atorService.Update(getAtorComObjCorreto);
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Create");
+            }
+            catch (Exception E)
+            {
+                ViewBag.Erro = E.Message;
+                ViewBag.Atores = Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll());
+                return View(Mapper.Map<Ator, AtorModelView>(getAtorComObjCorreto));
+            }
+        }
+
+
         // GET: Ator/Details/5
         public ActionResult DetailsFilmes(int id)
         {
@@ -58,7 +125,7 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    atorService.AddAtor(Mapper.Map<AtorModelView, Ator>(ator));
+                    atorService.Add(Mapper.Map<AtorModelView, Ator>(ator));
                     return RedirectToAction("Index");
                 }
 
@@ -86,7 +153,7 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    atorService.EditarAtor(Mapper.Map<AtorModelView, Ator>(ator));
+                    atorService.Update(Mapper.Map<AtorModelView, Ator>(ator));
                     return RedirectToAction("Index");
                 }
 

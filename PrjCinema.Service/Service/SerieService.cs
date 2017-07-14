@@ -7,13 +7,12 @@ using PrjCinema.Domain.Interfaces.Service;
 
 namespace PrjCinema.Service.Service
 {
-    public class SerieService : ServiceBase<Serie>, ISerieService
+    public class SerieService : ISerieService
     {
         private readonly ISerieRepository _serieRepository;
 
         public SerieService(ISerieRepository serieRepository)
-            : base(serieRepository)
-        {
+            {
             _serieRepository = serieRepository;
         }
 
@@ -68,6 +67,34 @@ namespace PrjCinema.Service.Service
             return _serieRepository.BuscaSeriesPorAtor(id);
         }
 
-        
+        public void Add(Serie obj)
+        {
+            _serieRepository.Add(obj);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<Serie> GetAll()
+        {
+            return _serieRepository.GetAll();
+        }
+
+        public Serie GetById(int id)
+        {
+            return _serieRepository.GetById(id);
+        }
+
+        public void Remove(Serie obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Serie obj)
+        {
+            _serieRepository.Update(obj);
+        }
     }
 }

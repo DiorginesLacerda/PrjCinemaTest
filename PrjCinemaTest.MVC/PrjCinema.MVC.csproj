@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -155,7 +156,9 @@
     <Compile Include="Models\AtuaSerieModelView.cs" />
     <Compile Include="Models\EnderecoModelView.cs" />
     <Compile Include="Models\FilmeModelView.cs" />
+    <Compile Include="Models\GrupoAcessoModelView.cs" />
     <Compile Include="Models\LoginModelView.cs" />
+    <Compile Include="Models\PermissaoModelView.cs" />
     <Compile Include="Models\SerieModelView.cs" />
     <Compile Include="Models\UsuarioModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,10 +231,20 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_InfoUsuario.cshtml" />
     <Content Include="Views\Filme\AddAtuacaoFilme.cshtml" />
+    <Content Include="Views\Ator\AddAtuacaoFilme.cshtml" />
+    <Content Include="Views\Ator\AddAtuacaoSerie.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\IndexGrupoAcessos.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\DetailsGrupoAcesso.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\EditGrupoAcesso.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\CreateGrupoAcesso.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\AddPermissaoAoGrupoAcesso.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\AddUsuarioAoGrupoAcesso.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\IndexPermissoes.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\DetailsPermissao.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\CreatePermissao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ConfiguracaoGrupoUsuarioPermissao\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

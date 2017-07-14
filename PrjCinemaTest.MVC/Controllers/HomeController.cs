@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using PrjCinema.Domain.Entities;
 
 namespace PrjCinema.MVC.Controllers
 {

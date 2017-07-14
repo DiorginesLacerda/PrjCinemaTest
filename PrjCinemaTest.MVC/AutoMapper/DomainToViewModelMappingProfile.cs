@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PrjCinema.Domain.Entities;
+using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.MVC.Models;
 
@@ -18,6 +19,8 @@ namespace PrjCinema.MVC.AutoMapper
             Mapper.CreateMap<Serie, SerieModelView>();
             Mapper.CreateMap<Usuario, UsuarioModelView>();
             Mapper.CreateMap<Endereco, EnderecoModelView>();
+            Mapper.CreateMap<GrupoAcesso, GrupoAcessoModelView>();
+            Mapper.CreateMap<Permissao, PermissaoModelView>();
         }
     }
 

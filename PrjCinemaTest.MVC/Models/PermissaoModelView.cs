@@ -7,8 +7,8 @@ namespace PrjCinema.MVC.Models
     {
         public int Id { get; set; }
         public bool Removido { get; set; }
-        public IEnumerable<Operacao> Operacoes { get; set; }
+        public virtual ICollection<Operacao> Operacoes { get; set; }
         public string Nome { get; set; }
-        public ICollection<GrupoAcesso> GrupoAcessos { get; set; }
+        public virtual ICollection<GrupoAcesso> GrupoAcessos { get; set; }
     }
 }

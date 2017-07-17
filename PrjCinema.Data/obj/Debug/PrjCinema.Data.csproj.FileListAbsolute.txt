@@ -69,3 +69,5 @@ C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.pdb
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.A5.resources
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.A6.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.A7.resources
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Data\obj\Debug\PrjCinema.Data.Migrations.A8.resources

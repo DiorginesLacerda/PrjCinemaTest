@@ -152,18 +152,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AtorModelView.cs" />
-    <Compile Include="Models\AtuaFilmeModelView.cs" />
-    <Compile Include="Models\AtuaSerieModelView.cs" />
     <Compile Include="Models\EnderecoModelView.cs" />
     <Compile Include="Models\FilmeModelView.cs" />
     <Compile Include="Models\GrupoAcessoModelView.cs" />
     <Compile Include="Models\LoginModelView.cs" />
+    <Compile Include="Models\OperacaoModelView.cs" />
     <Compile Include="Models\PermissaoModelView.cs" />
     <Compile Include="Models\SerieModelView.cs" />
     <Compile Include="Models\UsuarioModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\CustomAuthorize.cs" />
-    <Compile Include="Session\Roles.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
@@ -242,6 +240,7 @@
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\DetailsPermissao.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\CreatePermissao.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\DetailsGrupoAcesso.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\AddOpercaoAPermissao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

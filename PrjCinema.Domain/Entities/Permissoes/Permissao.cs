@@ -8,9 +8,9 @@ namespace PrjCinema.Domain.Entities.Permissoes
     {
         public int Id { get; set; }
         public bool Removido { get; set; }
-        public ICollection<Operacao> Operacoes  { get; set; }
+        public virtual ICollection<Operacao> Operacoes  { get; set; }
         public string Nome { get; set; }
-        public ICollection<GrupoAcesso> GrupoAcesso{ get; set; }
+        public virtual ICollection<GrupoAcesso> GrupoAcesso{ get; set; }
 
         public object Clone()
         {

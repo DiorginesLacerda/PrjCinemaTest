@@ -18,13 +18,15 @@ namespace PrjCinema.MVC.Controllers
     {
         private readonly IGrupoAcessoService _grupoAcessoService;
         private readonly IPermissaoService _permissaoService;
+        private readonly IOperacaoService _operacaoService;
         private readonly IUsuarioService _usuarioService;
         private readonly UsuarioService __usuarioService;
         private readonly PermissaoService __permissaoService;
-        public ConfiguracaoGrupoUsuarioPermissaoController(UsuarioService usuarioService, GrupoAcessoService grupoAcessoService, PermissaoService permissaoService)
+        public ConfiguracaoGrupoUsuarioPermissaoController(UsuarioService usuarioService, GrupoAcessoService grupoAcessoService, PermissaoService permissaoService, OperacaoService operacaoService)
         {
             __permissaoService = permissaoService;
             __usuarioService = usuarioService;
+            _operacaoService = operacaoService;
             _usuarioService = usuarioService;
             _grupoAcessoService = grupoAcessoService;
             _permissaoService = permissaoService;
@@ -47,8 +49,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: ConfiguracaoGrupoUsuarioPermissao/Create
         public ActionResult CreatePermissao()
         {
-            
-            //ViewBag.Operacoes 
+            ViewBag.Operacoes = Mapper.Map<IEnumerable<Operacao>, ICollection<OperacaoModelView>>(_operacaoService.GetAll());
             return View();
         }
 
@@ -75,13 +76,44 @@ namespace PrjCinema.MVC.Controllers
             }
         }
 
+        // GET: Usuario/Edit/5
+        public ActionResult AddOpercaoAPermissao(int id)
+        {
+            ViewBag.Operacoes = Mapper.Map<IEnumerable<Operacao>, ICollection<OperacaoModelView>>(_operacaoService.GetAll());
+            return View(Mapper.Map<Permissao, PermissaoModelView>(_permissaoService.GetById(id)));
+        }
+
+        // POST: Usuario/Edit/5
+        [HttpPost]
+        public ActionResult AddOpercaoAPermissao(PermissaoModelView permissao, int operacaoId)
+        {
+            var getPermissaoComObjCorreto = _permissaoService.GetById(permissao.Id);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var idVindoDoViewBagDaOperacao = _operacaoService.GetById(operacaoId); 
+                    getPermissaoComObjCorreto.Operacoes.Add(idVindoDoViewBagDaOperacao);
+                    _permissaoService.Update(getPermissaoComObjCorreto);
+                    return RedirectToAction("IndexPermissoes");
+                }
+                return RedirectToAction("CreateGrupoAcesso");
+            }
+            catch (Exception E)
+            {
+                ViewBag.Erro = E.Message;
+                ViewBag.Operacoes = _operacaoService.GetAll();
+                return View(Mapper.Map<Permissao, PermissaoModelView>(getPermissaoComObjCorreto));
+            }
+        }
+
         //-------------------------------Grupo de Acesso------------------------------------------
 
-            public ActionResult IndexGrupoAcessos()
+        public ActionResult IndexGrupoAcessos()
         {
             return View(Mapper.Map<IEnumerable<GrupoAcesso>, IEnumerable<GrupoAcessoModelView>>(_grupoAcessoService.GetAll()));
         }
-        
+
         // GET: Usuario/Edit/5
         public ActionResult AddPermissaoAoGrupoAcesso(int id)
         {
@@ -218,28 +250,28 @@ namespace PrjCinema.MVC.Controllers
         }
     }
 
-    
+
 }
-    
 
-    //// GET: ConfiguracaoGrupoUsuarioPermissao/Delete/5
-    //public ActionResult Delete(int id)
-    //{
-    //    return View();
-    //}
 
-    //// POST: ConfiguracaoGrupoUsuarioPermissao/Delete/5
-    //[HttpPost]
-    //public ActionResult Delete(int id, FormCollection collection)
-    //{
-    //    try
-    //    {
-    //        // TODO: Add delete logic here
+//// GET: ConfiguracaoGrupoUsuarioPermissao/Delete/5
+//public ActionResult Delete(int id)
+//{
+//    return View();
+//}
 
-    //        return RedirectToAction("Index");
-    //    }
-    //    catch
-    //    {
-    //        return View();
-    //    }
-    //}
+//// POST: ConfiguracaoGrupoUsuarioPermissao/Delete/5
+//[HttpPost]
+//public ActionResult Delete(int id, FormCollection collection)
+//{
+//    try
+//    {
+//        // TODO: Add delete logic here
+
+//        return RedirectToAction("Index");
+//    }
+//    catch
+//    {
+//        return View();
+//    }
+//}

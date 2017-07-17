@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using PrjCinema.Domain.Entities;
+using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
 
@@ -8,9 +9,11 @@ namespace PrjCinema.MVC.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly OperacaoService _operacaoService;
         private readonly UsuarioService _usuarioService;
-        public LoginController(UsuarioService usuarioService)
+        public LoginController(UsuarioService usuarioService, OperacaoService operacaoService)
         {
+            _operacaoService = operacaoService;
             _usuarioService = usuarioService;
         }
         // GET: Login
@@ -19,7 +22,7 @@ namespace PrjCinema.MVC.Controllers
             return View();
         }
 
-       [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModelView u)
         {
@@ -29,13 +32,14 @@ namespace PrjCinema.MVC.Controllers
                 if (ModelState.IsValid) //verifica se é válido
                 {
                     var usuario = _usuarioService.LoginUsuario(u.Email, u.Password);
-                    if (usuario != null)
+                    if (usuario != null && !usuario.Removido)
                     {
                         Session["UsuarioLogado"] = usuario;
                         if (Session["UsuarioLogado"] == null)
                             return View(u);
                         return RedirectToAction("Index");
                     }
+                    throw new Exception("Está conta não existe ou não está ativa, por favor contate seu Gerente ou Adminstrador da Rede.");
                 }
                 return View(u);
             }
@@ -77,7 +81,7 @@ namespace PrjCinema.MVC.Controllers
 
                 if (Session["usuarioLogado"] != null /*&& a.GrupoAcesso.Perfil >= 0*/)
                 {
-                   
+
                     return RedirectToAction("Index", "Home");
                 }
                 throw new Exception("Algo errado não está certo");

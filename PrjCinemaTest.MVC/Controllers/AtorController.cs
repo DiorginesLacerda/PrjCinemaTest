@@ -44,15 +44,14 @@ namespace PrjCinema.MVC.Controllers
 
         // POST: Ator/Edit/5
         [HttpPost]
-        public ActionResult AddAtuacaoFilme(AtorModelView ator, string filmeId)
+        public ActionResult AddAtuacaoFilme(AtorModelView ator, int filmeId)
         {
             var getAtorComObjCorreto = _atorService.GetById(ator.Id);
             try
             {
                 if (!ModelState.IsValid)
                 {
-
-                    var idVindoDoViewBagDoFilme = _filmeService.GetById(filmeId.AsInt());
+                    var idVindoDoViewBagDoFilme = _filmeService.GetById(filmeId);
                     getAtorComObjCorreto.AtorFilmes.Add(idVindoDoViewBagDoFilme);
                     atorService.Update(getAtorComObjCorreto);
                     return RedirectToAction("Index");

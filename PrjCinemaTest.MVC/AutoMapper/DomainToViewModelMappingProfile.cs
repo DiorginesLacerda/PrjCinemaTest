@@ -21,6 +21,7 @@ namespace PrjCinema.MVC.AutoMapper
             Mapper.CreateMap<Endereco, EnderecoModelView>();
             Mapper.CreateMap<GrupoAcesso, GrupoAcessoModelView>();
             Mapper.CreateMap<Permissao, PermissaoModelView>();
+            Mapper.CreateMap<Operacao, OperacaoModelView>();
         }
     }
 

@@ -32,13 +32,13 @@
             </div>
         </div>
         
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Operacoes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("atorId", new MultiSelectList(ViewBag.Atores, "Id", "Nome"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FilmeAtores)
+                @Html.DropDownList("operacaoId", new MultiSelectList(ViewBag.Operacoes, "Id", "NomeOperacao"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Operacoes)
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

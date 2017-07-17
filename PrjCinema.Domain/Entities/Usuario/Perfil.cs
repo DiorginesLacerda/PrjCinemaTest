@@ -2,6 +2,6 @@
 {
     public enum Perfil
     {
-        Adminstrador, Gerente, Operacional, Cliente
+        Administrador, Gerente, Operacional, Cliente
     }
 }

@@ -73,12 +73,13 @@ namespace PrjCinema.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            
+
             kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
             kernel.Bind<IEnderecoRepository>().To<EnderecoRepository>();
             kernel.Bind<IFilmeRepository>().To<FilmeRepository>();
             kernel.Bind<ISerieRepository>().To<SerieRepository>();
             kernel.Bind<IAtorRepository>().To<AtorRepository>();
+            kernel.Bind<IOperacaoRepository>().To<OperacaoRepository>();
             kernel.Bind<IGrupoAcessoRepository>().To<GrupoAcessoRepository>();
             kernel.Bind<IPermissaoRepository>().To<PermissaoRepository>();
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
@@ -87,6 +88,7 @@ namespace PrjCinema.MVC.App_Start
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
             kernel.Bind<IEnderecoService>().To<EnderecoService>();
             kernel.Bind<IFilmeService>().To<FilmeService>();
+            kernel.Bind<IOperacaoService>().To<OperacaoService>();
             kernel.Bind<ISerieService>().To<SerieService>();
             kernel.Bind<IAtorService>().To<AtorService>();
             kernel.Bind<IGrupoAcessoService>().To<GrupoAcessoService>();

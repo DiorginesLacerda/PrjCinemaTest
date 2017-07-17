@@ -94,3 +94,5 @@ C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\obj\Debug\Unit.csprojResolveAssemblyReference.cache
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\obj\Debug\Unit.dll
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\obj\Debug\Unit.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\bin\Debug\Ninject.Web.Mvc.dll
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\Unit\bin\Debug\Ninject.Web.Mvc.xml

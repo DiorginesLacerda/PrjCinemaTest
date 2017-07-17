@@ -44,6 +44,7 @@
     <Compile Include="Service\EnderecoService.cs" />
     <Compile Include="Service\FilmeService.cs" />
     <Compile Include="Service\GrupoAcessoService.cs" />
+    <Compile Include="Service\OperacaoService.cs" />
     <Compile Include="Service\PermissaoService.cs" />
     <Compile Include="Service\SerieService.cs" />
     <Compile Include="Service\UsuarioService.cs" />

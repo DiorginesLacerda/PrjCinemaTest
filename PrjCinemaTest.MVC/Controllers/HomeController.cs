@@ -1,13 +1,26 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using PrjCinema.MVC.Session;
 
 namespace PrjCinema.MVC.Controllers
 {
+    [CustomAuthorize(UserRole = "Administrador")]
     public class HomeController : Controller
     {
+        [CustomAuthorize(UserPermissions = "Visualizar")]
         public ActionResult Index()
         {
+            try
+            {
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Erro = e.Message;
+                return RedirectToAction("Login", "Login");
+            }
             
-            return View();
+            
         }
 
         public ActionResult About()

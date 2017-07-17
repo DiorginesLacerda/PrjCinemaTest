@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PrjCinema.Data.Repositories;
 using PrjCinema.Domain.Entities;
+using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Entities.SerieFilme;
 
 namespace Unit
@@ -15,7 +16,7 @@ namespace Unit
         [TestMethod]
         public void InsertUsuario()
         {
-            var usuariBase = new UsuarioRepository();
+            // var usuariBase = new UsuarioRepository();
             var representaUsuario = new Usuario();
 
             representaUsuario.Nome = "Gerente";
@@ -26,8 +27,22 @@ namespace Unit
             representaUsuario.Genero = Genero.Fem;
 
 
-            usuariBase.Add(representaUsuario);
+            // usuariBase.Add(representaUsuario);
         }
+
+        [TestMethod]
+        public void InsertOperacao()
+        {
+            var operacao = new Operacao();
+            //OperacaoRepository repository = new OperacaoRepository();
+
+            operacao.NomeOperacao = "Adicionar";
+
+            //repository.Add(operacao);
+
+        }
+
+
 
 
         [TestMethod]
@@ -77,56 +92,56 @@ namespace Unit
 
         public bool AtorExiste(Ator representaAtor)
         {
-            AtorRepository _atorRepository = new AtorRepository();
+            // AtorRepository _atorRepository = new AtorRepository();
 
-            if (_atorRepository.GetAll().Any(u => u.Nome == representaAtor.Nome &&
-                                                  u.DataNascimento == representaAtor.DataNascimento &&
-                                                  u.Nacionalidade == representaAtor.Nacionalidade))
-            {
-                return true;
-            }
+            //if (_atorRepository.GetAll().Any(u => u.Nome == representaAtor.Nome &&
+            //                                      u.DataNascimento == representaAtor.DataNascimento &&
+            //                                      u.Nacionalidade == representaAtor.Nacionalidade))
+            //{
+            //    return true;
+            //}
 
             return false;
         }
 
         public bool AtuacaoExiste(int idAtor, int idFilme)
         {
-            var atuaFilme = new FilmeRepository();
-            var filmes = atuaFilme.BuscaFilmesPorAtor(idAtor);
-            if (filmes.Any(u => u.Id == idFilme))
-            {
-                return true;
-            }
+            //var atuaFilme = new FilmeRepository();
+            //var filmes = atuaFilme.BuscaFilmesPorAtor(idAtor);
+            //if (filmes.Any(u => u.Id == idFilme))
+            //{
+            //    return true;
+            //}
             return false;
         }
 
         [TestMethod]
         public void InsertAtuacao()
         {
-            
-            
-            var _atorRep = new AtorRepository();
-            var _filmeRep = new FilmeRepository();
-            try
-            {
-                var filme = _filmeRep.GetById(1);
-                var ator = _atorRep.GetById(1);
-                
-                //get ator e filme
-                filme.FilmeAtores.Add(ator);
-                //ator.AtorFilmes.Add(filme);
-                //if (AtuacaoExiste(1, 1))
-                //{
-                //    throw new Exception("Ja existe");
-                //}
-                
-                _filmeRep.Update(filme);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                throw;
-            }
+
+
+            //var _atorRep = new AtorRepository();
+            //var _filmeRep = new FilmeRepository();
+            //try
+            //{
+            //    var filme = _filmeRep.GetById(1);
+            //    var ator = _atorRep.GetById(1);
+
+            //    //get ator e filme
+            //    filme.FilmeAtores.Add(ator);
+            //    //ator.AtorFilmes.Add(filme);
+            //    //if (AtuacaoExiste(1, 1))
+            //    //{
+            //    //    throw new Exception("Ja existe");
+            //    //}
+
+            //    _filmeRep.Update(filme);
+            //}
+            //catch (Exception e)
+            //{
+            //    Debug.WriteLine(e);
+            //    throw;
+            //}
 
 
 
@@ -239,6 +254,6 @@ namespace Unit
         //            Debug.WriteLine(permissao.Permissao.Operacoes);
         //        }
         //    }
-        
+
     }
 }

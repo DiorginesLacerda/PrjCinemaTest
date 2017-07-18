@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using PrjCinema.Data.Repositories;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.MVC.Models;
+using PrjCinema.MVC.Session;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
+    //[CustomAuthorize(UserRole = "Administrador")]
     public class LoginController : Controller
     {
-        private readonly OperacaoService _operacaoService;
+        private readonly TelaService _telaService;
         private readonly UsuarioService _usuarioService;
-        public LoginController(UsuarioService usuarioService, OperacaoService operacaoService)
+        public LoginController(UsuarioService usuarioService, TelaService telaService)
         {
-            _operacaoService = operacaoService;
+            _telaService = telaService;
             _usuarioService = usuarioService;
         }
         // GET: Login
@@ -91,6 +95,13 @@ namespace PrjCinema.MVC.Controllers
                 ViewBag.Erro = e.Message;
                 return RedirectToAction("Login");
             }
+        }
+
+        public void ValidarPermissoesTela()
+        {
+            var grupoAdm = ((Usuario)Session[""]).GrupoAcesso.Where(u => u.Perfil == Perfil.Administrador);
+
+            //ViewBag.BtnEditar = grupoAdm.Any(p => p.Permissoes.Any(a => a.))
         }
     }
 }

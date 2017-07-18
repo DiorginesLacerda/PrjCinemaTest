@@ -1,0 +1,50 @@
+﻿@using PrjCinema.Domain.Entities.Permissoes
+@model PrjCinema.MVC.Models.UsuarioModelView
+
+@{
+    ViewBag.Title = "ListaDePermissões";
+}
+
+<h2>ListaDePermissões</h2>
+
+<div>
+    <h4>UsuarioModelView</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        @foreach (var grupoacesso in (List<GrupoAcesso>)Model.GrupoAcessos)
+            {
+            <dt>
+                @grupoacesso.Nome
+            </dt>
+
+            foreach (var permissao in (List<Permissao>
+                )grupoacesso.Permissoes)
+            {
+
+                <li>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="@permissao.Removido">  @permissao.Nome
+                        </label>
+                    </div>
+                </li>
+
+            }
+
+        }
+
+    </dl>
+
+</div>
+<p>
+    @Html.ActionLink("Editar", "", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

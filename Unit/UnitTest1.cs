@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PrjCinema.Data.Repositories;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.Domain.Entities.SerieFilme;
@@ -42,7 +38,18 @@ namespace Unit
 
         }
 
+        [TestMethod]
+        public void InsertTelas()
+        {
+            string[] a = {"Ator", "Filme", "Serie", "Usuario", "GrupoAcesso", "Permissao"};
 
+            foreach (var tela in a)
+            {
+                var novaTela = new Tela();
+                novaTela.Nome = tela;
+                //_telaService.Add(novaTela);
+            }
+        }
 
 
         [TestMethod]

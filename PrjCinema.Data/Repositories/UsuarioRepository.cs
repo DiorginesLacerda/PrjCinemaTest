@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using PrjCinema.Data.Repositories.ContextFactory;
+﻿using PrjCinema.Data.Repositories.ContextFactory;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Interfaces.Repository;
 

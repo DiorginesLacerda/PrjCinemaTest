@@ -33,6 +33,7 @@
     <Compile Include="Entities\Permissoes\GrupoAcesso.cs" />
     <Compile Include="Entities\Permissoes\Permissao.cs" />
     <Compile Include="Entities\Permissoes\Operacao.cs" />
+    <Compile Include="Entities\Permissoes\Tela.cs" />
     <Compile Include="Entities\SerieFilme\Serie.cs" />
     <Compile Include="Entities\SerieFilme\Ator.cs" />
     <Compile Include="Entities\SerieFilme\Categoria.cs" />
@@ -45,12 +46,14 @@
     <Compile Include="Entities\Usuario\Usuario.cs" />
     <Compile Include="Interfaces\Repository\IEntity.cs" />
     <Compile Include="Interfaces\Repository\IGrupoAcessoRepository.cs" />
+    <Compile Include="Interfaces\Repository\ITelaRepository.cs" />
     <Compile Include="Interfaces\Repository\IOperacaoRepository.cs" />
     <Compile Include="Interfaces\Repository\IPermissaoRepository.cs" />
     <Compile Include="Interfaces\Service\IAtorService.cs" />
     <Compile Include="Interfaces\Service\IEnderecoService.cs" />
     <Compile Include="Interfaces\Service\IFilmeService.cs" />
     <Compile Include="Interfaces\Service\IGrupoAcessoService.cs" />
+    <Compile Include="Interfaces\Service\ITelaService.cs" />
     <Compile Include="Interfaces\Service\IOperacaoService.cs" />
     <Compile Include="Interfaces\Service\IPermissaoService.cs" />
     <Compile Include="Interfaces\Service\ISerieService.cs" />

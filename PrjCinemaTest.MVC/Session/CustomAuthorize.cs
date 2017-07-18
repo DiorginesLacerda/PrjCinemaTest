@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using PrjCinema.Domain.Entities;
-using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Session
 {
@@ -73,5 +73,12 @@ namespace PrjCinema.MVC.Session
             return false;
 
         }
+
+        //public bool IsInRole(string role)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public IIdentity Identity { get; }
     }
 }

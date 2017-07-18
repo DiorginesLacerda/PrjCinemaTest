@@ -30,6 +30,11 @@ namespace PrjCinema.MVC.Controllers
             return View(Mapper.Map<Usuario, UsuarioModelView>(_usuarioService.GetById(id)));
         }
 
+        public ActionResult ListaDePermissoes(int id)
+        {
+            return View(Mapper.Map<Usuario, UsuarioModelView>(_usuarioService.GetById(id)));
+        }
+
         // GET: Usuario/Create
         public ActionResult Create()
         {

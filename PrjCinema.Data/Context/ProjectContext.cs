@@ -46,7 +46,9 @@ namespace PrjCinema.Data.Context
             modelBuilder.Configurations.Add(new AtorConfiguration());
             modelBuilder.Configurations.Add(new GrupoAcessoConfiguration());
             modelBuilder.Configurations.Add(new PermissaoConfiguration());
-            }
+            modelBuilder.Configurations.Add(new TelaConfiguration());
+            modelBuilder.Configurations.Add(new OperacaoConfiguration());
+        }
 
         public override int SaveChanges()
         {

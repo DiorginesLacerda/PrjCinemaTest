@@ -1,8 +1,9 @@
 namespace PrjCinema.Data.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
-    public partial class TabelasMtM : DbMigration
+    public partial class A10 : DbMigration
     {
         public override void Up()
         {
@@ -81,6 +82,29 @@ namespace PrjCinema.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Removido = c.Boolean(nullable: false),
                         Nome = c.String(maxLength: 100, unicode: false),
+                        TelaId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Tela", t => t.TelaId)
+                .Index(t => t.TelaId);
+            
+            CreateTable(
+                "dbo.Operacao",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Removido = c.Boolean(nullable: false),
+                        NomeOperacao = c.String(maxLength: 100, unicode: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Tela",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Nome = c.String(maxLength: 100, unicode: false),
+                        Removido = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -101,82 +125,104 @@ namespace PrjCinema.Data.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.FilmeAtor",
+                "dbo.AtuaFilmes",
                 c => new
                     {
-                        Filme_Id = c.Int(nullable: false),
-                        Ator_Id = c.Int(nullable: false),
+                        IdFilmesFK = c.Int(nullable: false),
+                        IdAtoresFK = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Filme_Id, t.Ator_Id })
-                .ForeignKey("dbo.Filme", t => t.Filme_Id)
-                .ForeignKey("dbo.Ator", t => t.Ator_Id)
-                .Index(t => t.Filme_Id)
-                .Index(t => t.Ator_Id);
+                .PrimaryKey(t => new { t.IdFilmesFK, t.IdAtoresFK })
+                .ForeignKey("dbo.Ator", t => t.IdFilmesFK)
+                .ForeignKey("dbo.Filme", t => t.IdAtoresFK)
+                .Index(t => t.IdFilmesFK)
+                .Index(t => t.IdAtoresFK);
             
             CreateTable(
-                "dbo.SerieAtor",
+                "dbo.AtuaSeries",
                 c => new
                     {
-                        Serie_Id = c.Int(nullable: false),
-                        Ator_Id = c.Int(nullable: false),
+                        IdFilmesFK = c.Int(nullable: false),
+                        IdAtoresFK = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Serie_Id, t.Ator_Id })
-                .ForeignKey("dbo.Serie", t => t.Serie_Id)
-                .ForeignKey("dbo.Ator", t => t.Ator_Id)
-                .Index(t => t.Serie_Id)
-                .Index(t => t.Ator_Id);
+                .PrimaryKey(t => new { t.IdFilmesFK, t.IdAtoresFK })
+                .ForeignKey("dbo.Ator", t => t.IdFilmesFK)
+                .ForeignKey("dbo.Serie", t => t.IdAtoresFK)
+                .Index(t => t.IdFilmesFK)
+                .Index(t => t.IdAtoresFK);
             
             CreateTable(
-                "dbo.PermissaoGrupoAcesso",
+                "dbo.PermissaoOperacoes",
                 c => new
                     {
-                        Permissao_Id = c.Int(nullable: false),
-                        GrupoAcesso_Id = c.Int(nullable: false),
+                        IdPermissoesFK = c.Int(nullable: false),
+                        IdOperacoesFK = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Permissao_Id, t.GrupoAcesso_Id })
-                .ForeignKey("dbo.Permissao", t => t.Permissao_Id)
-                .ForeignKey("dbo.GrupoAcesso", t => t.GrupoAcesso_Id)
-                .Index(t => t.Permissao_Id)
-                .Index(t => t.GrupoAcesso_Id);
+                .PrimaryKey(t => new { t.IdPermissoesFK, t.IdOperacoesFK })
+                .ForeignKey("dbo.Permissao", t => t.IdPermissoesFK)
+                .ForeignKey("dbo.Operacao", t => t.IdOperacoesFK)
+                .Index(t => t.IdPermissoesFK)
+                .Index(t => t.IdOperacoesFK);
             
             CreateTable(
-                "dbo.UsuarioGrupoAcesso",
+                "dbo.GrupoAcessosPermissoes",
                 c => new
                     {
-                        Usuario_Id = c.Int(nullable: false),
-                        GrupoAcesso_Id = c.Int(nullable: false),
+                        IdGrupoAcessosFK = c.Int(nullable: false),
+                        IdPermiessoesFK = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Usuario_Id, t.GrupoAcesso_Id })
-                .ForeignKey("dbo.Usuario", t => t.Usuario_Id)
-                .ForeignKey("dbo.GrupoAcesso", t => t.GrupoAcesso_Id)
-                .Index(t => t.Usuario_Id)
-                .Index(t => t.GrupoAcesso_Id);
+                .PrimaryKey(t => new { t.IdGrupoAcessosFK, t.IdPermiessoesFK })
+                .ForeignKey("dbo.GrupoAcesso", t => t.IdGrupoAcessosFK)
+                .ForeignKey("dbo.Permissao", t => t.IdPermiessoesFK)
+                .Index(t => t.IdGrupoAcessosFK)
+                .Index(t => t.IdPermiessoesFK);
+            
+            CreateTable(
+                "dbo.GrupoAcessosUsuarios",
+                c => new
+                    {
+                        IdGrupoAcessosFK = c.Int(nullable: false),
+                        IdUsuariosFK = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.IdGrupoAcessosFK, t.IdUsuariosFK })
+                .ForeignKey("dbo.GrupoAcesso", t => t.IdGrupoAcessosFK)
+                .ForeignKey("dbo.Usuario", t => t.IdUsuariosFK)
+                .Index(t => t.IdGrupoAcessosFK)
+                .Index(t => t.IdUsuariosFK);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.UsuarioGrupoAcesso", "GrupoAcesso_Id", "dbo.GrupoAcesso");
-            DropForeignKey("dbo.UsuarioGrupoAcesso", "Usuario_Id", "dbo.Usuario");
-            DropForeignKey("dbo.PermissaoGrupoAcesso", "GrupoAcesso_Id", "dbo.GrupoAcesso");
-            DropForeignKey("dbo.PermissaoGrupoAcesso", "Permissao_Id", "dbo.Permissao");
-            DropForeignKey("dbo.SerieAtor", "Ator_Id", "dbo.Ator");
-            DropForeignKey("dbo.SerieAtor", "Serie_Id", "dbo.Serie");
-            DropForeignKey("dbo.FilmeAtor", "Ator_Id", "dbo.Ator");
-            DropForeignKey("dbo.FilmeAtor", "Filme_Id", "dbo.Filme");
-            DropIndex("dbo.UsuarioGrupoAcesso", new[] { "GrupoAcesso_Id" });
-            DropIndex("dbo.UsuarioGrupoAcesso", new[] { "Usuario_Id" });
-            DropIndex("dbo.PermissaoGrupoAcesso", new[] { "GrupoAcesso_Id" });
-            DropIndex("dbo.PermissaoGrupoAcesso", new[] { "Permissao_Id" });
-            DropIndex("dbo.SerieAtor", new[] { "Ator_Id" });
-            DropIndex("dbo.SerieAtor", new[] { "Serie_Id" });
-            DropIndex("dbo.FilmeAtor", new[] { "Ator_Id" });
-            DropIndex("dbo.FilmeAtor", new[] { "Filme_Id" });
-            DropTable("dbo.UsuarioGrupoAcesso");
-            DropTable("dbo.PermissaoGrupoAcesso");
-            DropTable("dbo.SerieAtor");
-            DropTable("dbo.FilmeAtor");
+            DropForeignKey("dbo.GrupoAcessosUsuarios", "IdUsuariosFK", "dbo.Usuario");
+            DropForeignKey("dbo.GrupoAcessosUsuarios", "IdGrupoAcessosFK", "dbo.GrupoAcesso");
+            DropForeignKey("dbo.GrupoAcessosPermissoes", "IdPermiessoesFK", "dbo.Permissao");
+            DropForeignKey("dbo.GrupoAcessosPermissoes", "IdGrupoAcessosFK", "dbo.GrupoAcesso");
+            DropForeignKey("dbo.Permissao", "TelaId", "dbo.Tela");
+            DropForeignKey("dbo.PermissaoOperacoes", "IdOperacoesFK", "dbo.Operacao");
+            DropForeignKey("dbo.PermissaoOperacoes", "IdPermissoesFK", "dbo.Permissao");
+            DropForeignKey("dbo.AtuaSeries", "IdAtoresFK", "dbo.Serie");
+            DropForeignKey("dbo.AtuaSeries", "IdFilmesFK", "dbo.Ator");
+            DropForeignKey("dbo.AtuaFilmes", "IdAtoresFK", "dbo.Filme");
+            DropForeignKey("dbo.AtuaFilmes", "IdFilmesFK", "dbo.Ator");
+            DropIndex("dbo.GrupoAcessosUsuarios", new[] { "IdUsuariosFK" });
+            DropIndex("dbo.GrupoAcessosUsuarios", new[] { "IdGrupoAcessosFK" });
+            DropIndex("dbo.GrupoAcessosPermissoes", new[] { "IdPermiessoesFK" });
+            DropIndex("dbo.GrupoAcessosPermissoes", new[] { "IdGrupoAcessosFK" });
+            DropIndex("dbo.PermissaoOperacoes", new[] { "IdOperacoesFK" });
+            DropIndex("dbo.PermissaoOperacoes", new[] { "IdPermissoesFK" });
+            DropIndex("dbo.AtuaSeries", new[] { "IdAtoresFK" });
+            DropIndex("dbo.AtuaSeries", new[] { "IdFilmesFK" });
+            DropIndex("dbo.AtuaFilmes", new[] { "IdAtoresFK" });
+            DropIndex("dbo.AtuaFilmes", new[] { "IdFilmesFK" });
+            DropIndex("dbo.Permissao", new[] { "TelaId" });
+            DropTable("dbo.GrupoAcessosUsuarios");
+            DropTable("dbo.GrupoAcessosPermissoes");
+            DropTable("dbo.PermissaoOperacoes");
+            DropTable("dbo.AtuaSeries");
+            DropTable("dbo.AtuaFilmes");
             DropTable("dbo.Usuario");
+            DropTable("dbo.Tela");
+            DropTable("dbo.Operacao");
             DropTable("dbo.Permissao");
             DropTable("dbo.GrupoAcesso");
             DropTable("dbo.Endereco");

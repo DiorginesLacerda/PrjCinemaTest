@@ -9,6 +9,8 @@ namespace PrjCinema.MVC.Models
         public bool Removido { get; set; }
         public virtual ICollection<Operacao> Operacoes { get; set; }
         public string Nome { get; set; }
+        public int TelaId { get; set; }
+        public virtual Tela Tela { get; set; }
         public virtual ICollection<GrupoAcesso> GrupoAcessos { get; set; }
     }
 }

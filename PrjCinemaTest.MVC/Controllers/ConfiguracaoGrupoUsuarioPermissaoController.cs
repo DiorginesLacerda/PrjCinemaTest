@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
-using System.Web.WebPages;
 using AutoMapper;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Entities.Permissoes;
-using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Service;
 using PrjCinema.MVC.Models;
 using PrjCinema.Service.Service;
@@ -20,13 +16,15 @@ namespace PrjCinema.MVC.Controllers
         private readonly IPermissaoService _permissaoService;
         private readonly IOperacaoService _operacaoService;
         private readonly IUsuarioService _usuarioService;
+        private readonly ITelaService _telaService;
         private readonly UsuarioService __usuarioService;
         private readonly PermissaoService __permissaoService;
-        public ConfiguracaoGrupoUsuarioPermissaoController(UsuarioService usuarioService, GrupoAcessoService grupoAcessoService, PermissaoService permissaoService, OperacaoService operacaoService)
+        public ConfiguracaoGrupoUsuarioPermissaoController(UsuarioService usuarioService, TelaService telaService, GrupoAcessoService grupoAcessoService, PermissaoService permissaoService, OperacaoService operacaoService)
         {
             __permissaoService = permissaoService;
             __usuarioService = usuarioService;
             _operacaoService = operacaoService;
+            _telaService = telaService;
             _usuarioService = usuarioService;
             _grupoAcessoService = grupoAcessoService;
             _permissaoService = permissaoService;
@@ -43,12 +41,13 @@ namespace PrjCinema.MVC.Controllers
         // GET: ConfiguracaoGrupoUsuarioPermissao/Details/5
         public ActionResult DetailsPermissao(int id)
         {
-            return View(Mapper.Map<Permissao, PermissaoModelView>(_permissaoService.GetById(1)));
+            return View(Mapper.Map<Permissao, PermissaoModelView>(_permissaoService.GetById(id)));
         }
 
         // GET: ConfiguracaoGrupoUsuarioPermissao/Create
         public ActionResult CreatePermissao()
         {
+            ViewBag.Telas = Mapper.Map<IEnumerable<Tela>, ICollection<TelaModelView>>(_telaService.GetAll());
             ViewBag.Operacoes = Mapper.Map<IEnumerable<Operacao>, ICollection<OperacaoModelView>>(_operacaoService.GetAll());
             return View();
         }
@@ -56,18 +55,52 @@ namespace PrjCinema.MVC.Controllers
         // POST: ConfiguracaoGrupoUsuarioPermissao/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePermissao(PermissaoModelView permissao)
+        public ActionResult CreatePermissao(PermissaoModelView permissaoModelView, int[] operacaoId)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _permissaoService.Add(Mapper.Map<PermissaoModelView, Permissao>(permissao));
+                    var permissao = Mapper.Map<PermissaoModelView, Permissao>(permissaoModelView);
+                    foreach (var op in operacaoId)
+                    {
+                        permissao.Operacoes.Add(_operacaoService.GetById(op));
+                    }
+                    _permissaoService.Add(permissao);
                     return RedirectToAction("IndexPermissoes");
                 }
 
-                return RedirectToAction("CreatePermissao", permissao);
+                return RedirectToAction("CreatePermissao", permissaoModelView);
 
+            }
+            catch (Exception e)
+            {
+                ViewBag.Erro = e.Message;
+                return View(permissaoModelView);
+            }
+        }
+
+        // GET: Permissao/Edit/5
+        public ActionResult EditPermissao(int id)
+        {
+            ViewBag.Telas = Mapper.Map<IEnumerable<Tela>, ICollection<TelaModelView>>(_telaService.GetAll());
+            return View(Mapper.Map<Permissao, PermissaoModelView>(_permissaoService.GetById(id)));
+        }
+
+        // POST: Permissao/Edit/5
+        [HttpPost]
+        public ActionResult EditPermissao(PermissaoModelView permissao, int telaId)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    permissao.Tela = _telaService.GetById(telaId);
+                    permissao.TelaId = telaId;
+                    _permissaoService.Update(Mapper.Map<PermissaoModelView, Permissao>(permissao));
+                    return RedirectToAction("IndexPermissoes");
+                }
+                return RedirectToAction("EditPermissao", permissao);
             }
             catch (Exception e)
             {
@@ -92,8 +125,7 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var idVindoDoViewBagDaOperacao = _operacaoService.GetById(operacaoId); 
-                    getPermissaoComObjCorreto.Operacoes.Add(idVindoDoViewBagDaOperacao);
+                    getPermissaoComObjCorreto.Operacoes.Add(_operacaoService.GetById(operacaoId));
                     _permissaoService.Update(getPermissaoComObjCorreto);
                     return RedirectToAction("IndexPermissoes");
                 }

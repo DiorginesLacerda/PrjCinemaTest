@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using PrjCinema.Domain.Entities;
@@ -164,6 +165,10 @@ namespace PrjCinema.MVC.Controllers
                 {
 
                     var idVindoDoViewBagDaPermissao = _permissaoService.GetById(permissaoId);
+                    if (getGrupoAcessoComObjCorreto.Permissoes.Any(u=>u.Tela == idVindoDoViewBagDaPermissao.Tela))
+                    {
+                        throw new Exception("Este grupo já possui uma permissão com acesso de Tela. Caso necessário consulte seu Administrador !");
+                    }
                     getGrupoAcessoComObjCorreto.Permissoes.Add(idVindoDoViewBagDaPermissao);
                     _grupoAcessoService.Update(getGrupoAcessoComObjCorreto);
                     return RedirectToAction("IndexGrupoAcessos");

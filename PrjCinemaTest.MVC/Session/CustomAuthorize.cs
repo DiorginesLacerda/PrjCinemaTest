@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,8 +14,7 @@ namespace PrjCinema.MVC.Session
         public string UserRole { get; set; }
         public string UserPermissions { get; set; }
         public string UserTelaPermissions { get; set; }
-        private int count { get; set; }
-
+        
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (HttpContext.Current.Session["UsuarioLogado"] == null)
@@ -108,7 +108,7 @@ namespace PrjCinema.MVC.Session
             string[] permissions = UserTelaPermissions.Split(',');
             string tela = permissions[0];
             string[] operacoesTela = { "" };
-            string[] operacoes = { "" };
+            List<string> operacoes = new List<string>();
             int operacoesIguais = 0;
             
             for (int i = 1; i < permissions.Length; i++)
@@ -122,15 +122,17 @@ namespace PrjCinema.MVC.Session
             {
                 if (!op.Removido)
                 {
-                    operacoes[count] = op.NomeOperacao;
-                    count++;
+                    operacoes.Add(op.NomeOperacao);
                 }
             }
-            for (int i = 0; i < operacoesTela.Length; i++)
+            for (int j = 0; j < operacoesTela.Length; j++)
             {
-                if (operacoesTela[i] == operacoes[i])
+                for (int i = 0; i < operacoes.Count; i++)
                 {
-                    operacoesIguais++;
+                    if (operacoesTela[j] == operacoes[i])
+                    {
+                        operacoesIguais++;
+                    }
                 }
             }
             if (operacoesIguais == operacoesTela.Length)

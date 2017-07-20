@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
@@ -14,7 +13,7 @@ namespace PrjCinema.MVC.Session
         public string UserRole { get; set; }
         public string UserPermissions { get; set; }
         public string UserTelaPermissions { get; set; }
-
+        private int count { get; set; }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
@@ -24,25 +23,25 @@ namespace PrjCinema.MVC.Session
             }
             var permUsuario = (Usuario)HttpContext.Current.Session["UsuarioLogado"];
 
-            if (!UserRole.IsEmpty() && VerificaPerfilDeGrupo(permUsuario))
+            if (!UserRole.IsEmpty() && IsVerificaPerfilDeGrupo(permUsuario))
             {
                 return true;
             }
-            if (!UserTelaPermissions.IsEmpty() && VerificaPermissaoDeOperacaoPorTela(permUsuario))
+            if (!UserTelaPermissions.IsEmpty() && IsVerificaPermissaoDeOperacaoPorTela(permUsuario))
             {
                 return true;
             }
-            if (!UserPermissions.IsEmpty() && VerificaPermissoes(permUsuario))
+            if (!UserPermissions.IsEmpty() && IsVerificaPermissoes(permUsuario))
             {
                 return true;
             }
-            
+
             return false;
 
         }
 
         //-----verificar Perfil de de Grupo Acesso------
-        private bool VerificaPerfilDeGrupo(Usuario permUsuario)
+        private bool IsVerificaPerfilDeGrupo(Usuario permUsuario)
         {
             if (permUsuario.GrupoAcesso != null && permUsuario.GrupoAcesso.Any(u => u.Removido == false))
             {
@@ -68,7 +67,7 @@ namespace PrjCinema.MVC.Session
         }
 
         //-----verificar permissões------
-        private bool VerificaPermissoes(Usuario permUsuario)
+        private bool IsVerificaPermissoes(Usuario permUsuario)
         {
             if (permUsuario.GrupoAcesso != null && permUsuario.GrupoAcesso.Any(u => u.Permissoes != null))
             {
@@ -104,15 +103,14 @@ namespace PrjCinema.MVC.Session
 
         //-------verificar permissão de Operação por Tela ----------
         // Permissão de tela deve sempre vir primeiro da permissão de operação na anotação da controller para validar corretamente nesta condição
-        private bool VerificaPermissaoDeOperacaoPorTela(Usuario permUsuario)
+        private bool IsVerificaPermissaoDeOperacaoPorTela(Usuario permUsuario)
         {
             string[] permissions = UserTelaPermissions.Split(',');
             string tela = permissions[0];
             string[] operacoesTela = { "" };
             string[] operacoes = { "" };
             int operacoesIguais = 0;
-
-
+            
             for (int i = 1; i < permissions.Length; i++)
             {
                 operacoesTela[i - 1] = permissions[i];
@@ -124,9 +122,8 @@ namespace PrjCinema.MVC.Session
             {
                 if (!op.Removido)
                 {
-                    int i = 0;
-                    operacoes[i] = op.NomeOperacao;
-                    i++;
+                    operacoes[count] = op.NomeOperacao;
+                    count++;
                 }
             }
             for (int i = 0; i < operacoesTela.Length; i++)

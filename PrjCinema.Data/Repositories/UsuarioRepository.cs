@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using PrjCinema.Data.Repositories.ContextFactory;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Interfaces.Repository;

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using PrjCinema.Data.Repositories;
 using PrjCinema.Domain.Entities;
-using PrjCinema.Domain.Entities.Permissoes;
 using PrjCinema.MVC.Models;
-using PrjCinema.MVC.Session;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers

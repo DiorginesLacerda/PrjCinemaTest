@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Web;
-using System.Web.WebPages;
 using PrjCinema.Domain.Entities;
+using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Util
 {
@@ -13,14 +13,26 @@ namespace PrjCinema.MVC.Util
             {
                 return false;
             }
-
-
             var permUsuario = (Usuario)HttpContext.Current.Session["UsuarioLogado"];
 
             if (permUsuario.GrupoAcesso.AsEnumerable()
                 .Any(x => x.Permissoes
                     .Any(y => y.Operacoes
                         .Any(t => t.NomeOperacao.Contains(role) && !t.Removido))))
+                return true;
+            return false;
+        }
+
+        static public bool IsPermiteTela(string tela)
+        {
+            if (HttpContext.Current.Session["UsuarioLogado"] == null)
+            {
+                return false;
+            }
+            var permUsuario = (Usuario)HttpContext.Current.Session["UsuarioLogado"];
+
+            if (permUsuario.GrupoAcesso.Any(u => u.Permissoes.
+                Any(y => y.Tela.Nome == tela && y.Removido == false)))
                 return true;
             return false;
         }
@@ -32,17 +44,15 @@ namespace PrjCinema.MVC.Util
                 return false;
             }
 
-
             var permUsuario = (Usuario)HttpContext.Current.Session["UsuarioLogado"];
             //-----verificar Perfil de de Grupo Acesso------
             if (permUsuario.GrupoAcesso != null && permUsuario.GrupoAcesso.Any(u => u.Removido == false))
             {
-
                 foreach (var a in permUsuario.GrupoAcesso)
                 {
                     if (!a.Removido && a.Perfil.ToString() == perfil) // ---------------LEMBRAR DE ARRUMAR E DIMINUIR CONDIÇÔES---------------
                     {
-                       return true;
+                        return true;
                     }
                 }
                 return false;

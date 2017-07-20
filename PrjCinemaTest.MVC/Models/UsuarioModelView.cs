@@ -39,7 +39,7 @@ namespace PrjCinema.MVC.Models
         [Required]
         [DisplayName("Data de Cadastro")]
         public DateTime DataCadastro { get; set; }
-
+        public bool Removido { get; set; }
         public Genero Genero { get; set; }
         public virtual ICollection<GrupoAcesso> GrupoAcessos { get; set; }
     }

@@ -96,5 +96,17 @@ namespace PrjCinema.Service.Service
         {
             _serieRepository.Update(obj);
         }
+
+        public void Desativar(Serie obj)
+        {
+            obj.Removido = true;
+            _serieRepository.Update(obj);
+        }
+
+        public void Ativar(Serie obj)
+        {
+            obj.Removido = false;
+            _serieRepository.Update(obj);
+        }
     }
 }

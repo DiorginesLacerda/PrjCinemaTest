@@ -41,9 +41,8 @@
         </dt>
 
         <dd>
-            @foreach (var operacao in (List<Operacao>)Model.Operacoes)
+            @foreach (var operacao in ((List<Operacao>)Model.Operacoes))
             {
-
                 <li>
                     <div class="checkbox">
                         <label>
@@ -51,7 +50,6 @@
                         </label>
                     </div>
                 </li>
-
             }
         </dd>
 
@@ -59,5 +57,5 @@
 </div>
 <p>
     @Html.ActionLink("Editar", "EditPermissao", new { id = Model.Id }) |
-    @Html.ActionLink("BVoltar", "IndexPermissoes")
+    @Html.ActionLink("Voltar", "IndexPermissoes")
 </p>

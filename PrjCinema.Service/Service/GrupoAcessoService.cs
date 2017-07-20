@@ -43,5 +43,17 @@ namespace PrjCinema.Service.Service
         {
             _grupoAcessoRepository.Update(obj);
         }
+
+        public void Desativar(GrupoAcesso obj)
+        {
+            obj.Removido = true;
+            _grupoAcessoRepository.Update(obj);
+        }
+
+        public void Ativar(GrupoAcesso obj)
+        {
+            obj.Removido = false;
+            _grupoAcessoRepository.Update(obj);
+        }
     }
 }

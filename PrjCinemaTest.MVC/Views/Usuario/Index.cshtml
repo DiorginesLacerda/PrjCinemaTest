@@ -1,4 +1,8 @@
-﻿@model IEnumerable<PrjCinema.MVC.Models.UsuarioModelView>
+﻿@using PrjCinema.MVC.Session
+@using PrjCinema.MVC.Util
+@model IEnumerable<PrjCinema.MVC.Models.UsuarioModelView>
+
+
 
 @{
     ViewBag.Title = "Lista de Usuários";
@@ -54,12 +58,30 @@
                 @Html.DisplayFor(modelItem => item.DataCadastro)
             </td>
             <td>
-                @Html.ActionLink("Permissões do usuario", "ListaDePermissoes", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Grupos do usuario", "ListaDeGrupos", new { id = item.Id }, new { @class = "btn btn-default" })
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Remover", "Delete", new { id = item.Id })
+                @if (ULogin.IsNaRole("Editar"))
+                {
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                    <b>|</b>
+                }
+                @if (ULogin.IsNaRole("Visualizar"))
+                {
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id })
+
+                }
+                @if (ULogin.IsNaRole("Remover"))
+                {
+                    <b>|</b>
+                    @Html.ActionLink("Remover", "Delete", new { id = item.Id })
+                }
+                
+                @if (ULogin.IsNaRole("Remover"))
+                {
+                    <b>|</b>
+                    @Html.ActionLink("Remover", "Delete", new { id = item.Id })
+                }
             </td>
         </tr>
     }

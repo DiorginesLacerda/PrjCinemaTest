@@ -92,5 +92,17 @@ namespace PrjCinema.Service.Service
         //{
         //    return _atorRepository.BuscaAtoresPorSerie(id);
         //}
+
+        public void Desativar(Ator obj)
+        {
+            obj.Removido = true;
+            _atorRepository.Update(obj);
+        }
+
+        public void Ativar(Ator obj)
+        {
+            obj.Removido = false;
+            _atorRepository.Update(obj);
+        }
     }
 }

@@ -11,7 +11,7 @@ using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
-    
+    [TelaAuthorize(UserTelaPermission = "Ator")]
     public class AtorController : Controller
     {
         private readonly SerieService _serieService;

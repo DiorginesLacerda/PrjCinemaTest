@@ -51,5 +51,17 @@ namespace PrjCinema.Service.Service
         {
             _permissaoRepository.Update(obj);
         }
+
+        public void Desativar(Permissao obj)
+        {
+            obj.Removido = true;
+            _permissaoRepository.Update(obj);
+        }
+
+        public void Ativar(Permissao obj)
+        {
+            obj.Removido = false;
+            _permissaoRepository.Update(obj);
+        }
     }
 }

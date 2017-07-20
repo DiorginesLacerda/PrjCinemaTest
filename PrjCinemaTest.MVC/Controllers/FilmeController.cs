@@ -6,11 +6,12 @@ using AutoMapper;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Service;
 using PrjCinema.MVC.Models;
+using PrjCinema.MVC.Session;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
-
+    [TelaAuthorize(UserTelaPermission = "Filme")]
     public class FilmeController : Controller
     {
 

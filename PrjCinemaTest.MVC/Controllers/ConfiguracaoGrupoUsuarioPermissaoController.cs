@@ -215,7 +215,7 @@ namespace PrjCinema.MVC.Controllers
         {
             //ViewBag.Usuarios = __usuarioService.BuscaUsuariosPorGrupoAcesso(id);
             //ViewBag.Permissoes = __permissaoService.BuscaPermissoesPorGrupoAcesso(id);
-            return View(Mapper.Map<GrupoAcesso, GrupoAcessoModelView>(_grupoAcessoService.GetById(1)));
+            return View(Mapper.Map<GrupoAcesso, GrupoAcessoModelView>(_grupoAcessoService.GetById(id)));
         }
 
         // GET: ConfiguracaoGrupoUsuarioPermissao/Create

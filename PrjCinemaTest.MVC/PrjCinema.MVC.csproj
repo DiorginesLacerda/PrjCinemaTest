@@ -162,7 +162,9 @@
     <Compile Include="Models\TelaModelView.cs" />
     <Compile Include="Models\UsuarioModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session\TelaAuthorize.cs" />
     <Compile Include="Session\CustomAuthorize.cs" />
+    <Compile Include="Util\ULogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
@@ -243,7 +245,8 @@
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\AddOpercaoAPermissao.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\EditPermissao.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\DetailsPermissao.cshtml" />
-    <Content Include="Views\Usuario\ListaDePermissoes.cshtml" />
+    <Content Include="Views\Usuario\ListaDeGrupos.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

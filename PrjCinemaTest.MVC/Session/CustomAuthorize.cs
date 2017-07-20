@@ -13,17 +13,63 @@ namespace PrjCinema.MVC.Session
     {
         public string UserRole { get; set; }
         public string UserPermissions { get; set; }
+        public string UserTelaPermissions { get; set; }
+
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (HttpContext.Current.Session["UsuarioLogado"] == null)
             {
-                throw new Exception("Você deve estár logado para acessar está área.");
+                return false;
             }
-
             var permUsuario = (Usuario)HttpContext.Current.Session["UsuarioLogado"];
 
-            //-----verificar permissões------
+            if (!UserRole.IsEmpty() && VerificaPerfilDeGrupo(permUsuario))
+            {
+                return true;
+            }
+            if (!UserTelaPermissions.IsEmpty() && VerificaPermissaoDeOperacaoPorTela(permUsuario))
+            {
+                return true;
+            }
+            if (!UserPermissions.IsEmpty() && VerificaPermissoes(permUsuario))
+            {
+                return true;
+            }
+            
+            return false;
+
+        }
+
+        //-----verificar Perfil de de Grupo Acesso------
+        private bool VerificaPerfilDeGrupo(Usuario permUsuario)
+        {
+            if (permUsuario.GrupoAcesso != null && permUsuario.GrupoAcesso.Any(u => u.Removido == false))
+            {
+
+                foreach (var a in permUsuario.GrupoAcesso)
+                {
+                    if (!a.Removido) // ---------------LEMBRAR DE ARRUMAR E DIMINUIR CONDIÇÔES---------------
+                    {
+                        string CurrentUserRole = a.Perfil.ToString();
+                        if (!CurrentUserRole.IsEmpty())
+                        {
+                            string[] roles = UserRole.Split(',');
+                            if (roles.Contains(CurrentUserRole))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
+
+        //-----verificar permissões------
+        private bool VerificaPermissoes(Usuario permUsuario)
+        {
             if (permUsuario.GrupoAcesso != null && permUsuario.GrupoAcesso.Any(u => u.Permissoes != null))
             {
                 var grupos = permUsuario.GrupoAcesso;
@@ -38,47 +84,64 @@ namespace PrjCinema.MVC.Session
                             string CurrentUserPermission = o.NomeOperacao;
                             if (!CurrentUserPermission.IsEmpty())
                             {
-                                if (UserPermissions.Contains(CurrentUserPermission))
+                                string[] permissions = UserPermissions.Split(',');
+                                if (UserPermissions.IsEmpty())
+                                {
+                                    return true;
+                                }
+                                if (permissions.Contains(CurrentUserPermission))
                                 {
                                     return true;
                                 }
                             }
                         }
-
                     }
                 }
-            }
-            //------------------------------
-            
-            //-----verificar Perfil de de Grupo Acesso------
-            if (permUsuario.GrupoAcesso != null && permUsuario.GrupoAcesso.Any(u => u.Removido == false))
-            {
-               
-                foreach (var a in permUsuario.GrupoAcesso)
-                {
-                    if (!a.Removido) // ---------------LEMBRAR DE ARRUMAR E DIMINUIR CONDIÇÔES---------------
-                    {
-                        string CurrentUserRole = a.Perfil.ToString();
-                        if (!CurrentUserRole.IsEmpty())
-                        {
-                            if (UserRole.Contains(CurrentUserRole))
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
             }
             return false;
-
         }
 
-        //public bool IsInRole(string role)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
-        //public IIdentity Identity { get; }
+        //-------verificar permissão de Operação por Tela ----------
+        // Permissão de tela deve sempre vir primeiro da permissão de operação na anotação da controller para validar corretamente nesta condição
+        private bool VerificaPermissaoDeOperacaoPorTela(Usuario permUsuario)
+        {
+            string[] permissions = UserTelaPermissions.Split(',');
+            string tela = permissions[0];
+            string[] operacoesTela = { "" };
+            string[] operacoes = { "" };
+            int operacoesIguais = 0;
+
+
+            for (int i = 1; i < permissions.Length; i++)
+            {
+                operacoesTela[i - 1] = permissions[i];
+            }
+            var grupoAcesso = permUsuario.GrupoAcesso.FirstOrDefault(u => u.Permissoes.
+                Any(y => y.Tela.Nome == tela));
+            var permissao = grupoAcesso.Permissoes.First(y => y.Tela.Nome == tela);
+            foreach (var op in permissao.Operacoes)
+            {
+                if (!op.Removido)
+                {
+                    int i = 0;
+                    operacoes[i] = op.NomeOperacao;
+                    i++;
+                }
+            }
+            for (int i = 0; i < operacoesTela.Length; i++)
+            {
+                if (operacoesTela[i] == operacoes[i])
+                {
+                    operacoesIguais++;
+                }
+            }
+            if (operacoesIguais == operacoesTela.Length)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

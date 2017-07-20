@@ -37,8 +37,13 @@ namespace PrjCinema.Service.Service
                 default:
                     return "Ops algo errado não está certo";
             }
-
         }
+
+        public IEnumerable<Usuario> UsuariosAtivos()
+        {
+            return _usuarioRepository.UsuariosAtivos();
+        }
+
         public bool IsUsuarioExiste(Usuario representaUsuario)
         {
             if (_usuarioRepository.GetAll().Any(u => u.Email == representaUsuario.Email || u.Cpf == representaUsuario.Cpf))
@@ -116,7 +121,7 @@ namespace PrjCinema.Service.Service
 
         public IEnumerable<Usuario> BuscaUsuariosPorGrupoAcesso(int id)
         {
-            
+
             return _usuarioRepository.GetAll().Where(u => u.GrupoAcesso.Any(x => x.Id == id));
         }
 
@@ -166,6 +171,18 @@ namespace PrjCinema.Service.Service
 
         public void Update(Usuario obj)
         {
+            _usuarioRepository.Update(obj);
+        }
+
+        public void Desativar(Usuario obj)
+        {
+            obj.Removido = true;
+            _usuarioRepository.Update(obj);
+        }
+
+        public void Ativar(Usuario obj)
+        {
+            obj.Removido = false;
             _usuarioRepository.Update(obj);
         }
     }

@@ -111,6 +111,17 @@ namespace PrjCinema.Service.Service
         //    return _filmeRepository.BuscaFilmesPorAtor(id);
         //}
 
+        public void Desativar(Filme obj)
+        {
+            obj.Removido = true;
+            _filmeRepository.Update(obj);
+        }
+
+        public void Ativar(Filme obj)
+        {
+            obj.Removido = false;
+            _filmeRepository.Update(obj);
+        }
 
     }
 }

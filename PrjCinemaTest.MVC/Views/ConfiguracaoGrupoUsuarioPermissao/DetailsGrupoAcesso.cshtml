@@ -1,4 +1,6 @@
-﻿@model PrjCinema.MVC.Models.GrupoAcessoModelView
+﻿@using PrjCinema.Domain.Entities
+@using PrjCinema.Domain.Entities.Permissoes
+@model PrjCinema.MVC.Models.GrupoAcessoModelView
 
 @{
     ViewBag.Title = "Detalhes Grupo Acesso";
@@ -10,20 +12,37 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Removido)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Removido)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Nome)
         </dd>
+        <dt>
+            <b>Permissões</b>
+        </dt>
+        <br />
+        <dd>
+            @foreach (var permissao in ((List<Permissao>)Model.Permissoes))
+            {
+                <li>
+                    @permissao.Nome
+                </li>
+            }
+        <dt>
+        <dt>
+            <b>Usuários</b>
+        </dt>
+        <br />
+        <dd>
+            @foreach (var usuario in ((List<Usuario>)Model.Usuarios))
+            {
+                <li>
+                    @usuario.Nome
+                </li>
+            }
+        <dt>
+
     </dl>
 </div>
 <p>

@@ -9,10 +9,11 @@ namespace PrjCinema.Service.Service
 {
     public class UsuarioService : IUsuarioService
     {
-
+        private readonly GrupoAcessoService _grupoAcessoService;
         private readonly IUsuarioRepository _usuarioRepository;
-        public UsuarioService(IUsuarioRepository usuarioRepository)
+        public UsuarioService(IUsuarioRepository usuarioRepository, GrupoAcessoService grupoAcessoService)
         {
+            _grupoAcessoService = grupoAcessoService;
             _usuarioRepository = usuarioRepository;
         }
 
@@ -117,6 +118,70 @@ namespace PrjCinema.Service.Service
                 resto = 11 - resto;
 
             return false;
+        }
+
+        //public ICollection<Usuario> GetUsuarioDoGrupo(int id)
+        //{
+        //    var usuGrupoId = new List<int>();
+        //    var usuarios = new List<Usuario>();
+        //    foreach (var pG in _grupoAcessoService.GetById(id).Permissoes.OrderBy(x => x.Id))
+        //    {
+        //        usuGrupoId.Add(pG.Id);
+        //    }
+        //    foreach (var ids in usuGrupoId)
+        //    {
+        //        usuarios.Add(_usuarioRepository.GetById(ids));
+        //    }
+        //    return usuarios;
+        //}
+
+        public ICollection<Usuario> GetUsuariosFaltantesNoGrupo(int id)
+        {
+            List<int> usuGrupoId = new List<int>();
+            var usuarios = new List<Usuario>();
+            bool ok = false;
+            int whatever = 0;
+
+            foreach (var uG in _grupoAcessoService.GetById(id).Usuarios.OrderBy(x => x.Id))
+            {
+                usuGrupoId.Add(uG.Id);
+            }
+            foreach (var p in _usuarioRepository.GetAll().OrderBy(x => x.Id))
+            {
+                usuGrupoId.Add(p.Id);
+            }
+            usuGrupoId.Sort();
+            for (int i = 0; i < usuGrupoId.Count; whatever++)
+            {
+                if (usuGrupoId.Count > i + 1)
+                {
+                    if (usuGrupoId[i] == usuGrupoId[i + 1])
+                    {
+                        usuGrupoId.Remove(usuGrupoId[i]);
+                        ok = true;
+                    }
+                    else if (usuGrupoId[i] != usuGrupoId[i + 1])
+                    {
+                        ok = false;
+                    }
+
+                    if (ok)
+                    {
+                        usuGrupoId.Remove(usuGrupoId[i]);
+                        continue;
+                    }
+                    i++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            foreach (var ids in usuGrupoId)
+            {
+                usuarios.Add(_usuarioRepository.GetById(ids));
+            }
+            return usuarios;
         }
 
         public IEnumerable<Usuario> BuscaUsuariosPorGrupoAcesso(int id)

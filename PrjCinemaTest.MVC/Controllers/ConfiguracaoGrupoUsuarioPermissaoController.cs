@@ -150,7 +150,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Usuario/Edit/5
         public ActionResult AddPermissaoAoGrupoAcesso(int id)
         {
-            ViewBag.Permissoes = Mapper.Map<IEnumerable<Permissao>, ICollection<PermissaoModelView>>(_permissaoService.GetAll());
+           ViewBag.Permissoes = Mapper.Map<IEnumerable<Permissao>, ICollection<PermissaoModelView>>(__permissaoService.GetPermissoesFaltantesNoGrupo(id));
             return View(Mapper.Map<GrupoAcesso, GrupoAcessoModelView>(_grupoAcessoService.GetById(id)));
         }
 
@@ -165,7 +165,7 @@ namespace PrjCinema.MVC.Controllers
                 {
 
                     var idVindoDoViewBagDaPermissao = _permissaoService.GetById(permissaoId);
-                    if (getGrupoAcessoComObjCorreto.Permissoes.Any(u=>u.Tela == idVindoDoViewBagDaPermissao.Tela))
+                    if (getGrupoAcessoComObjCorreto.Permissoes.Any(u => u.Tela == idVindoDoViewBagDaPermissao.Tela))
                     {
                         throw new Exception("Este grupo já possui uma permissão com acesso de Tela. Caso necessário consulte seu Administrador !");
                     }
@@ -186,7 +186,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Usuario/Edit/5
         public ActionResult AddUsuarioAoGrupoAcesso(int id)
         {
-            ViewBag.Usuarios = Mapper.Map<IEnumerable<Usuario>, ICollection<UsuarioModelView>>(_usuarioService.GetAll());
+            ViewBag.Usuarios = Mapper.Map<IEnumerable<Usuario>, ICollection<UsuarioModelView>>(__usuarioService.GetUsuariosFaltantesNoGrupo(id));
             return View(Mapper.Map<GrupoAcesso, GrupoAcessoModelView>(_grupoAcessoService.GetById(id)));
         }
 
@@ -218,8 +218,8 @@ namespace PrjCinema.MVC.Controllers
         // GET: ConfiguracaoGrupoUsuarioPermissao/Details/5
         public ActionResult DetailsGrupoAcesso(int id)
         {
-            //ViewBag.Usuarios = __usuarioService.BuscaUsuariosPorGrupoAcesso(id);
-            //ViewBag.Permissoes = __permissaoService.BuscaPermissoesPorGrupoAcesso(id);
+            ViewBag.Usuarios = __usuarioService.BuscaUsuariosPorGrupoAcesso(id);
+            ViewBag.Permissoes = __permissaoService.BuscaPermissoesPorGrupoAcesso(id);
             return View(Mapper.Map<GrupoAcesso, GrupoAcessoModelView>(_grupoAcessoService.GetById(id)));
         }
 

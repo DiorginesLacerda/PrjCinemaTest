@@ -23,20 +23,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cpf)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataCadastro)
-        </th>
-        <th></th>
+
     </tr>
+
+
+
 
     @foreach (var item in Model)
     {
@@ -45,44 +36,62 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCadastro)
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        Detalhes do Usúarios
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <b> Email: </b>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </li>
+                        <li>
+                            <b> Cpf: </b>
+                            @Html.DisplayFor(modelItem => item.Cpf)
+                        </li>
+                        <li>
+                            <b> Contato: </b>
+                            @Html.DisplayFor(modelItem => item.Telefone)
+                        </li>
+                        @if (ULogin.IsAdmin("Administrador"))
+                        {
+                            <li>
+                                <b> Data de Cadastro: </b>
+                                @Html.DisplayFor(modelItem => item.DataCadastro, new { @class = "date" })
+                            </li>
+                        }
+                    </ul>
+                </div>
             </td>
             <td>
                 @Html.ActionLink("Grupos do usuario", "ListaDeGrupos", new { id = item.Id }, new { @class = "btn btn-default" })
-            </td>
-            <td>
+
                 @if (ULogin.IsNaRole("Editar"))
                 {
-                    @Html.ActionLink("Editar", "Edit", new { id = item.Id })
                     <b>|</b>
-                }
-                @if (ULogin.IsNaRole("Visualizar"))
-                {
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-default" })
 
                 }
-
-                @if (ULogin.IsNaRole("Remover") && !item.Removido)
+            
+            @if (ULogin.IsNaRole("Remover") && !item.Removido)
                 {
-                    <b>|</b>
-                    @Html.ActionLink("Remover", "Delete", new { id = item.Id })
-                }
                 
-                @if (ULogin.IsNaRole("Remover") && item.Removido)
-                {
                     <b>|</b>
-                    @Html.ActionLink("Ativar", "Ativar", new { id = item.Id })
-                }
+                    @Html.ActionLink("Remover", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                
+            }
+
+
+            @if (ULogin.IsNaRole("Remover") && item.Removido)
+                {
+                
+                    <b>|</b>
+                    @Html.ActionLink("Ativar", "Ativar", new { id = item.Id }, new { @class = "btn btn-warning" })
+                
+            }
             </td>
+
         </tr>
     }
 

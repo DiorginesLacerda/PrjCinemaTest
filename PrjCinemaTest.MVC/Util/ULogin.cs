@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web;
 using PrjCinema.Domain.Entities;
-using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Util
 {

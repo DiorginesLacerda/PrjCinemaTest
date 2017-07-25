@@ -17,3 +17,4 @@ C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-maste
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Domain\bin\Debug\PrjCinema.Domain.pdb
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.dll
 C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.pdb
+C:\Users\nilton.junior\Documents\Visual Studio 2017\Projects\PrjCinemaTest-master\PrjCinemaTest\PrjCinema.Domain\obj\Debug\PrjCinema.Domain.csprojResolveAssemblyReference.cache

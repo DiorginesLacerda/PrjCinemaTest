@@ -7,9 +7,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/datetime")
-    <script src="~/Scripts/datetime.js"></script>
-    <link href="~/Content/full.css" rel="stylesheet">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,7 +19,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 @if (Session["UsuarioLogado"] != null)
-                {
+            {
                     @Html.ActionLink("Seriando App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 }
                 else
@@ -67,11 +64,22 @@
                         @ViewBag.UsuarioLogin
                     }
                 </ul>
+
+                <input type="hidden" id="success"
+                       value="@TempData["success"]" />
+                <input type="hidden" id="info"
+                       value="@TempData["info"]" />
+                <input type="hidden" id="warning"
+                       value="@TempData["warning"]" />
+                <input type="hidden" id="error"
+                       value="@TempData["error"]" />
             </div>
         </div>
 
 
     </div>
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -81,8 +89,10 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/jquerymascara")
+    @Scripts.Render("~/bundles/toast")
+    @Scripts.Render("~/bundles/datatables")
+    @Scripts.Render("~/Content/datatables")
     @RenderSection("scripts", required: false)
 </body>
 </html>

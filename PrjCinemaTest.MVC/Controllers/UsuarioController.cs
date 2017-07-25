@@ -28,9 +28,11 @@ namespace PrjCinema.MVC.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
+            
             if (ULogin.IsAdmin("Administrador"))
             {
                 return View(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.GetAll()));
+                
             }
             return View(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.UsuariosAtivos()));
         }
@@ -68,7 +70,7 @@ namespace PrjCinema.MVC.Controllers
         // GET: Usuario/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Partials/_UsuarioCreate");
         }
 
         [CustomAuthorize(UserTelaPermissions = "Usuario,Criar Conta")]
@@ -81,15 +83,18 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    usuario.Removido = true;
                     __usuarioService.AddUsuario(Mapper.Map<UsuarioModelView, Usuario>(usuario));
-                    return RedirectToAction("Index");
+                    TempData["success"] = "Novo usuário criado com sucesso!!";
+                    return PartialView("Partials/_UsuarioCreate");
                 }
-                return RedirectToAction("Create", usuario);
+                throw new Exception("Não foi possivel editar este usuário, por favor contate o administrador do sistema.");
+                
             }
             catch (Exception e)
             {
-                ViewBag.Erro = e.Message;
-                return View(usuario);
+                TempData["warning"] = e.Message;
+                return RedirectToAction("Create", usuario);
             }
 
 
@@ -110,15 +115,16 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (!ModelState.IsValid)
                 {
+                    TempData["success"] = "Usuário editado com sucesso!!";
                     _usuarioService.Update(Mapper.Map<UsuarioModelView, Usuario>(usuario));
                     return RedirectToAction("Index");
                 }
 
-                return RedirectToAction("Edit", usuario);
+                throw new Exception("Não foi possivel editar este usuário, por favor contate o administrador do sistema.");
             }
             catch (Exception e)
             {
-                ViewBag.Erro = e.Message;
+                TempData["warning"] = e.Message;
                 return View(usuario);
             }
         }
@@ -130,15 +136,17 @@ namespace PrjCinema.MVC.Controllers
             {
                 if (ValidateRequest)
                 {
+                    TempData["success"] = "Usuário removido com sucesso!!";
                     __usuarioService.Desativar(_usuarioService.GetById(id));
                     return RedirectToAction("Index");
                 }
+                
                 throw new Exception("Não foi possivel remover este usuário, por favor contate o administrador do sistema.");
 
             }
             catch (Exception e)
             {
-                ViewBag.Erro = e.Message;
+                TempData["warning"] = e.Message;
                 return RedirectToAction("Index");
             }
 
@@ -154,6 +162,7 @@ namespace PrjCinema.MVC.Controllers
                 {
                     if (ULogin.IsAdmin("Administrador"))
                     {
+                        TempData["success"] = "Usuário foi ativado com sucesso!!";
                         __usuarioService.Ativar(_usuarioService.GetById(id));
                         return RedirectToAction("Index");
                     }
@@ -163,7 +172,7 @@ namespace PrjCinema.MVC.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.Erro = e.Message;
+                TempData["warning"] = e.Message;
                 return RedirectToAction("Index");
             }
 

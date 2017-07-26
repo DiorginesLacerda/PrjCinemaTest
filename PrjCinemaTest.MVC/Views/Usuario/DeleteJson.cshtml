@@ -1,0 +1,15 @@
+﻿@model PrjCinema.MVC.Models.UsuarioModelView
+
+@using (Html.BeginForm("DeleteJson", "Usuario", FormMethod.Post, new { id = "popupForm" }))
+{
+    if (Model != null)
+    {
+        @Html.HiddenFor(u => u.Id)
+    }
+    <p>@Model.Nome</p>
+    <p>@Model.Cpf</p>
+
+    <div>
+        <input type="submit" value="Remover" class="btn btn-danger" />
+    </div>
+}

@@ -28,14 +28,15 @@ namespace PrjCinema.MVC.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-            
+
             if (ULogin.IsAdmin("Administrador"))
             {
                 return View(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.GetAll()));
-                
+
             }
             return View(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.UsuariosAtivos()));
         }
+
         [CustomAuthorize(UserTelaPermissions = "Usuario,Visualizar")]
         // GET: Usuario/Details/5
         public ActionResult Details(int id)
@@ -89,7 +90,7 @@ namespace PrjCinema.MVC.Controllers
                     return PartialView("Partials/_UsuarioCreate");
                 }
                 throw new Exception("Não foi possivel editar este usuário, por favor contate o administrador do sistema.");
-                
+
             }
             catch (Exception e)
             {
@@ -140,7 +141,7 @@ namespace PrjCinema.MVC.Controllers
                     __usuarioService.Desativar(_usuarioService.GetById(id));
                     return RedirectToAction("Index");
                 }
-                
+
                 throw new Exception("Não foi possivel remover este usuário, por favor contate o administrador do sistema.");
 
             }
@@ -176,6 +177,23 @@ namespace PrjCinema.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
+        }
+
+
+
+
+
+        //------------------------- Action com JSON --------------------------
+
+
+        public ActionResult IndexTest()
+        {
+            return View();
+        }
+
+        public JsonResult listaUsuario()
+        {
+            return Json(new { data = Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.GetAll()) }, JsonRequestBehavior.AllowGet);
         }
 
     }

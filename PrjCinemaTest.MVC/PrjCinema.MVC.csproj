@@ -482,7 +482,7 @@
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\CreateGrupoAcesso.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\AddPermissaoAoGrupoAcesso.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\AddUsuarioAoGrupoAcesso.cshtml" />
-    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\IndexPermissoes.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\IndexPermissoes01.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\CreatePermissao.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\DetailsGrupoAcesso.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\AddOpercaoAPermissao.cshtml" />
@@ -492,6 +492,10 @@
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Shared\Partials\_UsuarioCreate.cshtml" />
+    <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\IndexPermissoes.cshtml" />
+    <Content Include="Views\Usuario\IndexTest.cshtml" />
+    <Content Include="Views\Usuario\Save.cshtml" />
+    <Content Include="Views\Usuario\DeleteJson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

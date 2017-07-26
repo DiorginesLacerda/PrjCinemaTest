@@ -21,7 +21,7 @@ namespace PrjCinemaTest.MVC
 
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
                 "~/Scripts/DataTables/jquery.dataTables.min.js",
-                "~/Scripts/DataTables/dataTables.bootstrap.js", "~/Scripts/configdefaultdatatables.js"));
+                "~/Scripts/DataTables/dataTables.bootstrap.js", "~/Scripts/configdefaultdatatables.js", "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
                 "~/Content/DataTables/css/dataTables.bootstrap.css"));

@@ -494,8 +494,7 @@
     <Content Include="Views\Shared\Partials\_UsuarioCreate.cshtml" />
     <Content Include="Views\ConfiguracaoGrupoUsuarioPermissao\IndexPermissoes.cshtml" />
     <Content Include="Views\Usuario\IndexTest.cshtml" />
-    <Content Include="Views\Usuario\Save.cshtml" />
-    <Content Include="Views\Usuario\DeleteJson.cshtml" />
+    <Content Include="Views\Usuario\listaUsuario2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

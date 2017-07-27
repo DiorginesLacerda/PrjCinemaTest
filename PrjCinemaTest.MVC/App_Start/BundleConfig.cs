@@ -24,7 +24,7 @@ namespace PrjCinemaTest.MVC
                 "~/Scripts/DataTables/dataTables.bootstrap.js", "~/Scripts/configdefaultdatatables.js", "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
-                "~/Content/DataTables/css/dataTables.bootstrap.css"));
+                "~/Content/DataTables/css/dataTables.bootstrap.css", "~/Content/Datatables/css/buttons.dataTables.min.css", "~/Content/Datatables/css/select.dataTables.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));

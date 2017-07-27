@@ -8,6 +8,6 @@ namespace PrjCinema.MVC.Models
         public int Id { get; set; }
         public bool Removido { get; set; }
         public string NomeOperacao { get; set; }
-        public virtual ICollection<Permissao> Permissoes { get; set; }
+        public virtual ICollection<PermissaoModelView> Permissoes { get; set; }
     }
 }

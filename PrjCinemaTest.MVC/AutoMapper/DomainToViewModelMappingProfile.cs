@@ -18,9 +18,10 @@ namespace PrjCinema.MVC.AutoMapper
             Mapper.CreateMap<Tela, TelaModelView>();
             Mapper.CreateMap<Filme, FilmeModelView>();
             Mapper.CreateMap<Serie, SerieModelView>();
-            Mapper.CreateMap<Usuario, UsuarioModelView>();
+
+            Mapper.CreateMap<Usuario, UsuarioModelView>().ForMember(x => x.GrupoAcesso, opt => opt.Ignore());
             Mapper.CreateMap<Endereco, EnderecoModelView>();
-            Mapper.CreateMap<GrupoAcesso, GrupoAcessoModelView>();
+            Mapper.CreateMap<GrupoAcesso, GrupoAcessoModelView>().ForMember(x => x.Permissoes, opt => opt.Ignore()); ;
             Mapper.CreateMap<Permissao, PermissaoModelView>();
             Mapper.CreateMap<Operacao, OperacaoModelView>();
         }

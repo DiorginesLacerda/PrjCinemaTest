@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using PrjCinema.Domain.Entities;
@@ -16,11 +17,14 @@ namespace PrjCinema.MVC.Controllers
     [TelaAuthorize(UserTelaPermission = "Usuario")]
     public class UsuarioController : Controller
     {
-
+        private readonly IPermissaoService _permissaoService;
+        private readonly IGrupoAcessoService _grupoAcessoService;
         private readonly IUsuarioService _usuarioService;
         private readonly UsuarioService __usuarioService;
-        public UsuarioController(UsuarioService usuarioService)
+        public UsuarioController(UsuarioService usuarioService, GrupoAcessoService grupoAcessoService, PermissaoService permissaoService)
         {
+            _permissaoService = permissaoService;
+            _grupoAcessoService = grupoAcessoService;
             __usuarioService = usuarioService;
             _usuarioService = usuarioService;
         }
@@ -195,6 +199,34 @@ namespace PrjCinema.MVC.Controllers
         {
             return Json(new { data = Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioModelView>>(_usuarioService.GetAll()) }, JsonRequestBehavior.AllowGet);
         }
+        [AllowAnonymous]
+        public JsonResult listaUsuario2()
+        {
+            List<UsuarioModelView> user = new List<UsuarioModelView>();
+            var u = _usuarioService.GetAll();
+            foreach (var us in u)
+            {
+                var usuario = Mapper.Map<Usuario, UsuarioModelView>(us);
+                usuario.GrupoAcesso =
+                    Mapper.Map<IEnumerable<GrupoAcesso>, IEnumerable<GrupoAcessoModelView>>(us.GrupoAcesso);
 
+                user.Add(usuario);
+            }
+            
+          
+             
+
+            var obsRetorno = u.Select(i=> new {i.Id, i.Nome, i.Removido, i.Email, i.DataCadastro,
+                   GrupoLista = i.GrupoAcesso.Select(g=> new { g.Nome, g.Perfil,
+                       PermicoesLista = g.Permissoes.Select(p=> new {p.Nome,
+                           OperacoesLista = p.Operacoes.Select(o=> new {o.NomeOperacao})} ) })
+                }
+            );
+           
+
+
+
+            return Json(new { data = obsRetorno, dataMapper = user }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

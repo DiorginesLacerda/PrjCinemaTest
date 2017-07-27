@@ -9,7 +9,7 @@ namespace PrjCinema.Service.Service
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly GrupoAcessoService _grupoAcessoService;
+        private readonly IGrupoAcessoService _grupoAcessoService;
         private readonly IUsuarioRepository _usuarioRepository;
         public UsuarioService(IUsuarioRepository usuarioRepository, GrupoAcessoService grupoAcessoService)
         {

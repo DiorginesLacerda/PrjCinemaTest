@@ -9,7 +9,6 @@ namespace PrjCinema.Domain.Entities.Permissoes
         public bool Removido { get; set; }
         public string NomeOperacao { get; set; }
         public virtual ICollection<Permissao> Permissoes { get; set; }
-
         public object Clone()
         {
             throw new System.NotImplementedException();

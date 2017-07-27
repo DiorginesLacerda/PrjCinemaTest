@@ -1,11 +1,7 @@
 using PrjCinema.Data.Repositories;
 using PrjCinema.Data.Repositories.ContextFactory;
-using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Repository;
 using PrjCinema.Domain.Interfaces.Service;
-using PrjCinema.MVC.Controllers;
-using PrjCinema.MVC.Models;
-using PrjCinema.Service;
 using PrjCinema.Service.Service;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PrjCinema.MVC.App_Start.NinjectWebCommon), "Start")]
@@ -82,6 +78,7 @@ namespace PrjCinema.MVC.App_Start
             kernel.Bind<IOperacaoRepository>().To<OperacaoRepository>();
             kernel.Bind<IGrupoAcessoRepository>().To<GrupoAcessoRepository>();
             kernel.Bind<IPermissaoRepository>().To<PermissaoRepository>();
+            kernel.Bind<ITelaRepository>().To<TelaRepository>();
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IContextFactory>().To<ContextFactory>().InSingletonScope();
 
@@ -91,6 +88,7 @@ namespace PrjCinema.MVC.App_Start
             kernel.Bind<IOperacaoService>().To<OperacaoService>();
             kernel.Bind<ISerieService>().To<SerieService>();
             kernel.Bind<IAtorService>().To<AtorService>();
+            kernel.Bind<ITelaService>().To<TelaService>();
             kernel.Bind<IGrupoAcessoService>().To<GrupoAcessoService>();
             kernel.Bind<IPermissaoService>().To<PermissaoService>();
 

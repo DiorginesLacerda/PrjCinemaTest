@@ -5,7 +5,12 @@
 }
 
 <h2>Criar nova Permissão</h2>
-
+@if (@ViewBag.Erro != null)
+{
+<div style="border:1px solid red">
+    @ViewBag.Erro
+</div>
+}
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -32,11 +37,20 @@
             </div>
         </div>
         
-        <div class="form-group">
+       <div class="form-group">
             @Html.LabelFor(model => model.Operacoes, htmlAttributes: new { @class = "control-label col-md-2" })
+           <div class="col-md-10">
+               @Html.ListBox("operacaoId", new MultiSelectList(ViewBag.Operacoes, "Id", "NomeOperacao"), new { @class = "form-control" })
+               @*@Html.DropDownList("operacaoId", new MultiSelectList(ViewBag.Operacoes, "Id", "NomeOperacao"), new {@class = "form-control"})*@
+               @Html.ValidationMessageFor(model => model.Operacoes)
+           </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tela, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("operacaoId", new MultiSelectList(ViewBag.Operacoes, "Id", "NomeOperacao"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Operacoes)
+                @Html.DropDownList("telaId", new MultiSelectList(ViewBag.Telas, "Id", "Nome"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Tela)
             </div>
         </div>
 

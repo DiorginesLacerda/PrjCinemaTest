@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using PrjCinema.Data.Repositories.ContextFactory;
 using PrjCinema.Domain.Entities;
 using PrjCinema.Domain.Interfaces.Repository;
@@ -43,5 +43,9 @@ namespace PrjCinema.Data.Repositories
         //{
         //    throw new NotImplementedException();
         //}
+        public IEnumerable<Usuario> UsuariosAtivos()
+        {
+            return GetAll().Where(x => x.Removido != true);
+        }
     }
 }

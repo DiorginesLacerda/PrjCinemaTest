@@ -15,8 +15,17 @@ namespace PrjCinemaTest.MVC
 
             bundles.Add(new ScriptBundle("~/bundles/jquerymascara").Include(
                 "~/Scripts/jquery.mask.js*", "~/Scripts/mascara.js*"));
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
+
+            bundles.Add(new ScriptBundle("~/bundles/toast").Include(
+                "~/Scripts/toast.js", "~/Scripts/toastr.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                "~/Scripts/DataTables/jquery.dataTables.min.js",
+                "~/Scripts/DataTables/dataTables.bootstrap.js", "~/Scripts/configdefaultdatatables.js", "~/Scripts/jquery.validate.unobtrusive.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datatables").Include(
+                "~/Content/DataTables/css/dataTables.bootstrap.css", "~/Content/Datatables/css/buttons.dataTables.min.css", "~/Content/Datatables/css/select.dataTables.min.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -26,8 +35,9 @@ namespace PrjCinemaTest.MVC
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css", "~/Content/toastr.css"));
 
+         
 
         }
     }

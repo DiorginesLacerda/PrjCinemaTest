@@ -51,34 +51,16 @@
     <Compile Include="Context\EntityConfiguration\AtorConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\EnderecoConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\GrupoAcessoConfiguration.cs" />
+    <Compile Include="Context\EntityConfiguration\OperacaoConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\PermissaoConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\SerieConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\FilmeConfiguration.cs" />
+    <Compile Include="Context\EntityConfiguration\TelaConfiguration.cs" />
     <Compile Include="Context\EntityConfiguration\UsuarioConfiguration.cs" />
     <Compile Include="Context\ProjectContext.cs" />
-    <Compile Include="Migrations\201707111652283_TabelasMtM.cs" />
-    <Compile Include="Migrations\201707111652283_TabelasMtM.Designer.cs">
-      <DependentUpon>201707111652283_TabelasMtM.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707111653343_TabelasMtM2.cs" />
-    <Compile Include="Migrations\201707111653343_TabelasMtM2.Designer.cs">
-      <DependentUpon>201707111653343_TabelasMtM2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707141714066_A5.cs" />
-    <Compile Include="Migrations\201707141714066_A5.Designer.cs">
-      <DependentUpon>201707141714066_A5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707141721216_A6.cs" />
-    <Compile Include="Migrations\201707141721216_A6.Designer.cs">
-      <DependentUpon>201707141721216_A6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707171709595_A7.cs" />
-    <Compile Include="Migrations\201707171709595_A7.Designer.cs">
-      <DependentUpon>201707171709595_A7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707171832465_A8.cs" />
-    <Compile Include="Migrations\201707171832465_A8.Designer.cs">
-      <DependentUpon>201707171832465_A8.cs</DependentUpon>
+    <Compile Include="Migrations\201707181710432_A10.cs" />
+    <Compile Include="Migrations\201707181710432_A10.Designer.cs">
+      <DependentUpon>201707181710432_A10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +69,7 @@
     <Compile Include="Repositories\ContextFactory\IContextFactory.cs" />
     <Compile Include="Repositories\EnderecoRepository.cs" />
     <Compile Include="Repositories\GrupoAcessoRepository.cs" />
+    <Compile Include="Repositories\TelaRepository.cs" />
     <Compile Include="Repositories\OperacaoRepository.cs" />
     <Compile Include="Repositories\PermissaoRepository.cs" />
     <Compile Include="Repositories\FilmeRepository.cs" />
@@ -111,23 +94,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707111652283_TabelasMtM.resx">
-      <DependentUpon>201707111652283_TabelasMtM.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707111653343_TabelasMtM2.resx">
-      <DependentUpon>201707111653343_TabelasMtM2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707141714066_A5.resx">
-      <DependentUpon>201707141714066_A5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707141721216_A6.resx">
-      <DependentUpon>201707141721216_A6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707171709595_A7.resx">
-      <DependentUpon>201707171709595_A7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707171832465_A8.resx">
-      <DependentUpon>201707171832465_A8.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707181710432_A10.resx">
+      <DependentUpon>201707181710432_A10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

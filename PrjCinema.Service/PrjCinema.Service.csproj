@@ -47,6 +47,7 @@
     <Compile Include="Service\OperacaoService.cs" />
     <Compile Include="Service\PermissaoService.cs" />
     <Compile Include="Service\SerieService.cs" />
+    <Compile Include="Service\TelaService.cs" />
     <Compile Include="Service\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Login";
 }
-<h2>Login</h2>
+<h2 class="form-signin-heading">Faça seu login</h2>
 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
 {
     //cria a tag do formulário
@@ -18,22 +18,25 @@
     <table>
         <tr>
             <td>@Html.LabelFor(a => a.Email, htmlAttributes: new { @class = "control-label col-md-2" })</td>
-            <td>@Html.TextBoxFor(a => a.Email, new { htmlAttributes = new { @class = "form-control email" } })</td>
+            <td>@Html.EditorFor(a => a.Email, new { htmlAttributes = new { @class = "form-control email" } })</td>
             <td>@Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })</td>
         </tr>
         <tr>
             <td> @Html.LabelFor(a => a.Password, htmlAttributes: new { @class = "control-label col-md-2" })</td>
-            <td> @Html.PasswordFor(a => a.Password, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(a => a.Password, new { htmlAttributes = new { @class = "form-control" } }) </td>
             <td> @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" }) </td>
         </tr>
         <tr>
             <td></td>
             <td>
-                <input type="submit" value="Login" />
+                <button type="submit" value="Login" class="btn btn-default" >Login</button>
             </td>
             <td></td>
         </tr>
     </table>
+
+
+
 }
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")

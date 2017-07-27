@@ -42,5 +42,17 @@ namespace PrjCinema.Service.Service
         {
             _operacaoRepository.Dispose();
         }
+
+        public void Desativar(Operacao obj)
+        {
+            obj.Removido = true;
+            _operacaoRepository.Update(obj);
+        }
+
+        public void Ativar(Operacao obj)
+        {
+            obj.Removido = false;
+            _operacaoRepository.Update(obj);
+        }
     }
 }

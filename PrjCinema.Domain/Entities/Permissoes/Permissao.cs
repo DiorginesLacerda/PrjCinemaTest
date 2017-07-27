@@ -11,10 +11,16 @@ namespace PrjCinema.Domain.Entities.Permissoes
         public virtual ICollection<Operacao> Operacoes  { get; set; }
         public string Nome { get; set; }
         public virtual ICollection<GrupoAcesso> GrupoAcesso{ get; set; }
+        public int TelaId { get; set; }
+        public virtual Tela Tela { get; set; }
+
+        
 
         public object Clone()
         {
             throw new System.NotImplementedException();
         }
     }
+
+    
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.SessionState;
 using System.Web.WebPages;
 using AutoMapper;
 using PrjCinema.Domain.Entities.SerieFilme;
 using PrjCinema.Domain.Interfaces.Service;
 using PrjCinema.MVC.Models;
+using PrjCinema.MVC.Session;
 using PrjCinema.Service.Service;
 
 namespace PrjCinema.MVC.Controllers
 {
-    [Authorize]
+    [TelaAuthorize(UserTelaPermission = "Ator")]
     public class AtorController : Controller
     {
         private readonly SerieService _serieService;
@@ -32,7 +32,6 @@ namespace PrjCinema.MVC.Controllers
         public ActionResult Index()
         {
             return View(Mapper.Map<ICollection<Ator>, ICollection<AtorModelView>>(_atorService.GetAll()));
-
         }
 
         // GET: Ator/Edit/5
@@ -142,6 +141,7 @@ namespace PrjCinema.MVC.Controllers
             }
         }
 
+        [CustomAuthorize(UserPermissions = "Editar")]
         // GET: Ator/Edit/5
         public ActionResult Edit(int id)
         {
@@ -178,5 +178,7 @@ namespace PrjCinema.MVC.Controllers
             _atorService.Remove(_atorService.GetById(id));
             return RedirectToAction("Index");
         }
+        
+       
     }
 }

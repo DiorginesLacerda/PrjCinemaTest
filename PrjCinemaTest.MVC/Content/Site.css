@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.form-signin-heading,
+.checkbox {
+    margin-bottom: 30px;
+}
+.form-group input[type="checkbox"] {
+    display: none;
+}
+
+    .form-group input[type="checkbox"] + .btn-group > label span {
+        width: 20px;
+    }
+
+        .form-group input[type="checkbox"] + .btn-group > label span:first-child {
+            display: none;
+        }
+
+        .form-group input[type="checkbox"] + .btn-group > label span:last-child {
+            display: inline-block;
+        }
+
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+        display: inline-block;
+    }
+
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+        display: none;
+    }

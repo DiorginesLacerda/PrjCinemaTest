@@ -1,0 +1,26 @@
+﻿@model PrjCinema.Domain.Entities.Usuario
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            config.ajax =  {
+                "url": '/Usuario/listaUsuario2',
+                "type": "get",
+                "datatype": "json"
+            }
+            config.columns =  [
+                { "data": "Nome", "autoWidth": true },
+                { "data": "Cpf", "autoWidth": true },
+                { "data": "Email", "autoWidth": true },
+                { "data": "DataCadastro", "autoWidth": true },
+                { "data": "Genero", "autoWidth": true },
+                { "data": "Telefone", "autoWidth": true }
+
+            ];
+
+            $('#myTable').DataTable(config);
+        })
+    </script>
+}

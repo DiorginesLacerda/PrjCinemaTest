@@ -15,6 +15,7 @@ namespace PrjCinema.MVC.AutoMapper
         protected override void Configure()
         {
             Mapper.CreateMap<AtorModelView, Ator>();
+            Mapper.CreateMap<TelaModelView, Tela>();
             Mapper.CreateMap<FilmeModelView, Filme>();
             Mapper.CreateMap<SerieModelView, Serie>();
             Mapper.CreateMap<UsuarioModelView, Usuario>();

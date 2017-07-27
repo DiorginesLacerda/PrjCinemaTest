@@ -18,6 +18,6 @@ namespace PrjCinema.Data.Context.EntityConfiguration
                     m.ToTable("PermissaoOperacoes");
                 });
         }
-        
+
     }
 }
